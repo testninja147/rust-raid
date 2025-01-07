@@ -70,15 +70,27 @@ fn vault_shell() {
                 Vault::create(input("Vault Name: "));
             }
             "open" => {
-                let _vault = Vault::open(input("Vault Name:"), input("Vault Password:"));
-                loop {
-                    match input(format!("[ 🔓🔑 ]: ").as_str()).as_str() {
-                        "lock" | "exit" | "close" => {
-                            break;
+                match Vault::open(input("Vault Name:"), input("Vault Password:")) {
+                    Ok(vault) => {
+                        // stay inside the vault
+                        println!("✅ The vault is unlocked");
+
+                        loop {
+                            match input(format!("[ 🔓🔑 <{}>]: ", vault.name.clone()).as_str())
+                                .as_str()
+                            {
+                                "lock" | "exit" | "close" => {
+                                    println!("⛔ The vault is now locked");
+                                    break;
+                                }
+                                _ => {}
+                            }
                         }
-                        _ => {}
                     }
-                }
+                    Err(e) => {
+                        println!("⛔ {e}")
+                    }
+                };
             }
             "exit" => {
                 break;

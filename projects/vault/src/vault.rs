@@ -1,7 +1,5 @@
 use argon2::Argon2;
-use clap::builder::Str;
 use rand::Rng;
-use std::error::Error;
 use std::{collections::HashMap, fs::OpenOptions};
 use std::{
     io::{Read, Write},
@@ -14,26 +12,6 @@ use aes_gcm::{
 };
 
 use crate::input;
-
-// fn bytes_to_hex_string(bytes: Vec<u8>) -> String {
-//     bytes.iter().map(|b| format!("{b:02x}")).collect::<String>()
-// }
-
-// fn hex_string_to_bytes(string: String) -> Result<Vec<u8>, String> {
-//     let _str = string.as_str();
-
-//     // u8 hex string should always have even length
-//     if _str.len() % 2 != 0 {
-//         return Err("Hex string has an odd length".to_owned());
-//     }
-
-//     // let mut data = vec![];
-//     let data = (0.._str.len())
-//         .step_by(2)
-//         .map(|i| u8::from_str_radix(&_str[i..i + 2], 16).unwrap())
-//         .collect();
-//     Ok(data)
-// }
 
 fn generate_salt(length: usize) -> Vec<u8> {
     let mut rng = rand::thread_rng();
@@ -71,17 +49,8 @@ fn decrypt(key: [u8; 32], encrypted_data: Vec<u8>) -> Result<String, String> {
     let cipher = Aes256Gcm::new(key);
     let plaintext = cipher
         .decrypt(nonce, ciphered_data)
-        .map_err(|_| "test".to_owned())?;
-    // .unwrap_or_else(op)
-    // .unwrap_or_else(|_|Err("Could not decrypt"));
-    // .expect("failed to decrypt data");
-
-    String::from_utf8(plaintext).map_err(|_| "".to_owned())
-    // Ok(result)
-    // return match String:s:from_utf8(plaintext){
-    //     Ok(text) => Ok(text),
-    //     Err(e) => Err("test".to_owned()),
-    // }
+        .map_err(|_| "Invalid credentials".to_owned())?;
+    String::from_utf8(plaintext).map_err(|_| "The vault is corrupted".to_owned())
 }
 
 #[derive(Clone)]
@@ -126,9 +95,7 @@ impl Vault {
                 let salt = hex::decode(salt_string.clone().to_owned()).unwrap();
 
                 let key = generate_key(password.clone(), &salt);
-                println!("pass: {} | {:?}", _password.len(), _password.clone());
-                let pass = decrypt(key, hex::decode(_password).unwrap())?;
-                println!("🚀🚀🚀🚀🚀 pass: {}", pass);
+                decrypt(key, hex::decode(_password).unwrap())?;
                 let vault = Self::new(name, key);
                 Ok(vault)
             }
