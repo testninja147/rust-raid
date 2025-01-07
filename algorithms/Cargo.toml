@@ -10,31 +10,31 @@ _lib = { path = "../_lib" }
 # =========================[ Searching Algorithms ]=============================
 [[bin]]
 name = "linear_search"
-path = "searching/linear_search.rs"
+path = "src/searching/linear_search.rs"
 [[bin]]
 name = "binary_search"
-path = "searching/binary_search.rs"
+path = "src/searching/binary_search.rs"
 # ==========================[ Sorting Algorithms ]==============================
 [[bin]]
 name = "bubble_sort"
-path = "sorting/bubble_sort.rs"
+path = "src/sorting/bubble_sort.rs"
 
 [[bin]]
 name = "selection_sort"
-path = "sorting/selection_sort.rs"
+path = "src/sorting/selection_sort.rs"
 
 [[bin]]
 name = "insertion_sort"
-path = "sorting/insertion_sort.rs"
+path = "src/sorting/insertion_sort.rs"
 
 [[bin]]
 name = "quick_sort"
-path = "sorting/quick_sort.rs"
+path = "src/sorting/quick_sort.rs"
 # ===========================[ Greedy Algorithms ]==============================
 [[bin]]
 name = "huffman"
-path = "greedy/huffman_coding.rs"
+path = "src/greedy/huffman_coding.rs"
 
 [[bin]]
 name = "kruskal"
-path = "greedy/kruskal.rs"
+path = "src/greedy/kruskal.rs"

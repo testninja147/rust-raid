@@ -10,66 +10,66 @@ _lib = { path = "../_lib" }
 
 [[bin]]
 name = "practical_number"
-path = "basic/practical_number.rs"
+path = "src/basic/practical_number.rs"
 
 [[bin]]
 name = "gcd"
-path = "basic/gcd.rs"
+path = "src/basic/gcd.rs"
 
 [[bin]]
 name = "reverse_integer"
-path = "basic/reverse_integer.rs"
+path = "src/basic/reverse_integer.rs"
 
 [[bin]]
 name = "median"
-path = "basic/median.rs"
+path = "src/basic/median.rs"
 
 [[bin]]
 name = "linear_regression"
-path = "basic/linear_regression.rs"
+path = "src/basic/linear_regression.rs"
 
 [[bin]]
 name = "comprehension"
-path = "basic/comprehension.rs"
+path = "src/basic/comprehension.rs"
 
 [[bin]]
 name = "matrix_multiplication"
-path = "basic/matrix_multiplication.rs"
+path = "src/basic/matrix_multiplication.rs"
 
 [[bin]]
 name = "color_converter"
-path = "basic/color_converter.rs"
+path = "src/basic/color_converter.rs"
 
 # ============================[ Dynamic Programmign]============================
 
 [[bin]]
 name = "consecutive"
-path = "dp/consecutive_groups.rs"
+path = "src/dp/consecutive_groups.rs"
 
 [[bin]]
 name = "repeat"
-path = "dp/repeat.rs"
+path = "src/dp/repeat.rs"
 
 [[bin]]
 name = "minimize_sum"
-path = "dp/minimize_sum.rs"
+path = "src/dp/minimize_sum.rs"
 
 [[bin]]
 name = 'two_sum'
-path = "dp/two_sum.rs"
+path = "src/dp/two_sum.rs"
 
 [[bin]]
 name = "fibonacci"
-path = "dp/fibonacci.rs"
+path = "src/dp/fibonacci.rs"
 
 [[bin]]
 name = 'lcs'
-path = "dp/longest_common_subsequence.rs"
+path = "src/dp/longest_common_subsequence.rs"
 
 [[bin]]
 name = 'coin_change'
-path = 'dp/coin_change.rs'
+path = 'src/dp/coin_change.rs'
 
 [[bin]]
 name = 'palindrome_partition'
-path = 'dp/palindrome_partition.rs'
+path = 'src/dp/palindrome_partition.rs'

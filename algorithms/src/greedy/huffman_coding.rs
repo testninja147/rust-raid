@@ -160,7 +160,8 @@ impl Huffman {
 
 fn main() {
     let mut hm = Huffman::new();
-    println!("{:?}", hm.encode("SENSELESSNESS")); //RESULT: 01110101110011001011100
+    let source = "SENSELESSNESS";
+    println!("source: {source}\nencoded: {:?}", hm.encode(source)); //RESULT: 01110101110011001011100
 }
 
 #[cfg(test)]
