@@ -36,29 +36,29 @@ cargo test --bin huffman
 
 ## [2. Algorithms](./algorithms/README.md)
 
-### [2.1. Searching](algorithms/searching/)
+### [2.1. Searching](algorithms/src/searching/)
 
-1. [Linear Searching](algorithms/searching/linear_search.rs) `cargo run --bin linear_search`
-2. [Binary Searching](algorithms/searching/binary_search.rs) `cargo run --bin binary_search`
+1. [Linear Searching](algorithms/src/searching/linear_search.rs) `cargo run --bin linear_search`
+2. [Binary Searching](algorithms/src/searching/binary_search.rs) `cargo run --bin binary_search`
 3. [Depth First Search (DFS)]
 4. [Breadth First Search (BFS)]
 
-### [2.2. Sorting](algorithms/sorting/)
+### [2.2. Sorting](algorithms/src/sorting/)
 
-1. [bubble sort](algorithms/sorting/bubble_sort.rs) `cargo run --bin bubble_sort`
-2. [selection sort](algorithms/sorting/selection_sort.rs) `cargo run --bin selection_sort`
-3. [insertion sort](algorithms/sorting/insertion_sort.rs) `cargo run --bin insertion_sort`
-4. [quick sort](algorithms/sorting/quick_sort.rs) `cargo run --bin quick_sort`
+1. [bubble sort](algorithms/src/sorting/bubble_sort.rs) `cargo run --bin bubble_sort`
+2. [selection sort](algorithms/src/sorting/selection_sort.rs) `cargo run --bin selection_sort`
+3. [insertion sort](algorithms/src/sorting/insertion_sort.rs) `cargo run --bin insertion_sort`
+4. [quick sort](algorithms/src/sorting/quick_sort.rs) `cargo run --bin quick_sort`
 5. [Merge sort]
 6. [heap Sort]
 7. [Counting Sort]
 8. [Radix Sort]
 
-### [2.3 Greedy and Graph Algorithms](algorithms/greedy/)
+### [2.3 Greedy and Graph Algorithms](algorithms/src/greedy/)
 
 1. [Activity Selection]
-2. [Huffman Coding](algorithms/greedy/huffman_coding.rs) `cargo run --bin huffman`
-3. [Krushkal's algorithm](algorithms/greedy/kruskal.rs) `cargo run --bin kruskal`
+2. [Huffman Coding](algorithms/src/greedy/huffman_coding.rs) `cargo run --bin huffman`
+3. [Krushkal's algorithm](algorithms/src/greedy/kruskal.rs) `cargo run --bin kruskal`
 4. [Prim's Algorithm]
 5. [Dijkstra's Algorithm]
 6. [Bellman-Ford Algorithm]
@@ -79,27 +79,27 @@ cargo test --bin huffman
 
 ## [4. Problem Solving](problem-solving/README.md)
 
-### [4.1. Basic Problems](problem-solving/basic/)
+### [4.1. Basic Problems](problem-solving/src/basic/)
 
-1. [Practical Number](problem-solving/basic/practical_number.rs)  `cargo run --bin practical_number`
-2. [Greatest Common Divisor](problem-solving/basic/gcd.rs) `cargo run --bin gcd`
-3. [Median](problem-solving/basic/median.rs) `cargo run --bin median`
-4. [Reverse digits of the integer](problem-solving/basic/reverse_integer.rs) `cargo run --bin reverse_integer`
-5. [List Comprehension](problem-solving/basic/comprehension.rs) `cargo run --bin comprehension`
-6. [Linear Regression Model](problem-solving/basic/linear_regression.rs) `cargo run --bin linear_regression`
-7. [Matrix Multiplication Model](problem-solving/basic/matrix_multiplication.rs) `cargo run --bin matrix_multiplication`
-8. [Color Converter](problem-solving/basic/color_converter.rs) `cargo run --bin color_converter`
+1. [Practical Number](problem-solving/src/basic/practical_number.rs)  `cargo run --bin practical_number`
+2. [Greatest Common Divisor](problem-solving/src/basic/gcd.rs) `cargo run --bin gcd`
+3. [Median](problem-solving/src/basic/median.rs) `cargo run --bin median`
+4. [Reverse digits of the integer](problem-solving/src/basic/reverse_integer.rs) `cargo run --bin reverse_integer`
+5. [List Comprehension](problem-solving/src/basic/comprehension.rs) `cargo run --bin comprehension`
+6. [Linear Regression Model](problem-solving/src/basic/linear_regression.rs) `cargo run --bin linear_regression`
+7. [Matrix Multiplication Model](problem-solving/src/basic/matrix_multiplication.rs) `cargo run --bin matrix_multiplication`
+8. [Color Converter](problem-solving/src/basic/color_converter.rs) `cargo run --bin color_converter`
 
-### [4.2. Dynamic Programming](problem-solving/dp/)
+### [4.2. Dynamic Programming](problem-solving/src/dp/)
 
-1. [List group by consecutive numbers](problem-solving/dp/consecutive_groups.rs) `cargo run --bin consecutive_groups`
-2. [Find the length of the longest substring with maximum 2 repetition](problem-solving/dp/repeat.rs)`cargo run --bin repeat`
-3. [Find the index of 2 numbers in an array whose sum equals to the provided target](problem-solving/dp/two_sum.rs) `cargo run --bin two_sum`
-4. [Minimize the Sum from an array](problem-solving/dp/minimize_sum.rs) `cargo run --bin minimize_sum`
-5. [Fibonacci Series](problem-solving/dp/fibonacci.rs) `cargo run --bin fibonacci`
-6. [Longest Common Subsequence](problem-solving/dp/longest_common_subsequence.rs) `cargo run --bin lcs`
-7. [Coin Change Problem](problem-solving/dp/coin_change.rs) `cargo run --bin coin_change`
-8. [Palindrome Partition](problem-solving/dp/palindrome_partition.rs) `cargo run --bin palindrome_partition`
+1. [List group by consecutive numbers](problem-solving/src/dp/consecutive_groups.rs) `cargo run --bin consecutive_groups`
+2. [Find the length of the longest substring with maximum 2 repetition](problem-solving/src/dp/repeat.rs)`cargo run --bin repeat`
+3. [Find the index of 2 numbers in an array whose sum equals to the provided target](problem-solving/src/dp/two_sum.rs) `cargo run --bin two_sum`
+4. [Minimize the Sum from an array](problem-solving/src/dp/minimize_sum.rs) `cargo run --bin minimize_sum`
+5. [Fibonacci Series](problem-solving/src/dp/fibonacci.rs) `cargo run --bin fibonacci`
+6. [Longest Common Subsequence](problem-solving/src/dp/longest_common_subsequence.rs) `cargo run --bin lcs`
+7. [Coin Change Problem](problem-solving/src/dp/coin_change.rs) `cargo run --bin coin_change`
+8. [Palindrome Partition](problem-solving/src/dp/palindrome_partition.rs) `cargo run --bin palindrome_partition`
 
 ## [5. Projects](./projects/)
 
