@@ -1,5 +1,5 @@
 use clap::{Parser, Subcommand};
-use std::io::stdin;
+use std::io::{self, stdin, stdout, Read, Write};
 mod vault;
 use vault::Vault;
 /// This function reads input from the standard input (stdin) and returns it as a String.
@@ -14,7 +14,8 @@ use vault::Vault;
 /// * A String containing the input read from the console. The leading and trailing whitespace are
 ///   trimmed from the input.
 fn input(prompt: &str) -> String {
-    println!("{}", prompt);
+    print!("{}", prompt);
+    stdout().flush().unwrap();
     let mut input = String::new();
     stdin().read_line(&mut input).expect("");
     input.trim().to_owned()
@@ -32,29 +33,55 @@ enum Subcommands {
         #[arg(short, long, default_value_t = String::from("default"))]
         name: String,
     },
+    Run,
     Destroy,
 }
 
 #[derive(Parser, Debug)]
 #[command(version, about="Vault CLI", long_about = None)]
-#[command(arg_required_else_help = true)]
+// #[command()]
 struct Cli {
     #[command(subcommand)]
-    subcommand: Subcommands,
+    subcommand: Option<Subcommands>,
 }
 
 fn main() {
     let command = Cli::parse();
 
     match command.subcommand {
-        Subcommands::Open { name } => {
+        Some(Subcommands::Open { name }) => {
             println!("opening the vault: {name}");
             let password = input("Enter password:");
             Vault::open(name, password);
         }
-        Subcommands::Create { name } => {
+        Some(Subcommands::Create { name }) => {
             Vault::create(name);
         }
-        Subcommands::Destroy => todo!(),
+        Some(Subcommands::Destroy) => todo!(),
+        _ => vault_shell(),
+    }
+}
+
+fn vault_shell() {
+    loop {
+        // println!("]")
+        match input("[ 🔒 ]: ").as_str() {
+            "create" =>{
+                Vault::create(input("Vault Name: "));
+            }
+            "open" => {
+                let vault = Vault::open(input("Vault Name:"), input("Vault Password:"));
+                loop {
+                    match input(format!("[ 🔓🔑 ]: ").as_str()).as_str() {
+                        "lock" | "exit" | "close" => {break;}
+                        _ => {}
+                    }
+                }
+            }
+            "exit"=>{
+                break;
+            }
+            _ => {}
+        };
     }
 }
