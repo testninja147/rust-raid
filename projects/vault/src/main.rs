@@ -52,7 +52,7 @@ fn main() {
         Some(Subcommands::Open { name }) => {
             println!("opening the vault: {name}");
             let password = input("Enter password:");
-            Vault::open(name, password);
+            let _ = Vault::open(name, password);
         }
         Some(Subcommands::Create { name }) => {
             Vault::create(name);
@@ -66,19 +66,21 @@ fn vault_shell() {
     loop {
         // println!("]")
         match input("[ 🔒 ]: ").as_str() {
-            "create" =>{
+            "create" => {
                 Vault::create(input("Vault Name: "));
             }
             "open" => {
-                let vault = Vault::open(input("Vault Name:"), input("Vault Password:"));
+                let _vault = Vault::open(input("Vault Name:"), input("Vault Password:"));
                 loop {
                     match input(format!("[ 🔓🔑 ]: ").as_str()).as_str() {
-                        "lock" | "exit" | "close" => {break;}
+                        "lock" | "exit" | "close" => {
+                            break;
+                        }
                         _ => {}
                     }
                 }
             }
-            "exit"=>{
+            "exit" => {
                 break;
             }
             _ => {}

@@ -1,48 +1,40 @@
-use aes::{
-    cipher::{
-        block_padding::{Iso10126, Pkcs7},
-        generic_array::GenericArray,
-        BlockDecrypt, BlockDecryptMut, BlockEncrypt, BlockEncryptMut, KeyInit, KeyIvInit,
-    },
-    Aes256,
-};
-use argon2::{
-    password_hash::{PasswordHash, PasswordHasher, PasswordVerifier, SaltString},
-    Argon2,
-};
+use argon2::Argon2;
 use clap::builder::Str;
 use rand::Rng;
+use std::error::Error;
 use std::{collections::HashMap, fs::OpenOptions};
 use std::{
     io::{Read, Write},
     ops::Index,
 };
 
+use aes_gcm::{
+    aead::{Aead, AeadCore, KeyInit, OsRng},
+    Aes256Gcm, Key, Nonce,
+};
+
 use crate::input;
 
-// define encoder and decoder types
-type Aes128CbcEnc = cbc::Encryptor<aes::Aes128>;
-type Aes128CbcDec = cbc::Decryptor<aes::Aes128>;
+// fn bytes_to_hex_string(bytes: Vec<u8>) -> String {
+//     bytes.iter().map(|b| format!("{b:02x}")).collect::<String>()
+// }
 
-fn bytes_to_hex_string(bytes: Vec<u8>) -> String {
-    bytes.iter().map(|b| format!("{b:02x}")).collect::<String>()
-}
+// fn hex_string_to_bytes(string: String) -> Result<Vec<u8>, String> {
+//     let _str = string.as_str();
 
-fn hex_string_to_bytes(string: String) -> Result<Vec<u8>, String> {
-    let _str = string.as_str();
+//     // u8 hex string should always have even length
+//     if _str.len() % 2 != 0 {
+//         return Err("Hex string has an odd length".to_owned());
+//     }
 
-    // u8 hex string should always have even length
-    if _str.len() % 2 != 0 {
-        return Err("Hex string has an odd length".to_owned());
-    }
+//     // let mut data = vec![];
+//     let data = (0.._str.len())
+//         .step_by(2)
+//         .map(|i| u8::from_str_radix(&_str[i..i + 2], 16).unwrap())
+//         .collect();
+//     Ok(data)
+// }
 
-    // let mut data = vec![];
-    let data = (0.._str.len())
-        .step_by(2)
-        .map(|i| u8::from_str_radix(&_str[i..i + 2], 16).unwrap())
-        .collect();
-    Ok(data)
-}
 fn generate_salt(length: usize) -> Vec<u8> {
     let mut rng = rand::thread_rng();
     (0..length).map(|_| rng.gen()).collect()
@@ -56,17 +48,40 @@ fn generate_key(password: String, salt: &Vec<u8>) -> [u8; 32] {
     }
     key
 }
+// type Aes256Cbc = Cbc<Aes256, Pkcs7>;
 
 fn encrypt(key: [u8; 32], message: String) -> Vec<u8> {
-    let key = GenericArray::from(key);
-    let mut message = message.as_bytes().to_vec();
-    let len = message.len();
-    let cipher = Aes256::new(&key);
-    cipher
-        .encrypt_padded_mut::<Iso10126>(&mut message, len)
-        .unwrap();
-    println!("{:?}", message);
-    message
+    let key_array = Key::<Aes256Gcm>::from_slice(&key);
+    let nonce = Aes256Gcm::generate_nonce(&mut OsRng);
+
+    let cipher = Aes256Gcm::new(key_array);
+
+    let ciphered_data = cipher
+        .encrypt(&nonce, message.as_bytes())
+        .expect("failed to encrypt");
+    let mut encrypted_data: Vec<u8> = nonce.to_vec();
+    encrypted_data.extend_from_slice(&ciphered_data);
+    encrypted_data
+}
+
+fn decrypt(key: [u8; 32], encrypted_data: Vec<u8>) -> Result<String, String> {
+    let key = Key::<Aes256Gcm>::from_slice(&key);
+    let (nonce_arr, ciphered_data) = encrypted_data.split_at(12);
+    let nonce = Nonce::from_slice(nonce_arr);
+    let cipher = Aes256Gcm::new(key);
+    let plaintext = cipher
+        .decrypt(nonce, ciphered_data)
+        .map_err(|_| "test".to_owned())?;
+    // .unwrap_or_else(op)
+    // .unwrap_or_else(|_|Err("Could not decrypt"));
+    // .expect("failed to decrypt data");
+
+    String::from_utf8(plaintext).map_err(|_| "".to_owned())
+    // Ok(result)
+    // return match String:s:from_utf8(plaintext){
+    //     Ok(text) => Ok(text),
+    //     Err(e) => Err("test".to_owned()),
+    // }
 }
 
 #[derive(Clone)]
@@ -108,34 +123,17 @@ impl Vault {
                 let _password = data.index(1);
                 let _creds = data.index(2);
 
-                let salt = hex_string_to_bytes(salt_string.clone().to_owned()).unwrap();
-                println!("salt: {salt:?}");
-                println!("pass: {_password:?}");
-                println!("data: {_creds:?}");
+                let salt = hex::decode(salt_string.clone().to_owned()).unwrap();
 
-                let key = generate_key(password, &salt);
+                let key = generate_key(password.clone(), &salt);
+                println!("pass: {} | {:?}", _password.len(), _password.clone());
+                let pass = decrypt(key, hex::decode(_password).unwrap())?;
+                println!("🚀🚀🚀🚀🚀 pass: {}", pass);
                 let vault = Self::new(name, key);
                 Ok(vault)
             }
-            Err(_) => {
-                // println!("Could not create the vault \"{name}\"");
-                // println!("{e}");
-                Err("Could not open the vault".to_string())
-            }
+            Err(_) => Err("Could not open the vault".to_string()),
         }
-
-        // vault
-
-        // let salt = generate_salt(20);
-        // let key = generate_key(password, &salt);
-        // let key_string: String = key.iter().map(|k| return format!("{k:02x}")).collect();
-        // println!("key_string: {:?}", key_string);
-
-        // let encrypted = encrypt(key, String::from("Test data 111111111111111"));
-        // println!("Encrypted: {:?}", encrypted);
-
-        // let vault = Self::new(name, key);
-        // vault
     }
 
     /// Create
@@ -157,17 +155,10 @@ impl Vault {
 
                 println!("The vault \"{name}\" has been successfully created");
                 let mut data = vec![];
-                data.push(bytes_to_hex_string(salt.clone()));
-                data.push(bytes_to_hex_string(salt.clone()));
-                // data.push(bytes_to_hex_string(encrypt(key, password)));
+                data.push(hex::encode(salt.clone()));
+                data.push(hex::encode(encrypt(key, password)));
                 data.push("".to_string());
-
                 let _ = file.write(data.join("\n").as_bytes());
-
-                // let _ = file.write(bytes_to_hex_string(salt).as_bytes());
-                // let _ = file.write(b"\n");
-                // let _ = file.wri
-                // let _ = file.writ
             }
             Err(e) => {
                 println!("Could not create the vault \"{name}\"");
@@ -176,5 +167,3 @@ impl Vault {
         }
     }
 }
-
-// [140, 236, 35, 129, 174, 152, 176, 176, 85, 233, 122, 112, 21, 31, 157, 154, 64, 3, 98, 45, 151, 192, 106, 228, 190, 132, 161, 162, 99, 125, 13, 232]
