@@ -1,11 +1,8 @@
 use argon2::Argon2;
 use rand::Rng;
 use rpassword::prompt_password;
+use std::io::{Read, Write};
 use std::{collections::HashMap, fs::OpenOptions};
-use std::{
-    io::{Read, Write},
-    ops::Index,
-};
 
 use aes_gcm::{
     aead::{Aead, AeadCore, KeyInit, OsRng},
@@ -55,8 +52,9 @@ fn decrypt(key: [u8; 32], encrypted_data: Vec<u8>) -> Result<String, String> {
 #[derive(Clone)]
 pub(crate) struct Vault {
     pub(crate) name: String,
+    salt: Vec<u8>,
     key: [u8; 32],
-    credentials: HashMap<String, String>,
+    credentials: HashMap<String, Vec<u8>>,
 }
 
 impl Vault {
@@ -64,10 +62,11 @@ impl Vault {
     ///
     /// the `new` method creates a new instance of `Vault` with the given name
     /// and an empty list of credentials
-    pub(crate) fn new(name: String, key: [u8; 32]) -> Self {
+    pub(crate) fn new(name: String, key: [u8; 32], salt: Vec<u8>) -> Self {
         Self {
             name,
             key,
+            salt,
             credentials: HashMap::new(),
         }
     }
@@ -85,17 +84,29 @@ impl Vault {
             Ok(file) => {
                 let mut buf = String::new();
                 file.read_to_string(&mut buf).unwrap();
-                let data: Vec<String> = buf.split("\n").map(|s| s.to_string()).collect();
+                let mut data: Vec<String> = buf.split("\n").map(|s| s.to_string()).collect();
 
-                let salt_string = data.index(0);
-                let _password = data.index(1);
-                let _creds = data.index(2);
+                let _salt_string = data.remove(0);
+                let _name = data.remove(0);
 
-                let salt = hex::decode(salt_string.clone().to_owned()).unwrap();
-
+                let salt = hex::decode(_salt_string.clone().to_owned()).unwrap();
                 let key = generate_key(password.clone(), &salt);
-                decrypt(key, hex::decode(_password).unwrap())?;
-                let vault = Self::new(name, key);
+
+                // just to confirm whether the vault name is correct
+                let decrypted_name = decrypt(key, hex::decode(_name).unwrap())?;
+                if decrypted_name != name {
+                    println!("⛔ The vault is corrupt");
+                }
+
+                let mut vault = Self::new(name, key, salt);
+                data.iter()
+                    .map(|d| d.split_once('#').unwrap())
+                    .for_each(|(k, v)| {
+                        vault
+                            .credentials
+                            .insert(k.to_owned(), hex::decode(v).unwrap());
+                    });
+
                 Ok(vault)
             }
             Err(_) => Err("Could not open the vault".to_string()),
@@ -130,27 +141,61 @@ impl Vault {
                 // generate salt
                 let salt = generate_salt(20);
                 let key = generate_key(password.clone(), &salt);
-                let mut data = vec![];
-                data.push(hex::encode(salt.clone()));
-                data.push(hex::encode(encrypt(key, password)));
-                data.push("".to_string());
 
-                match OpenOptions::new()
-                    .write(true)
-                    .create_new(true) // This will cause an error if the file already exists
-                    .open(file_path)
-                    .as_mut()
-                {
-                    Ok(file) => {
-                        let _ = file.write(data.join("\n").as_bytes());
-                        println!("✅ The vault \"{name}\" has been successfully created");
-                    }
-                    Err(e) => {
-                        println!("Could not create the vault \"{name}\"");
-                        println!("{e}");
-                    }
-                }
+                let mut vault = Vault::new(name, key, salt);
+                vault.save(true);
             }
         };
+    }
+
+    pub(crate) fn set(&mut self, key: String, value: String) {
+        let encoded = encrypt(self.key, value);
+        self.credentials.insert(key, encoded);
+        self.save(false);
+    }
+
+    pub(crate) fn get(&mut self, key: String) {
+        // let data = self.credentials.entry(key);
+        // let cred = ta
+        match self.credentials.get(&key).as_ref() {
+            Some(&value) => {
+                let decrypted = decrypt(self.key, value.clone()).unwrap();
+                println!("the credential for the given key is : {decrypted}")
+            }
+            None => {
+                println!("No credentials found for the given key")
+            }
+        };
+    }
+
+    fn save(&mut self, create_new: bool) {
+        let file_path = format!("{}.vault", self.name);
+
+        let mut data = Vec::new();
+        data.push(hex::encode(self.salt.clone()));
+        data.push(hex::encode(encrypt(self.key, self.name.clone())));
+        self.credentials.iter().for_each(|(k, v)| {
+            data.push(format!("{}#{}", k.as_str(), hex::encode(v)));
+        });
+
+        match OpenOptions::new()
+            .write(true)
+            .truncate(true)
+            .create_new(create_new) // This will cause an error if the file already exists
+            .open(file_path)
+            .as_mut()
+        {
+            Ok(file) => {
+                let _ = file.write(data.join("\n").as_bytes());
+                println!(
+                    "✅ The vault \"{}\" has been successfully created",
+                    self.name
+                );
+            }
+            Err(e) => {
+                println!("⛔ Could not save the vault '{}'", self.name);
+                println!("{e}");
+            }
+        }
     }
 }
