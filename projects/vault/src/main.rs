@@ -62,6 +62,10 @@ fn main() {
                                     println!("🚀 delete");
                                     todo!(" delete key is not yet implemented")
                                 }
+                                &["list"] => {
+                                    println!("🚀 list");
+                                    todo!(" delete key is not yet implemented")
+                                }
                                 _ => {}
                             }
                         }
