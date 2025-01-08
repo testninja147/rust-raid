@@ -9,6 +9,8 @@ use aes_gcm::{
     Aes256Gcm, Key, Nonce,
 };
 
+use crate::message_box;
+
 fn generate_salt(length: usize) -> Vec<u8> {
     let mut rng = rand::thread_rng();
     (0..length).map(|_| rng.gen()).collect()
@@ -155,12 +157,10 @@ impl Vault {
     }
 
     pub(crate) fn get(&mut self, key: String) {
-        // let data = self.credentials.entry(key);
-        // let cred = ta
         match self.credentials.get(&key).as_ref() {
             Some(&value) => {
                 let decrypted = decrypt(self.key, value.clone()).unwrap();
-                println!("the credential for the given key is : {decrypted}")
+                message_box(format!("the credential for the given key is : {decrypted}"));
             }
             None => {
                 println!("No credentials found for the given key")

@@ -1,4 +1,3 @@
-use clap::{Parser, Subcommand};
 use std::io::{stdin, stdout, Write};
 mod vault;
 use rpassword::prompt_password;
@@ -22,53 +21,13 @@ fn input(prompt: &str) -> String {
     input.trim().to_owned()
 }
 
-#[derive(Subcommand, Debug)]
-enum Subcommands {
-    #[command(about = "Creates a new vault with the name provided or the default vault ")]
-    Create {
-        #[arg(short, long, default_value_t = String::from("default"))]
-        name: String,
-    },
-    #[command(about = "Opens the vault with the name provided or the default vault ")]
-    Open {
-        #[arg(short, long, default_value_t = String::from("default"))]
-        name: String,
-    },
-    Run,
-    Destroy,
-}
-
-#[derive(Parser, Debug)]
-#[command(version, about="Vault CLI", long_about = None)]
-// #[command()]
-struct Cli {
-    #[command(subcommand)]
-    subcommand: Option<Subcommands>,
+fn message_box(message: impl ToString) {
+    println!("+{}+", "-".repeat(78));
+    println!("|{:^78}|", message.to_string());
+    println!("+{}+", "-".repeat(78));
 }
 
 fn main() {
-    let command = Cli::parse();
-
-    match command.subcommand {
-        Some(Subcommands::Open { name }) => {
-            println!("opening the vault: {name}");
-            let password = input("Enter password [hidden]: ");
-            let _ = Vault::open(name, password);
-        }
-        Some(Subcommands::Create { name }) => {
-            Vault::create(name);
-        }
-        Some(Subcommands::Destroy) => todo!(),
-        _ => vault_shell(),
-    }
-}
-fn message_box(message: &str) {
-    println!("+{}+", "-".repeat(78));
-    println!("|{:^78}|", message);
-    println!("+{}+", "-".repeat(78));
-}
-
-fn vault_shell() {
     loop {
         message_box("open | create | exit");
 
@@ -83,7 +42,7 @@ fn vault_shell() {
                     Ok(mut vault) => {
                         println!("✅ The vault is unlocked");
                         loop {
-                            message_box("list | get | set | delete | lock | exit | close");
+                            message_box("list | get <key> | set <key> <val> | delete <key> | lock");
                             match input(format!("[ {} ] 🔓: ", vault.name.clone()).as_str())
                                 .split(" ")
                                 .collect::<Vec<&str>>()
