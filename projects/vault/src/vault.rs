@@ -1,5 +1,6 @@
 use argon2::Argon2;
 use rand::Rng;
+use rpassword::prompt_password;
 use std::{collections::HashMap, fs::OpenOptions};
 use std::{
     io::{Read, Write},
@@ -10,8 +11,6 @@ use aes_gcm::{
     aead::{Aead, AeadCore, KeyInit, OsRng},
     Aes256Gcm, Key, Nonce,
 };
-
-use crate::input;
 
 fn generate_salt(length: usize) -> Vec<u8> {
     let mut rng = rand::thread_rng();
@@ -109,28 +108,49 @@ impl Vault {
     /// The vault contains encrypted credentials along with few encryption data
     /// such as number of iterations and salt.
     pub(crate) fn create(name: String) {
+        let file_path = format!("{name}.vault");
+        // check if file exists
         match OpenOptions::new()
-            .write(true)
-            .create_new(true) // This will cause an error if the file already exists
-            .open(format!("{name}.vault"))
-            .as_mut()
+            .read(true)
+            .create_new(false)
+            .open(file_path.clone())
         {
-            Ok(file) => {
-                let password = input("Enter password: ");
+            Ok(_) => {
+                println!("⛔ The vault with name '{name}' already Exists");
+            }
+
+            Err(_) => {
+                // create a new vault
+                let password = prompt_password("Enter password [hidden]: ").unwrap();
+                let re_password = prompt_password("Confirm password [hidden]: ").unwrap();
+                if password != re_password {
+                    println!("⛔ Credentials do not match!!");
+                    return;
+                }
+                // generate salt
                 let salt = generate_salt(20);
                 let key = generate_key(password.clone(), &salt);
-
-                println!("The vault \"{name}\" has been successfully created");
                 let mut data = vec![];
                 data.push(hex::encode(salt.clone()));
                 data.push(hex::encode(encrypt(key, password)));
                 data.push("".to_string());
-                let _ = file.write(data.join("\n").as_bytes());
+
+                match OpenOptions::new()
+                    .write(true)
+                    .create_new(true) // This will cause an error if the file already exists
+                    .open(file_path)
+                    .as_mut()
+                {
+                    Ok(file) => {
+                        let _ = file.write(data.join("\n").as_bytes());
+                        println!("✅ The vault \"{name}\" has been successfully created");
+                    }
+                    Err(e) => {
+                        println!("Could not create the vault \"{name}\"");
+                        println!("{e}");
+                    }
+                }
             }
-            Err(e) => {
-                println!("Could not create the vault \"{name}\"");
-                println!("{e}");
-            }
-        }
+        };
     }
 }

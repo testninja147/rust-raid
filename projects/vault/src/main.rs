@@ -1,6 +1,7 @@
 use clap::{Parser, Subcommand};
 use std::io::{self, stdin, stdout, Read, Write};
 mod vault;
+use rpassword::prompt_password;
 use vault::Vault;
 /// This function reads input from the standard input (stdin) and returns it as a String.
 ///
@@ -51,7 +52,7 @@ fn main() {
     match command.subcommand {
         Some(Subcommands::Open { name }) => {
             println!("opening the vault: {name}");
-            let password = input("Enter password:");
+            let password = input("Enter password [hidden]: ");
             let _ = Vault::open(name, password);
         }
         Some(Subcommands::Create { name }) => {
@@ -61,27 +62,43 @@ fn main() {
         _ => vault_shell(),
     }
 }
+fn message_box(message: &str) {
+    println!("+{}+", "-".repeat(78));
+    println!("|{:^78}|", message);
+    println!("+{}+", "-".repeat(78));
+}
 
 fn vault_shell() {
     loop {
-        // println!("]")
-        match input("[ 🔒 ]: ").as_str() {
+        message_box("open | create | exit");
+
+        match input("🔒: ").as_str() {
             "create" => {
                 Vault::create(input("Vault Name: "));
             }
             "open" => {
-                match Vault::open(input("Vault Name:"), input("Vault Password:")) {
+                let name = input("Enter Vault Name: ");
+                let password = prompt_password("Enter Password [hidden]: ").unwrap();
+                match Vault::open(name, password) {
                     Ok(vault) => {
-                        // stay inside the vault
                         println!("✅ The vault is unlocked");
-
                         loop {
-                            match input(format!("[ 🔓🔑 <{}>]: ", vault.name.clone()).as_str())
+                            message_box("list | get | set | delete | lock | exit | close");
+                            match input(format!("[ {} ] 🔓: ", vault.name.clone()).as_str())
                                 .as_str()
                             {
                                 "lock" | "exit" | "close" => {
                                     println!("⛔ The vault is now locked");
                                     break;
+                                }
+                                "list" => {
+                                    println!("🚀 Listing");
+                                }
+                                "get" => {
+                                    println!("🚀 get");
+                                }
+                                "delete" => {
+                                    println!("🚀 delete");
                                 }
                                 _ => {}
                             }
