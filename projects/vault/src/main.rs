@@ -1,5 +1,5 @@
 use clap::{Parser, Subcommand};
-use std::io::{self, stdin, stdout, Read, Write};
+use std::io::{stdin, stdout, Write};
 mod vault;
 use rpassword::prompt_password;
 use vault::Vault;
@@ -80,7 +80,7 @@ fn vault_shell() {
                 let name = input("Enter Vault Name: ");
                 let password = prompt_password("Enter Password [hidden]: ").unwrap();
                 match Vault::open(name, password) {
-                    Ok(vault) => {
+                    Ok(mut vault) => {
                         println!("✅ The vault is unlocked");
                         loop {
                             message_box("list | get | set | delete | lock | exit | close");
@@ -91,11 +91,11 @@ fn vault_shell() {
                                     println!("⛔ The vault is now locked");
                                     break;
                                 }
-                                "list" => {
-                                    println!("🚀 Listing");
+                                "set" => {
+                                    vault.set(input("Enter key: "), input("Enter value: "));
                                 }
                                 "get" => {
-                                    println!("🚀 get");
+                                    vault.get(input("Enter a key: "));
                                 }
                                 "delete" => {
                                     println!("🚀 delete");
