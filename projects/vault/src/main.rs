@@ -85,20 +85,23 @@ fn vault_shell() {
                         loop {
                             message_box("list | get | set | delete | lock | exit | close");
                             match input(format!("[ {} ] 🔓: ", vault.name.clone()).as_str())
-                                .as_str()
+                                .split(" ")
+                                .collect::<Vec<&str>>()
+                                .as_slice()
                             {
-                                "lock" | "exit" | "close" => {
+                                &["lock" | "exit" | "close", ..] => {
                                     println!("⛔ The vault is now locked");
                                     break;
                                 }
-                                "set" => {
-                                    vault.set(input("Enter key: "), input("Enter value: "));
+                                &["set", k, v] => {
+                                    vault.set(k.to_owned(), v.to_owned());
                                 }
-                                "get" => {
-                                    vault.get(input("Enter a key: "));
+                                &["get", k] => {
+                                    vault.get(k.to_owned());
                                 }
-                                "delete" => {
+                                &["delete", k] => {
                                     println!("🚀 delete");
+                                    todo!(" delete key is not yet implemented")
                                 }
                                 _ => {}
                             }
