@@ -3,9 +3,13 @@
 [Rust Raid](https://github.com/ghimiresdp/rust-raid) is a repository for Rust
 learners and coding challenge seekers.
 
-The repository contains solutions to diverse challenges categorized by different
-topics(workspaces). Each workspace contains multiple binaries so that it will be
-easier to run specific problem by selecting binaries.
+**The repository contains the following**:
+
+- `solutions` to diverse challenges categorized by different topics(workspaces).
+- `Demo projects` to polish your skills to the depth.
+
+Each workspace contains multiple binaries so that it will be easier to run
+specific problem by selecting binaries.
 
 You can run the `cargo run --bin <binary_name>` to run binaries.To run all test cases,
 you can run `cargo test` command, or to run specific test, you can run
@@ -27,12 +31,12 @@ cargo test --bin huffman
 3. [**Doubly Linked Lists**](./data-structures/src/doubly_linked_list.rs) `cargo run --bin doubly_linked_list`
 4. [**Stacks**](./data-structures/src/stack.rs) `cargo run --bin stack`
 5. [**Queues**](./data-structures/src/queue.rs) `cargo run --bin queue`
-6. [Binary Trees](./data-structures/src/binary_tree.rs) `cargo run --bin binary_tree`
-7. Segment Trees
-8. Fenwick Trees (Binary Indexed trees)
-9. Suffix Trees
-10. Trie
-11. Disjoint Set
+6. [**Binary Trees**](./data-structures/src/binary_tree.rs) `cargo run --bin binary_tree`
+7. [**Segment Trees**]
+8. [**Fenwick Trees (Binary Indexed trees)**]
+9. [**Suffix Trees**]
+10. [**Trie**]
+11. [**Disjoint Set**]
 
 ## [2. Algorithms](./algorithms/README.md)
 
@@ -105,6 +109,7 @@ cargo test --bin huffman
 
 1. [Python's `Pandas` like dataframe container](projects/pandas/README.md) `cargo run --bin pandas`
 2. [`ruscrypt` basic encryption](projects/ruscrypt/README.md) `cargo run --bin ruscrypt`
+2. [Basic Password `vault`](projects/vault/README.md) `cargo run --bin vault`
 
 > **Note**: Topics that do not contain hyperlinks are work in progress and will
 > be updated as soon as the solution gets completed.

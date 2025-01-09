@@ -1,0 +1,86 @@
+use std::io::{stdin, stdout, Write};
+mod vault;
+use rpassword::prompt_password;
+use vault::Vault;
+/// This function reads input from the standard input (stdin) and returns it as a String.
+///
+/// # Parameters
+///
+/// * `prompt` - A string that is printed to the console before reading input. This is used to
+///              prompt the user for input.
+///
+/// # Return
+///
+/// * A String containing the input read from the console. The leading and trailing whitespace are
+///   trimmed from the input.
+fn input(prompt: &str) -> String {
+    print!("{}", prompt);
+    stdout().flush().unwrap();
+    let mut input = String::new();
+    stdin().read_line(&mut input).expect("");
+    input.trim().to_owned()
+}
+
+fn message_box(message: impl ToString) {
+    println!("+{}+", "-".repeat(78));
+    println!("|{:^78}|", message.to_string());
+    println!("+{}+", "-".repeat(78));
+}
+
+///
+/// ! to run, execute
+/// * $  cargo run --bin vault
+fn main() {
+    loop {
+        message_box("open | create | exit");
+
+        match input("🔒: ").split(" ").collect::<Vec<&str>>().as_slice() {
+            &["create"] => {
+                Vault::create(input("Vault Name: "));
+            }
+            &["open"] => {
+                // println!("{}",);
+                let name = input("Enter Vault Name: ");
+                let password = prompt_password("Enter Password [hidden]: ").unwrap();
+                match Vault::open(name, password) {
+                    Ok(mut vault) => {
+                        println!("✅ The vault is unlocked");
+                        loop {
+                            message_box("list | get <key> | push <key> <val> | pop <key> | lock");
+                            match input(format!("[ {} ] 🔓: ", vault.name.clone()).as_str())
+                                .split(" ")
+                                .collect::<Vec<&str>>()
+                                .as_slice()
+                            {
+                                &["lock" | "exit" | "close", ..] => {
+                                    println!("⛔ The vault is now locked");
+                                    break;
+                                }
+                                &["get", k] => {
+                                    vault.get(k.to_owned());
+                                }
+                                &["list"] => {
+                                    vault.list();
+                                }
+                                &["push", k, v] => {
+                                    vault.push(k.to_owned(), v.to_owned());
+                                }
+                                &["pop", k] => {
+                                    vault.pop(k.to_owned());
+                                }
+                                _ => {}
+                            }
+                        }
+                    }
+                    Err(e) => {
+                        println!("⛔ {e}")
+                    }
+                };
+            }
+            &["exit"] => {
+                break;
+            }
+            _ => {}
+        };
+    }
+}

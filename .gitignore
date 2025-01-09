@@ -1,5 +1,10 @@
 /target
 .idea/
 tmp/
-.vscode/
+.vscode/*
+# allow vscode extension recommendations
+!.vscode/extensions.json
 db/
+
+// vault file
+*.vault
