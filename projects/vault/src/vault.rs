@@ -11,44 +11,45 @@ use aes_gcm::{
 
 use crate::message_box;
 
-fn generate_salt(length: usize) -> Vec<u8> {
-    let mut rng = rand::thread_rng();
-    (0..length).map(|_| rng.gen()).collect()
-}
+struct Crypto;
 
-fn generate_key(password: String, salt: &Vec<u8>) -> [u8; 32] {
-    let mut key = [0u8; 32]; // Can be any desired size
-    match Argon2::default().hash_password_into(password.as_bytes(), salt, &mut key) {
-        Ok(data) => println!("{data:?}"),
-        Err(error) => println!("{error:?}"),
+impl Crypto {
+    pub(crate) fn generate_salt(length: usize) -> Vec<u8> {
+        let mut rng = rand::thread_rng();
+        (0..length).map(|_| rng.gen()).collect()
     }
-    key
-}
-// type Aes256Cbc = Cbc<Aes256, Pkcs7>;
 
-fn encrypt(key: [u8; 32], message: String) -> Vec<u8> {
-    let key_array = Key::<Aes256Gcm>::from_slice(&key);
-    let nonce = Aes256Gcm::generate_nonce(&mut OsRng);
+    pub(crate) fn generate_key(password: String, salt: &Vec<u8>) -> [u8; 32] {
+        let mut key = [0u8; 32]; // Can be any desired size
+        match Argon2::default().hash_password_into(password.as_bytes(), salt, &mut key) {
+            Ok(data) => println!("{data:?}"),
+            Err(error) => println!("{error:?}"),
+        }
+        key
+    }
+    pub(crate) fn encrypt(key: [u8; 32], message: String) -> Vec<u8> {
+        let key_array = Key::<Aes256Gcm>::from_slice(&key);
+        let nonce = Aes256Gcm::generate_nonce(&mut OsRng);
 
-    let cipher = Aes256Gcm::new(key_array);
+        let cipher = Aes256Gcm::new(key_array);
 
-    let ciphered_data = cipher
-        .encrypt(&nonce, message.as_bytes())
-        .expect("failed to encrypt");
-    let mut encrypted_data: Vec<u8> = nonce.to_vec();
-    encrypted_data.extend_from_slice(&ciphered_data);
-    encrypted_data
-}
-
-fn decrypt(key: [u8; 32], encrypted_data: Vec<u8>) -> Result<String, String> {
-    let key = Key::<Aes256Gcm>::from_slice(&key);
-    let (nonce_arr, ciphered_data) = encrypted_data.split_at(12);
-    let nonce = Nonce::from_slice(nonce_arr);
-    let cipher = Aes256Gcm::new(key);
-    let plaintext = cipher
-        .decrypt(nonce, ciphered_data)
-        .map_err(|_| "Invalid credentials".to_owned())?;
-    String::from_utf8(plaintext).map_err(|_| "The vault is corrupted".to_owned())
+        let ciphered_data = cipher
+            .encrypt(&nonce, message.as_bytes())
+            .expect("failed to encrypt");
+        let mut encrypted_data: Vec<u8> = nonce.to_vec();
+        encrypted_data.extend_from_slice(&ciphered_data);
+        encrypted_data
+    }
+    pub(crate) fn decrypt(key: [u8; 32], encrypted_data: Vec<u8>) -> Result<String, String> {
+        let key = Key::<Aes256Gcm>::from_slice(&key);
+        let (nonce_arr, ciphered_data) = encrypted_data.split_at(12);
+        let nonce = Nonce::from_slice(nonce_arr);
+        let cipher = Aes256Gcm::new(key);
+        let plaintext = cipher
+            .decrypt(nonce, ciphered_data)
+            .map_err(|_| "Invalid credentials".to_owned())?;
+        String::from_utf8(plaintext).map_err(|_| "The vault is corrupted".to_owned())
+    }
 }
 
 #[derive(Clone)]
@@ -73,6 +74,36 @@ impl Vault {
         }
     }
 
+    pub(crate) fn list(&mut self) {
+        self.credentials
+            .clone()
+            .keys()
+            .for_each(|k| println!("| {:30} | {:43} |", k, "*****"));
+    }
+
+    pub(crate) fn get(&mut self, key: String) {
+        match self.credentials.get(&key).as_ref() {
+            Some(&value) => {
+                let decrypted = Crypto::decrypt(self.key, value.clone()).unwrap();
+                message_box(format!("the credential for the given key is : {decrypted}"));
+            }
+            None => {
+                println!("No credentials found for the given key")
+            }
+        };
+    }
+
+    pub(crate) fn push(&mut self, key: String, value: String) {
+        let encoded = Crypto::encrypt(self.key, value);
+        self.credentials.insert(key, encoded);
+        self.save(false);
+    }
+
+    pub(crate) fn pop(&mut self, key: String) {
+        self.credentials.remove(&key);
+        self.save(false);
+    }
+
     /// Open an existing vault
     ///
     /// If a vault exists, it opens the vault, else shows an error message saying it doesn't exist.
@@ -92,21 +123,22 @@ impl Vault {
                 let _name = data.remove(0);
 
                 let salt = hex::decode(_salt_string.clone().to_owned()).unwrap();
-                let key = generate_key(password.clone(), &salt);
+                let key = Crypto::generate_key(password.clone(), &salt);
 
                 // just to confirm whether the vault name is correct
-                let decrypted_name = decrypt(key, hex::decode(_name).unwrap())?;
+                let decrypted_name = Crypto::decrypt(key, hex::decode(_name).unwrap())?;
                 if decrypted_name != name {
                     println!("⛔ The vault is corrupt");
                 }
 
                 let mut vault = Self::new(name, key, salt);
                 data.iter()
-                    .map(|d| d.split_once('#').unwrap())
+                    .filter_map(|d| d.split_once('#'))
                     .for_each(|(k, v)| {
-                        vault
-                            .credentials
-                            .insert(k.to_owned(), hex::decode(v).unwrap());
+                        vault.credentials.insert(
+                            Crypto::decrypt(key, hex::decode(k.to_owned()).unwrap()).unwrap(),
+                            hex::decode(v).unwrap(),
+                        );
                     });
 
                 Ok(vault)
@@ -141,29 +173,11 @@ impl Vault {
                     return;
                 }
                 // generate salt
-                let salt = generate_salt(20);
-                let key = generate_key(password.clone(), &salt);
+                let salt = Crypto::generate_salt(20);
+                let key = Crypto::generate_key(password.clone(), &salt);
 
                 let mut vault = Vault::new(name, key, salt);
                 vault.save(true);
-            }
-        };
-    }
-
-    pub(crate) fn set(&mut self, key: String, value: String) {
-        let encoded = encrypt(self.key, value);
-        self.credentials.insert(key, encoded);
-        self.save(false);
-    }
-
-    pub(crate) fn get(&mut self, key: String) {
-        match self.credentials.get(&key).as_ref() {
-            Some(&value) => {
-                let decrypted = decrypt(self.key, value.clone()).unwrap();
-                message_box(format!("the credential for the given key is : {decrypted}"));
-            }
-            None => {
-                println!("No credentials found for the given key")
             }
         };
     }
@@ -173,9 +187,13 @@ impl Vault {
 
         let mut data = Vec::new();
         data.push(hex::encode(self.salt.clone()));
-        data.push(hex::encode(encrypt(self.key, self.name.clone())));
+        data.push(hex::encode(Crypto::encrypt(self.key, self.name.clone())));
         self.credentials.iter().for_each(|(k, v)| {
-            data.push(format!("{}#{}", k.as_str(), hex::encode(v)));
+            data.push(format!(
+                "{}#{}",
+                hex::encode(Crypto::encrypt(self.key, k.clone())),
+                hex::encode(v)
+            ));
         });
 
         match OpenOptions::new()

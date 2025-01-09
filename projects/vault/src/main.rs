@@ -31,18 +31,19 @@ fn main() {
     loop {
         message_box("open | create | exit");
 
-        match input("🔒: ").as_str() {
-            "create" => {
+        match input("🔒: ").split(" ").collect::<Vec<&str>>().as_slice() {
+            &["create"] => {
                 Vault::create(input("Vault Name: "));
             }
-            "open" => {
+            &["open"] => {
+                // println!("{}",);
                 let name = input("Enter Vault Name: ");
                 let password = prompt_password("Enter Password [hidden]: ").unwrap();
                 match Vault::open(name, password) {
                     Ok(mut vault) => {
                         println!("✅ The vault is unlocked");
                         loop {
-                            message_box("list | get <key> | set <key> <val> | delete <key> | lock");
+                            message_box("list | get <key> | push <key> <val> | pop <key> | lock");
                             match input(format!("[ {} ] 🔓: ", vault.name.clone()).as_str())
                                 .split(" ")
                                 .collect::<Vec<&str>>()
@@ -52,19 +53,17 @@ fn main() {
                                     println!("⛔ The vault is now locked");
                                     break;
                                 }
-                                &["set", k, v] => {
-                                    vault.set(k.to_owned(), v.to_owned());
-                                }
                                 &["get", k] => {
                                     vault.get(k.to_owned());
                                 }
-                                &["delete", k] => {
-                                    println!("🚀 delete");
-                                    todo!(" delete key is not yet implemented")
-                                }
                                 &["list"] => {
-                                    println!("🚀 list");
-                                    todo!(" delete key is not yet implemented")
+                                    vault.list();
+                                }
+                                &["push", k, v] => {
+                                    vault.push(k.to_owned(), v.to_owned());
+                                }
+                                &["pop", k] => {
+                                    vault.pop(k.to_owned());
                                 }
                                 _ => {}
                             }
@@ -75,7 +74,7 @@ fn main() {
                     }
                 };
             }
-            "exit" => {
+            &["exit"] => {
                 break;
             }
             _ => {}
