@@ -27,6 +27,9 @@ fn message_box(message: impl ToString) {
     println!("+{}+", "-".repeat(78));
 }
 
+///
+/// ! to run, execute
+/// * $  cargo run --bin vault
 fn main() {
     loop {
         message_box("open | create | exit");
