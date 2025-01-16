@@ -13,4 +13,5 @@ members = [
     "projects/pandas",
     "projects/ruscrypt",
     "projects/vault",
+    "projects/todo-web",
 ]
