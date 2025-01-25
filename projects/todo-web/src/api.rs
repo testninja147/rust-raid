@@ -17,9 +17,13 @@ pub(crate) async fn retrieve(
     path: web::Path<(usize,)>,
 ) -> impl Responder {
     let items = &data.todo_list.lock().unwrap().items;
-    let item = (items).get(&path.into_inner().0).unwrap();
-    let str = serde_json::to_string(item).unwrap();
-    HttpResponse::Ok().body(str)
+    return match (items).get(&path.into_inner().0) {
+        Some(item) => {
+            let str = serde_json::to_string(item).unwrap();
+            HttpResponse::Ok().body(str)
+        }
+        None => HttpResponse::NotFound().body("{\"detail\": \"Not found\"}"),
+    };
 }
 pub(crate) async fn update(data: web::Data<ApplicationState>) -> impl Responder {
     let todo_list = data.todo_list.lock().unwrap();
