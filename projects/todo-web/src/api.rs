@@ -1,17 +1,27 @@
-use actix_web::{HttpResponse, Responder};
+use actix_web::{web, HttpResponse, Responder};
 
-pub(crate) struct Todo;
+use crate::{todo::TodoList, ApplicationState};
 
-impl Todo {
-    pub(crate) async fn hello() -> impl Responder {
-        HttpResponse::Ok().body("Hello world!")
-    }
-
-    pub(crate) async fn echo(req_body: String) -> impl Responder {
-        HttpResponse::Ok().body(req_body)
-    }
-
-    pub(crate) async fn manual_hello() -> impl Responder {
-        HttpResponse::Ok().body("Hey there!")
-    }
+pub(crate) async fn list(data: web::Data<ApplicationState>) -> impl Responder {
+    let items = (&data.todo_list.lock().unwrap().items).clone();
+    let todo_list = Vec::from_iter(items.values());
+    let str = serde_json::to_string(&todo_list).unwrap();
+    HttpResponse::Ok().body(str)
+}
+pub(crate) async fn create(data: web::Data<ApplicationState>) -> impl Responder {
+    let todo_list = data.todo_list.lock().unwrap();
+    HttpResponse::Ok().body("[]")
+}
+pub(crate) async fn retrieve(data: web::Data<ApplicationState>) -> impl Responder {
+    let todo_list = data.todo_list.lock().unwrap();
+    HttpResponse::Ok().body("[]")
+}
+pub(crate) async fn update(data: web::Data<ApplicationState>) -> impl Responder {
+    let todo_list = data.todo_list.lock().unwrap();
+    HttpResponse::Ok().body("[]")
+}
+pub(crate) async fn delete(data: web::Data<ApplicationState>) -> impl Responder {
+    let todo_list = data.todo_list.lock().unwrap();
+    println!("{:?}", *todo_list);
+    HttpResponse::Ok().body("[]")
 }
