@@ -2,8 +2,6 @@ use std::collections::HashMap;
 
 use serde::{Deserialize, Serialize};
 
-// use serde::{Deserialize, Serialize};
-
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub(crate) struct Todo {
     id: usize,
@@ -42,18 +40,5 @@ impl TodoList {
         self.current_index += 1;
         self.items
             .insert(self.current_index, Todo::new(self.current_index, content));
-    }
-
-    fn list(&self) -> Vec<Todo> {
-        // let items = (&self.items)
-        //     .iter()
-        //     .map(|(_, v)| v.clone().to_owned().to_owned().to_owned())
-        //     .collect::<Vec<Todo>>();
-        // items
-        return vec![];
-    }
-
-    fn get(&self, id: usize) -> Option<&Todo> {
-        self.items.get(&id)
     }
 }

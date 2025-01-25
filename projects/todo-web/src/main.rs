@@ -4,7 +4,7 @@ use actix_web::{web, App, HttpServer};
 mod api;
 mod todo;
 
-use api::{delete, list, retrieve, update};
+use api::{create, delete, list, retrieve, update};
 use todo::TodoList;
 
 struct ApplicationState {
@@ -20,11 +20,16 @@ async fn main() -> std::io::Result<()> {
             .app_data(state.clone())
             // Prefix all services with /api for API endpoints
             .service(
-                web::scope("/api/todo")
-                    .route("/", web::get().to(list))
-                    .route("/{id}/", web::get().to(retrieve))
-                    .route("/{id}/", web::patch().to(update))
-                    .route("/{id}/", web::delete().to(delete)),
+                web::scope("/api")
+                    // .guard(guard::Header("content-type", "application/json"))
+                    .service(
+                        web::scope("/todo")
+                            .route("/", web::get().to(list))
+                            .route("/", web::post().to(create))
+                            .route("/{id}/", web::get().to(retrieve))
+                            .route("/{id}/", web::patch().to(update))
+                            .route("/{id}/", web::delete().to(delete)),
+                    ),
             )
     })
     .bind(("127.0.0.1", 8080))?
