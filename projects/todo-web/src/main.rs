@@ -1,6 +1,11 @@
 use std::sync::Mutex;
 
-use actix_web::{web, App, HttpServer};
+use actix_files as fs;
+use actix_web::{
+    web::{self},
+    App, HttpServer,
+};
+
 mod api;
 mod todo;
 
@@ -31,6 +36,15 @@ async fn main() -> std::io::Result<()> {
                             .route("/{id}/", web::delete().to(delete)),
                     ),
             )
+            // serve static files and index.html file
+            .service(fs::Files::new("/static", "projects/todo-web/static").show_files_listing())
+            .service(fs::Files::new("/", "projects/todo-web/").index_file("index.html"))
+
+        // use paths below instead if you execute `cargo run` command from `todo-web` directory instead of running
+        // cargo run --bin todo-web from the project directory
+
+        // .service(fs::Files::new("/static", "static").show_files_listing())
+        // .service(fs::Files::new("/", ".").index_file("index.html"))
     })
     .bind(("127.0.0.1", 8080))?
     .run()
