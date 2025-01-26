@@ -9,7 +9,7 @@ pub(crate) async fn list(data: web::Data<ApplicationState>) -> impl Responder {
     HttpResponse::Ok().body(str)
 }
 pub(crate) async fn create(data: web::Data<ApplicationState>) -> impl Responder {
-    let todo_list = data.todo_list.lock().unwrap();
+    // let todo_list = data.todo_list.lock().unwrap();
     HttpResponse::Ok().body("[]")
 }
 pub(crate) async fn retrieve(

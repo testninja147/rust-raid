@@ -2,6 +2,7 @@ use std::sync::Mutex;
 
 use actix_files as fs;
 use actix_web::{
+    middleware::DefaultHeaders,
     web::{self},
     App, HttpServer,
 };
@@ -26,7 +27,7 @@ async fn main() -> std::io::Result<()> {
             // Prefix all services with /api for API endpoints
             .service(
                 web::scope("/api")
-                    // .guard(guard::Header("content-type", "application/json"))
+                    .wrap(DefaultHeaders::new().add(("Content-Type", "application/json")))
                     .service(
                         web::scope("/todo")
                             .route("/", web::get().to(list))
