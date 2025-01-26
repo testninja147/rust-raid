@@ -12,6 +12,10 @@ const todo = {
 
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    console.log("Document is ready");
+document.addEventListener('DOMContentLoaded', async () => {
+    const sidebar = document.querySelector('div.sidebar');
+    const elements = (await todo.list()).map(d => {
+        return `<div class="todo${d.checked?' checked':''}">${d.title}</div>`
+    });
+    sidebar.innerHTML = elements.join('');
 })
