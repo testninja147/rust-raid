@@ -1,19 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
     <link rel="stylesheet" href="static/css/index.css">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
 </head>
+
 <body>
     <div class="root">
-        <div class="nav">Todo List</div>
-        <div class="view">
-            <div class="sidebar"></div>
+        <div class="flex gap-4 bg-blue-900 text-white p-2 px-4 items-center">
+            <div class="text-yellow-400 text-lg font-bold">Todo List</div>
+            <!-- <span class="grow"></span> -->
+            <button id="add-todo" class="utility bg-green-600 text-white p-2 px-4 rounded-full hover:brightness-90">
+                Add new
+            </button>
+            <!-- <span class="grow"></span> -->
+        </div>
+        <div class="view relative">
+            <div class="sidebar">
+            </div>
             <div class="detail"> test</div>
+            <div id="add-modal" class="absolute inset-0 bg-gray-500/30 flex items-center justify-center hidden">
+                <form class="bg-white p-8 px-4 flex flex-col gap-2 rounded-lg" method="dialog">
+                    <input id="title" type="text" placeholder="Enter title" class="p-2 px-4 border-1" />
+                    <textarea id="content" placeholder="Enter Content" class="p-2 px-4 border-1"></textarea>
+                    <button id="submit-todo" class="bg-blue-900 text-white p-2 px-4">Submit</button>
+                    <button id="cancel-todo" class="bg-red-800 text-white p-2 px-4">Cancel</button>
+                </form>
+            </div>
         </div>
     </div>
 </body>
 <script src="static/js/index.js"></script>
+
 </html>
