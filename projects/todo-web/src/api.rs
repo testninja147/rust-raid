@@ -50,8 +50,13 @@ pub(crate) async fn update(
     HttpResponse::Ok().body("{\"detail\": \"Success\"}")
 }
 
-pub(crate) async fn delete(data: web::Data<ApplicationState>) -> impl Responder {
-    let todo_list = data.todo_list.lock().unwrap();
-    println!("{:?}", *todo_list);
-    HttpResponse::Ok().body("[]")
+pub(crate) async fn delete(
+    data: web::Data<ApplicationState>,
+    path: web::Path<(usize,)>,
+) -> impl Responder {
+    let mut guard = data.todo_list.lock().unwrap();
+    let todo_list = &mut *guard;
+
+    todo_list.items.remove(&path.0);
+    HttpResponse::Ok().body("{\"detail\": \"Success\"}")
 }
