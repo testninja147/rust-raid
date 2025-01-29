@@ -3,7 +3,7 @@ use actix_web::{web, HttpResponse, Responder};
 use crate::{todo::TodoCreateUpdate, ApplicationState};
 
 pub(crate) async fn list(data: web::Data<ApplicationState>) -> impl Responder {
-    let items = (&data.todo_list.lock().unwrap().items).clone();
+    let items = &data.todo_list.lock().unwrap().items;
     let todo_list = Vec::from_iter(items.values());
     let str = serde_json::to_string(&todo_list).unwrap();
     HttpResponse::Ok().body(str)
