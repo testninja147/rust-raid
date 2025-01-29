@@ -12,18 +12,35 @@ pub(crate) struct Todo {
 }
 
 #[derive(Deserialize, Debug)]
-pub(crate) struct TodoCreate {
-    pub(crate) title: String,
-    pub(crate) content: String,
+pub(crate) struct TodoCreateUpdate {
+    pub(crate) title: Option<String>,
+    pub(crate) content: Option<String>,
+    pub(crate) checked: Option<bool>,
 }
 
 impl Todo {
-    fn new(id: usize, title: String, content: String, checked: bool) -> Self {
+    pub(crate) fn new(id: usize, title: String, content: String, checked: bool) -> Self {
         Self {
             id,
             title,
             content,
             checked,
+        }
+    }
+    pub(crate) fn update(
+        &mut self,
+        title: Option<String>,
+        content: Option<String>,
+        checked: Option<bool>,
+    ) {
+        if let Some(title) = title {
+            self.title = title;
+        }
+        if let Some(content) = content {
+            self.content = content;
+        }
+        if let Some(checked) = checked {
+            self.checked = checked;
         }
     }
 }
