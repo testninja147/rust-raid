@@ -1,6 +1,6 @@
 use actix_web::{web, HttpResponse, Responder};
 
-use crate::ApplicationState;
+use crate::{todo::TodoCreate, ApplicationState};
 
 pub(crate) async fn list(data: web::Data<ApplicationState>) -> impl Responder {
     let items = (&data.todo_list.lock().unwrap().items).clone();
@@ -8,9 +8,16 @@ pub(crate) async fn list(data: web::Data<ApplicationState>) -> impl Responder {
     let str = serde_json::to_string(&todo_list).unwrap();
     HttpResponse::Ok().body(str)
 }
-pub(crate) async fn create(data: web::Data<ApplicationState>) -> impl Responder {
-    // let todo_list = data.todo_list.lock().unwrap();
-    HttpResponse::Ok().body("[]")
+pub(crate) async fn create(
+    data: web::Data<ApplicationState>,
+    payload: web::Json<TodoCreate>,
+) -> impl Responder {
+    let mut guard = data.todo_list.lock().unwrap();
+    let todo_list = &mut *guard;
+    let payload = payload.into_inner();
+    todo_list.insert(payload.title, payload.content, false);
+    let str = serde_json::to_string(&todo_list).unwrap();
+    HttpResponse::Ok().body(str)
 }
 pub(crate) async fn retrieve(
     data: web::Data<ApplicationState>,

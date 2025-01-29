@@ -10,6 +10,13 @@ pub(crate) struct Todo {
     checked: bool,
     // created: u64,
 }
+
+#[derive(Deserialize, Debug)]
+pub(crate) struct TodoCreate {
+    pub(crate) title: String,
+    pub(crate) content: String,
+}
+
 impl Todo {
     fn new(id: usize, title: String, content: String, checked: bool) -> Self {
         Self {
@@ -38,7 +45,7 @@ impl TodoList {
         todo_list
     }
 
-    fn insert(&mut self, title: String, content: String, checked: bool) {
+    pub(crate) fn insert(&mut self, title: String, content: String, checked: bool) {
         self.current_index += 1;
         self.items.insert(
             self.current_index,
