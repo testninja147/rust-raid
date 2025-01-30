@@ -31,7 +31,7 @@
     position: absolute;
 }
 .todo {
-    display: block;
+    display: flex;
     background-color: #9a9ace;
     color: navy;
     min-width: 40px;
@@ -47,7 +47,7 @@
     background-color: navy;
     color: white;
 }
-.todo.checked{
+.todo .checked{
     text-decoration: line-through;
 }
 

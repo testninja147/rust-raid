@@ -9,7 +9,32 @@ const todo = {
         }
     },
     create: async () => {
-        await fetch("/api/todo/", {method: 'POST', body})
+        const title = document.querySelector("input#title").value;
+        const content = document.querySelector("textarea#content").value;
+        document.querySelector("#submit-todo").innerHTML = "Loading..."
+        return fetch("/api/todo/", {
+            method: 'POST',
+            headers: {
+                'Content-Type': "application/json"
+            },
+            body: JSON.stringify({
+                title,
+                content,
+            },
+            ),
+        }).then(res => {
+            window.location.reload();
+        })
+    },
+    delete: async (id) => {
+        return fetch(`/api/todo/${id}/`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': "application/json"
+            }
+        }).then(res => {
+            window.location.reload();
+        })
     }
 }
 
@@ -18,7 +43,15 @@ const todo = {
 document.addEventListener('DOMContentLoaded', async () => {
     const sidebar = document.querySelector('div.sidebar');
     const elements = (await todo.list()).map(d => {
-        return `<div class="todo${d.checked ? ' checked' : ''}">${d.title}</div>`
+        return `
+        <div class="group flex bg-slate-500/30 p-2 px-4 items-center justify-between h-16">
+        <span class="flex grow ${d.checked ? ' checked' : ''}">${d.title}</span>
+        <span class="hidden group-hover:flex gap-2">
+        <button class="todo-edit bg-slate-800 text-white p-2 rounded-md" data-target="${d.id}" data-action="edit">Edit</button>
+        <button class="todo-delete bg-red-800 text-white p-2 rounded-md" data-target="${d.id}" data-action="delete">Delete</button>
+        </span>
+        </div>
+        `
     });
     sidebar.innerHTML = elements.join('');
 
@@ -29,21 +62,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     document.querySelector("#submit-todo").addEventListener('click', (event) => {
         event.preventDefault();
-        const title = document.querySelector("input#title").value;
-        const content = document.querySelector("textarea#content").value;
-        fetch("/api/todo/", {
-            method: 'POST',
-            body: {
-                title,
-                content,
-            },
-        })
+        todo.create();
     });
 
     document.querySelector("#cancel-todo").addEventListener('click', (event) => {
         document.querySelector("input#title").value = "";
-        document.querySelector("textarea#content").value="";
+        document.querySelector("textarea#content").value = "";
         document.querySelector("#add-modal").classList.add('hidden');
     });
 
+    document.querySelectorAll("button.todo-delete").forEach((btn) => {
+        btn.addEventListener('click', (event) => {
+            const todoId = event.target.getAttribute('data-target');
+            todo.delete(todoId);
+        })
+    })
 });
