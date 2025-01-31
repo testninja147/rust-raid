@@ -109,7 +109,8 @@ cargo test --bin huffman
 
 1. [Python's `Pandas` like dataframe container](projects/pandas/README.md) `cargo run --bin pandas`
 2. [`ruscrypt` basic encryption](projects/ruscrypt/README.md) `cargo run --bin ruscrypt`
-2. [Basic Password `vault`](projects/vault/README.md) `cargo run --bin vault`
+3. [Basic Password `vault`](projects/vault/README.md) `cargo run --bin vault`
+4. [Basic `TODO` Web Application](projects/todo-web/README.md) `cargo run --bin todo`
 
 > **Note**: Topics that do not contain hyperlinks are work in progress and will
 > be updated as soon as the solution gets completed.
