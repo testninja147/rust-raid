@@ -35,3 +35,7 @@ path = "src/queue.rs"
 [[bin]]
 name = "binary_tree"
 path = "src/binary_tree.rs"
+# ===============================[ Binary Tree ]================================
+[[bin]]
+name = "trie"
+path = "src/trie.rs"

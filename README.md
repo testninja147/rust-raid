@@ -21,21 +21,21 @@ cargo run --bin huffman
 cargo test --bin huffman
 ```
 
-## [1. Data Structures](./data-structures/)
+## [1. Data Structures](data-structures/)
 
 1. **Arrays**
     - [Find the missing number](data-structures/src/ds001_find_missing_number.rs) `cargo run --bin ds001`
     - [Find the length of the longest sub-array with sum K](data-structures/src/ds002_longest_subarray.rs) `cargo run --bin ds002`
 2. **Singly Linked Lists**
-    - [Add two linked list](./data-structures/src/ds101_linked_list_add.rs) `cargo run --bin ds101`
-3. [**Doubly Linked Lists**](./data-structures/src/doubly_linked_list.rs) `cargo run --bin doubly_linked_list`
-4. [**Stacks**](./data-structures/src/stack.rs) `cargo run --bin stack`
-5. [**Queues**](./data-structures/src/queue.rs) `cargo run --bin queue`
-6. [**Binary Trees**](./data-structures/src/binary_tree.rs) `cargo run --bin binary_tree`
+    - [Add two linked list](data-structures/src/ds101_linked_list_add.rs) `cargo run --bin ds101`
+3. [**Doubly Linked Lists**](data-structures/src/doubly_linked_list.rs) `cargo run --bin doubly_linked_list`
+4. [**Stacks**](data-structures/src/stack.rs) `cargo run --bin stack`
+5. [**Queues**](data-structures/src/queue.rs) `cargo run --bin queue`
+6. [**Binary Trees**](data-structures/src/binary_tree.rs) `cargo run --bin binary_tree`
 7. [**Segment Trees**]
 8. [**Fenwick Trees (Binary Indexed trees)**]
 9. [**Suffix Trees**]
-10. [**Trie**]
+10. [**Trie**](data-structures/src/trie.rs) `cargo run --bin trie`
 11. [**Disjoint Set**]
 
 ## [2. Algorithms](./algorithms/README.md)
