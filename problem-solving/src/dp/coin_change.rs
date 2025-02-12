@@ -25,7 +25,7 @@ pub fn coin_change(coins: &mut Vec<usize>, sum: usize) -> i64 {
     // iterate from 1 up to the total sum
     for num in 1..sum + 1 {
         // iterate on each coin from the list of coins
-        for coin in 1..coins.len() {
+        for coin in 0..coins.len() {
             // discard the coin if the number (intermediate sum) is smaller than the coin itself
             if coins[coin] <= num {
                 // find the number of coins required to change that specific amount.
@@ -90,5 +90,9 @@ mod tests {
     #[test]
     fn test3() {
         assert_eq!(coin_change(vec![9, 6, 5, 1].as_mut(), 11), 2);
+    }
+    #[test]
+    fn test4() {
+        assert_eq!(coin_change(vec![1, 2, 5].as_mut(), 11), 3);
     }
 }

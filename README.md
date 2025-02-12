@@ -32,11 +32,7 @@ cargo test --bin huffman
 4. [**Stacks**](data-structures/src/stack.rs) `cargo run --bin stack`
 5. [**Queues**](data-structures/src/queue.rs) `cargo run --bin queue`
 6. [**Binary Trees**](data-structures/src/binary_tree.rs) `cargo run --bin binary_tree`
-7. [**Segment Trees**]
-8. [**Fenwick Trees (Binary Indexed trees)**]
-9. [**Suffix Trees**]
-10. [**Trie**](data-structures/src/trie.rs) `cargo run --bin trie`
-11. [**Disjoint Set**]
+7.  [**Trie**](data-structures/src/trie.rs) `cargo run --bin trie`
 
 ## [2. Algorithms](./algorithms/README.md)
 
