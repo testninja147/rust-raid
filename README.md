@@ -1,5 +1,13 @@
 # Rust Raid
 
+> **DISCLAIMER !!**
+>
+> This project is not affiliated with, endorsed by, or sponsored by the Rust
+> Foundation or the Rust programming language project. "Rust" and the Rust logo
+> are trademarks of the Rust Foundation.
+> For details on trademark usage, please refer to the Rust Foundation Trademark
+> Policy.
+
 [Rust Raid](https://github.com/ghimiresdp/rust-raid) is a repository for Rust
 learners and coding challenge seekers.
 
