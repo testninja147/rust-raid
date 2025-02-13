@@ -118,8 +118,6 @@ cargo test --bin huffman
 1. Memory Management
    - [Ownership, borrowing, and Lifetimes](advanced/src/memory-management/ownership.rs) `cargo run --bin ownership`
    - [Unsafe Rust](advanced/src/memory-management/unsafe.rs)
-   - Self-referential structs (`box`, `rc`, `Arc`)
-   - zero-cost-abstraction
 2. Type System and Generics
    - Trait Objects and Dynamic Dispatch
    - Associated types and Generic Type parameters
@@ -145,6 +143,7 @@ cargo test --bin huffman
    - Dependency Injection patterns in rust
 7. Specialized topics
    - Writing a custom allocator
+   - Self-referential structs (`box`, `rc`, `Arc`)
 
 ## [6. Projects](./projects/)
 
