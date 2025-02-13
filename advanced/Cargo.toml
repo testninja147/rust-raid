@@ -3,7 +3,12 @@ name = "advanced"
 version = "0.1.0"
 edition = "2021"
 
+[dependencies]
+
 [[bin]]
 name = "ownership"
 path = "src/memory-management/ownership.rs"
-[dependencies]
+
+[[bin]]
+name = "unsafe"
+path = "src/memory-management/unsafe.rs"
