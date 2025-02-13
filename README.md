@@ -116,7 +116,7 @@ cargo test --bin huffman
 ## [5. Advanced Concepts](advanced/README.md)
 
 1. Memory Management
-   - Ownership and borrowing
+   - [Ownership, borrowing, and Lifetimes](advanced/src/memory-management/ownership.rs) `cargo run --bin ownership`
    - Lifetimes
    - Unsafe Rust
    - Self-referential structs (`box`, `rc`, `Arc`)
