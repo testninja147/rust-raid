@@ -1,3 +1,5 @@
+use std::slice;
+
 ///
 /// ! To run, enter the command :    cargo run --bin unsafe
 ///
@@ -17,7 +19,7 @@
 /// https://doc.rust-lang.org/book/ch19-01-unsafe-rust.html
 fn main() {
     println!("Unsafe rust");
-
+    // -------------------------------------------------------------------------
     {
         let mut num = 5;
         let r1 = &num as *const i32;
@@ -38,6 +40,7 @@ fn main() {
             println!("r2 is: {}", *r2);
         }
     }
+    // -------------------------------------------------------------------------
 
     // just used to remove some warnings in this scope
     #[allow(unused_unsafe, unused_variables)]
@@ -49,6 +52,47 @@ fn main() {
 
             // if we uncomment and run the following line, it still fails to compile.
             // println!("{x}"); // Error: borrow of moved value: x;
+        }
+    }
+    // -------------------------------------------------------------------------
+    {
+        // we need to use unsafe block if we need to call unsafe function.
+        // unsafe_function(); // cannot be used without unsafe block
+
+        unsafe {
+            unsafe_function(); // now this is allowed
+        }
+
+        unsafe fn unsafe_function() {
+            println!("This is an unsafe function");
+        }
+    }
+    // -------------------------------------------------------------------------
+    {
+        // sometimes, we need to use unsafe block when we know the code is okay,
+        // but rust does not. This happens when we try to borrow non-overlapping
+        // parts of the same slice.
+
+        let mut my_vector = vec![1, 2, 3, 4, 5];
+        let ptr = my_vector.as_mut_ptr();
+
+        // if we uncomment the following line, the compilation fails
+        // due to use of unsafe function without unsafe block
+
+        // slice::from_raw_parts_mut(ptr, 2);
+
+        unsafe {
+            let slice1 = slice::from_raw_parts_mut(ptr, 2);
+            println!("slice 1: {:?}", slice1); //slice 1: [1, 2]
+
+            let slice2 = slice::from_raw_parts_mut(ptr.add(2), 4);
+            println!("slice 2: {:?}", slice2); // slice 2: [3, 4, 5, 7471207]
+
+            // the slice only has 3 valid values but we are getting slice of
+            // length 4 so the fourth value will be garbage or invalid value
+
+            // here, we can see some garbage value 7471207 since this is unsafe
+            // operation and it is pointing out to some dangling values
         }
     }
 }
