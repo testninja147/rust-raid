@@ -13,7 +13,10 @@ learners and coding challenge seekers.
 
 **The repository contains the following**:
 
+- `Algorithms` that can be used to solve various problems.
+- `Examples` of different `design patterns` and `data structures`.
 - `solutions` to diverse challenges categorized by different topics(workspaces).
+- `advanced concepts` that include memory management, multiprocessing, etc.
 - `Demo projects` to polish your skills to the depth.
 
 Each workspace contains multiple binaries so that it will be easier to run
@@ -109,7 +112,40 @@ cargo test --bin huffman
 7. [Coin Change Problem](problem-solving/src/dp/coin_change.rs) `cargo run --bin coin_change`
 8. [Palindrome Partition](problem-solving/src/dp/palindrome_partition.rs) `cargo run --bin palindrome_partition`
 
-## [5. Projects](./projects/)
+
+## [5. Advanced Concepts](advanced/README.md)
+
+1. Memory Management
+   - [Ownership, borrowing, and Lifetimes](advanced/src/memory-management/ownership.rs) `cargo run --bin ownership`
+   - [Unsafe Rust](advanced/src/memory-management/unsafe.rs)
+2. Type System and Generics
+   - Trait Objects and Dynamic Dispatch
+   - Associated types and Generic Type parameters
+   - Lifetime Sub-typing
+3. Concurrency and Parallelism
+   - `Async/Await` and `Futures`
+   - Task Executors
+   - Concurrency
+4. Macros and Meta programming
+   - `macro_rules!`
+   - Procedural Macros
+   - Derive Macros
+   - Meta-programming
+   - Building Domain-Specific Languages (DSL) in Rust
+5. Low level and systems programming
+   - Platform-specific features
+   - Inline Assembly
+   - Foreign Function Interface (FFI)
+   - Embedded rust and Bare-metal programming
+6. Error handling and patterns
+   - Advanced Error Handling
+   - Custom Error Types
+   - Dependency Injection patterns in rust
+7. Specialized topics
+   - Writing a custom allocator
+   - Self-referential structs (`box`, `rc`, `Arc`)
+
+## [6. Projects](./projects/)
 
 1. [Python's `Pandas` like dataframe container](projects/pandas/README.md) `cargo run --bin pandas`
 2. [`ruscrypt` basic encryption](projects/ruscrypt/README.md) `cargo run --bin ruscrypt`
