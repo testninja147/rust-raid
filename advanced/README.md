@@ -6,8 +6,7 @@ rust. The following topics will be discussed in this section:
 
 
 1. Memory Management
-   - Ownership and borrowing
-   - Lifetimes
+   - [Ownership, borrowing, and Lifetimes](src/memory-management/ownership.rs) `cargo run --bin ownership`
    - Unsafe Rust
    - Self-referential structs (`box`, `rc`, `Arc`)
    - zero-cost-abstraction
