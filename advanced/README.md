@@ -23,7 +23,7 @@ rust. The following topics will be discussed in this section:
    - Meta-programming
    - Building Domain-Specific Languages (DSL) in Rust
 5. Low level and systems programming
-   - Platform-specific features
+   - [Conditional Compilation](systems-programming/conditional-compilation.rs) `cargo run --bin cc`
    - Inline Assembly
    - Foreign Function Interface (FFI)
    - Embedded rust and Bare-metal programming

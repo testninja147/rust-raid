@@ -5,6 +5,9 @@ edition = "2021"
 
 [dependencies]
 
+
+# ----------------------------[ Memory Management ]----------------------------
+
 [[bin]]
 name = "ownership"
 path = "memory-management/ownership.rs"
@@ -12,3 +15,9 @@ path = "memory-management/ownership.rs"
 [[bin]]
 name = "unsafe"
 path = "memory-management/unsafe.rs"
+
+# --------------------------[ Systems and Low Levels ]--------------------------
+
+[[bin]]
+name = "cc"
+path = "systems-programming/conditional-compilation.rs"

@@ -133,7 +133,7 @@ cargo test --bin huffman
    - Meta-programming
    - Building Domain-Specific Languages (DSL) in Rust
 5. Low level and systems programming
-   - Platform-specific features
+   - [Conditional Compilation](conditional-advanced/systems-programming/conditional-compilation.rs) `cargo run --bin cc`
    - Inline Assembly
    - Foreign Function Interface (FFI)
    - Embedded rust and Bare-metal programming
