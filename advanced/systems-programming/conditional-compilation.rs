@@ -41,4 +41,21 @@ fn main() {
 
         display_platform();
     }
+
+    // development environment specific compilation
+    {
+        // ! this code block runs only when we run `cargo run --bin cc`
+        #[cfg(debug_assertions)]
+        println!("⛔⛔ This code is visible only in debug mode");
+
+        // ! this code block runs only when we run `cargo run --bin cc --release`
+        #[cfg(not(debug_assertions))]
+        println!("⛔⛔ This code is visible only in production mode");
+
+        #[cfg(test)]
+        {
+            // ! this code block runs only when we run `cargo test --bin cc`
+            assert_eq!(1 + 1, 2);
+        }
+    }
 }
