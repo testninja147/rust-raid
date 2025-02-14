@@ -116,8 +116,8 @@ cargo test --bin huffman
 ## [5. Advanced Concepts](advanced/README.md)
 
 1. Memory Management
-   - [Ownership, borrowing, and Lifetimes](advanced/src/memory-management/ownership.rs) `cargo run --bin ownership`
-   - [Unsafe Rust](advanced/src/memory-management/unsafe.rs)
+   - [Ownership, borrowing, and Lifetimes](advanced/memory-management/ownership.rs) `cargo run --bin ownership`
+   - [Unsafe Rust](advanced/memory-management/unsafe.rs)
 2. Type System and Generics
    - Trait Objects and Dynamic Dispatch
    - Associated types and Generic Type parameters
