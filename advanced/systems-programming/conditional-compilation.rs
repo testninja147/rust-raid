@@ -1,16 +1,16 @@
-/// Conditional compilation
-/// -----------------------
+/// ! to execute, run `cargo run --bin cc`
+/// * Conditional compilation
+/// -------------------------
 ///
 /// Rust's conditional compilation helps us enable or disable code blocks based
 /// on different conditions such as platform, compiler version, custom configs,
 /// etc.
 ///
 /// Some of the common use-case of it are as follows:
-/// 1. Writing platform-specific codes (eg: OS, hardware, etc)
-/// 2. Adding or using optional features
-/// 3. Separating Debug and Release modes
+/// * Writing platform-specific codes (eg: OS, hardware, etc)
+/// * Adding or using optional features
+/// * Separating Debug and Release modes
 ///
-/// ! to execute, run `cargo run --bin cc`
 
 fn main() {
     println!("Conditional Compilation");
