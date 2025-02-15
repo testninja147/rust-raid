@@ -119,6 +119,7 @@ cargo test --bin huffman
    - [Ownership, borrowing, and Lifetimes](advanced/memory-management/ownership.rs) `cargo run --bin ownership`
    - [Unsafe Rust](advanced/memory-management/unsafe.rs)
 2. Type System and Generics
+   - [Generic Types](advanced/types-and-generics/generics.rs) `cargo run --bin generics`
    - Trait Objects and Dynamic Dispatch
    - Associated types and Generic Type parameters
    - Lifetime Sub-typing
