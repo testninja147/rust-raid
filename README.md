@@ -120,6 +120,7 @@ cargo test --bin huffman
    - [Unsafe Rust](advanced/memory-management/unsafe.rs)
 2. Type System and Generics
    - [Generic Types](advanced/types-and-generics/generics.rs) `cargo run --bin generics`
+   - [Traits and Trait Implementation](advanced/types-and-generics/traits.rs) `cargo run --bin traits`
    - Trait Objects and Dynamic Dispatch
    - Associated types and Generic Type parameters
    - Lifetime Sub-typing

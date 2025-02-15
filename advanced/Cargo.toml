@@ -22,6 +22,10 @@ path = "memory-management/unsafe.rs"
 name = "generics"
 path = "types-and-generics/generics.rs"
 
+[[bin]]
+name = "traits"
+path = "types-and-generics/traits.rs"
+
 # --------------------------[ Systems and Low Levels ]--------------------------
 
 [[bin]]
