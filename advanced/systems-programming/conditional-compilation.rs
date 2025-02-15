@@ -1,4 +1,4 @@
-/// ! to execute, run `cargo run --bin cc`
+/// ! to run, execute `cargo run --bin cc`
 /// * Conditional compilation
 /// -------------------------
 ///
