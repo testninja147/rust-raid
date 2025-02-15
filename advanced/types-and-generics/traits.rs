@@ -106,4 +106,23 @@ fn main() {
     describe_area_1(&circle);
 
     // =========================================================================
+    // In above examples we can see that the  trait bound can accept multiple
+    // types that implement the respective trait. This means, it performs the
+    // dynamic dispatch using monomorphization process. While compiling, it
+    // creates 2 different functions that accept different structs instead of
+    // generics.
+
+    // For example, the `descrive_area` method will generate the following code:
+    fn describe_area_for_rect(shape: &Rect) {
+        println!("The area of {:?} using `where` is: {}", shape, shape.area());
+    }
+    fn describe_area_for_circle(shape: &Circle) {
+        println!("The area of {:?} using `where` is: {}", shape, shape.area());
+    }
+    describe_area_for_rect(&rectangle);
+    describe_area_for_circle(&circle);
+
+    // NOTE: Functions and parameters might be generated with different name,
+    // but above illustration is just for the reference.
+    // =========================================================================
 }

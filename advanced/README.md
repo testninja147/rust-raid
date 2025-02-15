@@ -10,8 +10,7 @@ rust. The following topics will be discussed in this section:
    - [Unsafe Rust](memory-management/unsafe.rs)
 2. Type System and Generics
    - [Generic Types](types-and-generics/generics.rs) `cargo run --bin generics`
-   - [Traits and Trait Implementation](types-and-generics/traits.rs) `cargo run --bin traits`
-   - Trait Objects and Dynamic Dispatch
+   - [Trait Objects and Dynamic Dispatch](types-and-generics/traits.rs) `cargo run --bin traits`
    - Associated types and Generic Type parameters
    - Lifetime Sub-typing
 3. Concurrency and Parallelism
