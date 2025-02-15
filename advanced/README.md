@@ -24,7 +24,7 @@ rust. The following topics will be discussed in this section:
    - Building Domain-Specific Languages (DSL) in Rust
 5. Low level and systems programming
    - [Conditional Compilation](systems-programming/conditional-compilation.rs) `cargo run --bin cc`
-   - Inline Assembly
+   - [Inline Assembly](systems-programming/inline-assembly.rs) `cargo run --bin assembly`
    - Foreign Function Interface (FFI)
    - Embedded rust and Bare-metal programming
 6. Error handling and patterns

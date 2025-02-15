@@ -15,10 +15,11 @@ use std::arch::asm;
 /// IF we are doing very low level programs such as kernel development, we might
 /// need to work with assembly programming where it is useful in this case.
 ///
+/// to learn more about inline assembly, please checkout the following:
+/// https://doc.rust-lang.org/reference/inline-assembly.html
 fn main() {
     println!("⛔ Inline assembly ⛔");
 
-    // adding 2 numbers in assembly
     // a basic program to multiply and add  2 numbers in assembly
     #[allow(asm_sub_register)]
     unsafe {
@@ -31,8 +32,8 @@ fn main() {
         "add {sum}, {y}",   // sum = sum + y
 
         "mov {prod}, {y}",  // set prod = y
-        "shl {prod}, 2",    // left shift the value 2 times (i.e. multiply by 4)
-        "add {prod}, {y}",  // add y 1 more time i.e multiplied by 5
+        "shl {prod}, 2",    // left shift the value 2 times (i.e. multiply by 4) 1010 -> 1010[0][0] -> 101000
+        "add {prod}, {y}",  // add y 1 more time [i.e.: (y + 4 + y) = y * 5]
         sum=inout(reg) sum,
         x=in(reg) x,
         y=in(reg) y,
