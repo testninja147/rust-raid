@@ -16,6 +16,16 @@ path = "memory-management/ownership.rs"
 name = "unsafe"
 path = "memory-management/unsafe.rs"
 
+# ----------------------------[ Types and Generics ]----------------------------
+
+[[bin]]
+name = "generics"
+path = "types-and-generics/generics.rs"
+
+[[bin]]
+name = "traits"
+path = "types-and-generics/traits.rs"
+
 # --------------------------[ Systems and Low Levels ]--------------------------
 
 [[bin]]

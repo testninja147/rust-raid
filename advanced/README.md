@@ -9,7 +9,8 @@ rust. The following topics will be discussed in this section:
    - [Ownership, borrowing, and Lifetimes](memory-management/ownership.rs) `cargo run --bin ownership`
    - [Unsafe Rust](memory-management/unsafe.rs)
 2. Type System and Generics
-   - Trait Objects and Dynamic Dispatch
+   - [Generic Types](types-and-generics/generics.rs) `cargo run --bin generics`
+   - [Trait Objects and Dynamic Dispatch](types-and-generics/traits.rs) `cargo run --bin traits`
    - Associated types and Generic Type parameters
    - Lifetime Sub-typing
 3. Concurrency and Parallelism
