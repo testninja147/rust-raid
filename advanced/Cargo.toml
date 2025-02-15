@@ -21,3 +21,7 @@ path = "memory-management/unsafe.rs"
 [[bin]]
 name = "cc"
 path = "systems-programming/conditional-compilation.rs"
+
+[[bin]]
+name = "assembly"
+path = "systems-programming/inline-assembly.rs"
