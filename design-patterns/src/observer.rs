@@ -49,7 +49,7 @@ impl Publisher {
         self.sensors
             .get_mut(&sensor_type)
             .unwrap()
-            .retain(|&x| x != listener);
+            .retain(|&x| !std::ptr::fn_addr_eq(x, listener));
     }
     pub fn notify(&mut self, sensor_type: SensorType, value: u32) {
         let listeners = self.sensors.get(&sensor_type).unwrap();

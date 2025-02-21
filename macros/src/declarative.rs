@@ -25,10 +25,10 @@ macro_rules! double {
  * so we need to do something like ((x*2) for x in 0..6)
  */
 macro_rules! list {
-    (($exp: expr) for $ident: ident in $iter: expr) => {
+    (($exp: expr_2021) for $ident: ident in $iter: expr_2021) => {
         $iter.into_iter().map(|$ident| $exp).collect()
     };
-    (($exp: expr) for $ident: ident in ($iter: expr) if ($cond: expr)) => {
+    (($exp: expr_2021) for $ident: ident in ($iter: expr_2021) if ($cond: expr_2021)) => {
         $iter
             .into_iter()
             .filter(|$ident| $cond)
