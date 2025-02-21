@@ -41,10 +41,10 @@ fn longest_substring_with_less_repeat(data: String) -> usize {
 fn main() {
     println!(
         "{}",
-        longest_substring_with_less_repeat("abcdeaabcdef".to_owned()),   // 11 [bcdeaabcdef]
+        longest_substring_with_less_repeat("abcdeaabcdef".to_owned()), // 11 [bcdeaabcdef]
     );
     println!(
         "{}",
-        longest_substring_with_less_repeat("abcdeaabcdaef".to_owned()),   // 9 [bcdeaabcd]
+        longest_substring_with_less_repeat("abcdeaabcdaef".to_owned()), // 9 [bcdeaabcd]
     );
 }

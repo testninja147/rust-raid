@@ -52,7 +52,7 @@ mod tests {
 
     #[test]
     fn non_practical_numbers() {
-        for x in [5, 10, 12]{
+        for x in [5, 10, 12] {
             assert_eq!(is_practical_number(x), false);
         }
     }
