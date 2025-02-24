@@ -50,11 +50,11 @@ fn main() {
     // Example 2: python-like  List Comprehension
     {
         macro_rules! lc {
-            [($exp: expr) for $ident: ident in $iter: expr_2021] => {
+            [($exp: expr) for $ident: ident in $iter: expr] => {
                 $iter.into_iter().map(|$ident| $exp).collect()
             };
 
-            [($exp: expr) for $ident: ident in $iter: expr_2021; if $condition: expr] => {
+            [($exp: expr) for $ident: ident in $iter: expr; if $condition: expr] => {
                 $iter
                     .into_iter()
                     .filter(|$ident| $condition)

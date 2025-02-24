@@ -41,3 +41,7 @@ path = "systems-programming/inline-assembly.rs"
 [[bin]]
 name = "macro"
 path = "meta-programming/macro-rules.rs"
+
+[[bin]]
+name = "dsl"
+path = "meta-programming/dsl.rs"
