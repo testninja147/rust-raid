@@ -44,3 +44,23 @@ fn main() {
     let result = sql!(SELECT (DESC x AS Vec<u32>) FROM 1..10, WHERE x>=5);
     println!("SQL output [DESC]: {:?}", result);
 }
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn sql_runs_successfully() {
+        let x: Vec<u32> = sql!(SELECT x FROM 1..5, WHERE x<=3);
+        assert_eq!(x.len(), 3);
+    }
+    #[test]
+    fn sql_returns_ascending() {
+        let x: Vec<u32> = sql!(SELECT (ASC x AS Vec<u32>) FROM 1..5, WHERE x<=3);
+        assert_eq!(x[0], 1);
+    }
+
+    #[test]
+    fn sql_returns_descending() {
+        let x: Vec<u32> = sql!(SELECT (DESC x AS Vec<u32>) FROM 1..5, WHERE x<=3);
+        assert_eq!(x[0], 3);
+    }
+}
