@@ -18,11 +18,11 @@ rust. The following topics will be discussed in this section:
    - Task Executors
    - Concurrency
 4. Macros and Meta programming
-   - `macro_rules!`
+   - [`macro_rules!`](meta-programming/macro-rules.rs) `cargo run --bin macro`
    - Procedural Macros
    - Derive Macros
    - Meta-programming
-   - Building Domain-Specific Languages (DSL) in Rust
+   - [Building Domain-Specific Languages (DSL) in Rust](meta-programming/dsl.rs) `cargo run --bin dsl`
 5. Low level and systems programming
    - [Conditional Compilation](systems-programming/conditional-compilation.rs) `cargo run --bin cc`
    - [Inline Assembly](systems-programming/inline-assembly.rs) `cargo run --bin assembly`
