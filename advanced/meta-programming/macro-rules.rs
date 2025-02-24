@@ -37,14 +37,39 @@ fn main() {
         /// This Macro rule accepts variable number of parameters and returns
         /// the sum of it
         macro_rules! add {
-            ($($number: expr),+) => {
-                {
-                    0 $(+ $number)*
-                }
+            ($($num: expr),*) => {   //
+                // it adds all the numbers with 0 (+ [num])*
+                // it adds all the numbers with 0 + [num_1] + num_2 + ...
+                    0 $(+ $num)*
             };
         }
 
-        println!("{}", add!(1, 2, 3, 4, 5, 6));
+        println!("sum with macro: {}", add!(1, 2, 3, 4, 5, 6));
+    }
+    // -------------------------------------------------------------------------
+    // Example 2: python-like  List Comprehension
+    {
+        macro_rules! lc {
+            [($exp: expr) for $ident: ident in $iter: expr_2021] => {
+                $iter.into_iter().map(|$ident| $exp).collect()
+            };
+
+            [($exp: expr) for $ident: ident in $iter: expr_2021; if $condition: expr] => {
+                $iter
+                    .into_iter()
+                    .filter(|$ident| $condition)
+                    .map(|$ident| $exp)
+                    .collect()
+            };
+        }
+
+        let old = [1, 2, 3, 4, 5];
+
+        let squares: Vec<u32> = lc![(x*x) for x in old];
+        let odd_squares: Vec<u32> = lc![(x*x) for x in old; if x%2!=0];
+
+        println!("Comprehension: {:?}", squares);
+        println!("Comprehension with condition: {:?}", odd_squares);
     }
     // -------------------------------------------------------------------------
 }
