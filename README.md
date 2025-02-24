@@ -128,11 +128,11 @@ cargo test --bin huffman
    - Task Executors
    - Concurrency
 4. Macros and Meta programming
-   - `macro_rules!`
+   - [`macro_rules!`](advanced/meta-programming/macro-rules.rs) `cargo run --bin macro`
    - Procedural Macros
    - Derive Macros
    - Meta-programming
-   - Building Domain-Specific Languages (DSL) in Rust
+   - [Building Domain-Specific Languages (DSL) in Rust](advanced/meta-programming/dsl.rs) `cargo run --bin dsl`
 5. Low level and systems programming
    - [Conditional Compilation](advanced/systems-programming/conditional-compilation.rs) `cargo run --bin cc`
    - [Inline Assembly](advanced/systems-programming/inline-assembly.rs) `cargo run --bin assembly`
