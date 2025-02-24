@@ -63,10 +63,8 @@ fn main() {
             };
         }
 
-        let old = [1, 2, 3, 4, 5];
-
-        let squares: Vec<u32> = lc![(x*x) for x in old];
-        let odd_squares: Vec<u32> = lc![(x*x) for x in old; if x%2!=0];
+        let squares: Vec<u32> = lc![(x*x) for x in 1..10];
+        let odd_squares: Vec<u32> = lc![(x*x) for x in 1..10; if x%2!=0];
 
         println!("Comprehension: {:?}", squares);
         println!("Comprehension with condition: {:?}", odd_squares);
