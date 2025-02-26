@@ -15,8 +15,8 @@ struct Crypto;
 
 impl Crypto {
     pub(crate) fn generate_salt(length: usize) -> Vec<u8> {
-        let mut rng = rand::thread_rng();
-        (0..length).map(|_| rng.gen()).collect()
+        let mut rng = rand::rng();
+        (0..length).map(|_| rng.random()).collect()
     }
 
     pub(crate) fn generate_key(password: String, salt: &Vec<u8>) -> [u8; 32] {

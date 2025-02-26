@@ -24,10 +24,10 @@
  * =============================================================================
  **/
 macro_rules! comprehension {
-    (foreach $iterable:expr; apply $function:expr) => {
+    (foreach $iterable:expr_2021; apply $function:expr_2021) => {
         $iterable.iter().map($function).collect::<Vec<_>>()
     };
-    (foreach $iterable:expr; apply $function:expr; where $condition:expr) => {
+    (foreach $iterable:expr_2021; apply $function:expr_2021; where $condition:expr_2021) => {
         $iterable
             .iter()
             .filter($condition)

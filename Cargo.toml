@@ -1,6 +1,6 @@
 [workspace]
-resolver = "2"
-
+package.edition = "2024"
+resolver = "3"
 members = [
     "_lib",
     # topics
@@ -9,9 +9,14 @@ members = [
     "design-patterns",
     "macros",
     "problem-solving",
+    # Advanced
+    "advanced/memory-management",
+    "advanced/meta-programming",
+    "advanced/systems-programming",
+    "advanced/types-and-generics",
     # projects
     "projects/pandas",
     "projects/ruscrypt",
     "projects/vault",
-    "projects/todo-web", "advanced",
+    "projects/todo-web",
 ]

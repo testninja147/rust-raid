@@ -11,12 +11,12 @@ pub fn derive_rectangle(input: TokenStream) -> TokenStream {
 
     let name = &ast.ident;
 
-    let gen = quote! {
+    let generator = quote! {
         impl Rect for #name {
             fn area(&self) -> f64 {
                 self.length * self.width
             }
         }
     };
-    gen.into()
+    generator.into()
 }

@@ -1,16 +1,12 @@
 [package]
 name = "macros"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 
 [dependencies]
 shape = { path = "./shape" }
 shape_derive = { path = "./shape_derive" }
 
-
-[[bin]]
-name = "declarative"
-path = "src/declarative.rs"
 
 [[bin]]
 name = "procedural_derive"
