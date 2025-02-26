@@ -9,6 +9,8 @@ members = [
     "design-patterns",
     "macros",
     "problem-solving",
+    # Advanced
+    "advanced/meta-programming",
     # projects
     "projects/pandas",
     "projects/ruscrypt",
