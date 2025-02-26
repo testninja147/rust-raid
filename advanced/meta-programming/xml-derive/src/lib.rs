@@ -14,19 +14,19 @@ pub fn serialize(input: TokenStream) -> TokenStream {
     };
 
     // Collect the names of the struct's fields
-    let field_names = fields.iter().map(|f| {
-        let field_name = f.ident.as_ref().unwrap(); // unwrap here as we expect named fields
-        quote! { stringify!(#field_name) }
+    let tags = fields.iter().map(|f| {
+        let k = f.ident.as_ref().unwrap(); // unwrap here as we expect named fields
+        quote! { #k }
     });
 
     let expanded = quote! {
 
         impl #name {
             fn serialize(&self)-> String{
-                let keys = vec![
-                    #(format!("<{k}>{v}</{k}>", k=#field_names.to_string(), v="CONTENT"),)*
+                let children = vec![
+                    #(format!("<{k}>{v}</{k}>", k=stringify!(#tags).to_string(), v=self.#tags),)*
                 ];
-                return format!("<{k}>{v}</{k}>",k=stringify!(#name),v=keys.join(""));
+                return format!("<{k}>{v}</{k}>",k=stringify!(#name),v=children.join(""));
             }
         }
     };
