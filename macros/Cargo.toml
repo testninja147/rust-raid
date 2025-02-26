@@ -9,9 +9,5 @@ shape_derive = { path = "./shape_derive" }
 
 
 [[bin]]
-name = "declarative"
-path = "src/declarative.rs"
-
-[[bin]]
 name = "procedural_derive"
 path = "src/procedural_derive.rs"

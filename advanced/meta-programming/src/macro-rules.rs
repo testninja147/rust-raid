@@ -6,7 +6,7 @@
 /// sign `!` . Macro rules help us generate rust code out of raw instructions.
 /// It is also useful when we want to create a domain-specific language (DSL).
 ///
-/// As ot takes raw instruction, we need to know that it accepts abstract syntax
+/// As it takes raw instruction, we need to know that it accepts abstract syntax
 /// tree (AST) rather than exact values. The AST that can be used inside macro
 /// rules are as follows:
 ///
