@@ -1,0 +1,17 @@
+[package]
+name = "memory-management"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+
+# ----------------------------[ Memory Management ]----------------------------
+
+[[bin]]
+name = "ownership"
+path = "src/ownership.rs"
+
+[[bin]]
+name = "unsafe"
+path = "src/unsafe.rs"

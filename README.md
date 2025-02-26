@@ -116,11 +116,11 @@ cargo test --bin huffman
 ## [5. Advanced Concepts](advanced/README.md)
 
 1. Memory Management
-   - [Ownership, borrowing, and Lifetimes](advanced/memory-management/ownership.rs) `cargo run --bin ownership`
-   - [Unsafe Rust](advanced/memory-management/unsafe.rs)
+   - [Ownership, borrowing, and Lifetimes](advanced/memory-management/src/ownership.rs) `cargo run --bin ownership`
+   - [Unsafe Rust](advanced/memory-management/src/unsafe.rs)
 2. Type System and Generics
-   - [Generic Types](advanced/types-and-generics/generics.rs) `cargo run --bin generics`
-   - [Trait Objects and Dynamic Dispatch](advanced/types-and-generics/traits.rs) `cargo run --bin traits`
+   - [Generic Types](advanced/types-and-generics/src/generics.rs) `cargo run --bin generics`
+   - [Trait Objects and Dynamic Dispatch](advanced/types-and-generics/src/traits.rs) `cargo run --bin traits`
    - Associated types and Generic Type parameters
    - Lifetime Sub-typing
 3. Concurrency and Parallelism
@@ -132,8 +132,8 @@ cargo test --bin huffman
    - [Derive Macros](advanced/meta-programming/src/derive-macro.rs) `cargo run --bin derive`
    - [Building Domain-Specific Languages (DSL)](advanced/meta-programming/src/dsl.rs) `cargo run --bin dsl`
 5. Low level and systems programming
-   - [Conditional Compilation](advanced/systems-programming/conditional-compilation.rs) `cargo run --bin cc`
-   - [Inline Assembly](advanced/systems-programming/inline-assembly.rs) `cargo run --bin assembly`
+   - [Conditional Compilation](advanced/systems-programming/src/conditional-compilation.rs) `cargo run --bin cc`
+   - [Inline Assembly](advanced/systems-programming/src/inline-assembly.rs) `cargo run --bin assembly`
    - Foreign Function Interface (FFI)
    - Embedded rust and Bare-metal programming
 6. Error handling and patterns
