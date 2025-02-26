@@ -1,5 +1,10 @@
 # Rust Raid
 
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/ghimiresdp/rust-raid)
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/ghimiresdp/rust-raid/total)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/ghimiresdp/rust-raid/rust.yml)
+
+
 > **DISCLAIMER !!**
 >
 > This project is not affiliated with, endorsed by, or sponsored by the Rust
