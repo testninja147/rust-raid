@@ -1,0 +1,17 @@
+[package]
+name = "systems-programming"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+
+# --------------------------[ Systems and Low Levels ]--------------------------
+
+[[bin]]
+name = "cc"
+path = "src/conditional-compilation.rs"
+
+[[bin]]
+name = "assembly"
+path = "src/inline-assembly.rs"
