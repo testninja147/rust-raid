@@ -1,8 +1,8 @@
 # Rust Raid
 
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/ghimiresdp/rust-raid)
-![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/ghimiresdp/rust-raid/total)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/ghimiresdp/rust-raid/rust.yml)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ghimiresdp/rust-raid)
 
 
 > **DISCLAIMER !!**
