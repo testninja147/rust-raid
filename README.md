@@ -37,6 +37,13 @@ cargo run --bin huffman
 cargo test --bin huffman
 ```
 
+> **Note**:
+> _Topics that do not contain hyperlinks are work in progress and will be_
+> _updated once the solution gets completed._
+>
+> _You can also create a PR with solution/enhancement to each topics._
+>
+
 ## [1. Data Structures](data-structures/)
 
 1. **Arrays**
@@ -120,34 +127,40 @@ cargo test --bin huffman
 
 ## [5. Advanced Concepts](advanced/README.md)
 
-1. Memory Management
-   - [Ownership, borrowing, and Lifetimes](advanced/memory-management/src/ownership.rs) `cargo run --bin ownership`
-   - [Unsafe Rust](advanced/memory-management/src/unsafe.rs)
-2. Type System and Generics
-   - [Generic Types](advanced/types-and-generics/src/generics.rs) `cargo run --bin generics`
-   - [Trait Objects and Dynamic Dispatch](advanced/types-and-generics/src/traits.rs) `cargo run --bin traits`
-   - Associated types and Generic Type parameters
-   - Lifetime Sub-typing
-3. Concurrency and Parallelism
-   - `Async/Await` and `Futures`
-   - Task Executors
-   - Concurrency
-4. Macros and Meta programming
-   - [`macro_rules!`](advanced/meta-programming/src/macro-rules.rs) `cargo run --bin macro`
-   - [Derive Macros](advanced/meta-programming/src/derive-macro.rs) `cargo run --bin derive`
-   - [Building Domain-Specific Languages (DSL)](advanced/meta-programming/src/dsl.rs) `cargo run --bin dsl`
-5. Low level and systems programming
-   - [Conditional Compilation](advanced/systems-programming/src/conditional-compilation.rs) `cargo run --bin cc`
-   - [Inline Assembly](advanced/systems-programming/src/inline-assembly.rs) `cargo run --bin assembly`
-   - Foreign Function Interface (FFI)
-   - Embedded rust and Bare-metal programming
-6. Error handling and patterns
-   - Advanced Error Handling
-   - Custom Error Types
-   - Dependency Injection patterns in rust
-7. Specialized topics
-   - Writing a custom allocator
-   - Self-referential structs (`box`, `rc`, `Arc`)
+### 5.1. Memory Management
+- [Ownership, borrowing, and Lifetimes](advanced/memory-management/src/ownership.rs) `cargo run --bin ownership`
+- [Unsafe Rust](advanced/memory-management/src/unsafe.rs)
+
+### 5.2. Type System and Generics
+- [Generic Types](advanced/types-and-generics/src/generics.rs) `cargo run --bin generics`
+- [Trait Objects and Dynamic Dispatch](advanced/types-and-generics/src/traits.rs) `cargo run --bin traits`
+- Associated types and Generic Type parameters
+- Lifetime Sub-typing
+
+### 5.3. Concurrency and Parallelism
+- `Async/Await` and `Futures`
+- Task Executors
+- Concurrency
+
+### 5.4. Macros and Meta programming
+- [`macro_rules!`](advanced/meta-programming/src/macro-rules.rs) `cargo run --bin macro`
+- [Derive Macros](advanced/meta-programming/src/derive-macro.rs) `cargo run --bin derive`
+- [Building Domain-Specific Languages (DSL)](advanced/meta-programming/src/dsl.rs) `cargo run --bin dsl`
+
+### 5.5. Low level and systems programming
+- [Conditional Compilation](advanced/systems-programming/src/conditional-compilation.rs) `cargo run --bin cc`
+- [Inline Assembly](advanced/systems-programming/src/inline-assembly.rs) `cargo run --bin assembly`
+- Foreign Function Interface (FFI)
+- Embedded rust and Bare-metal programming
+
+### 5.6. Error handling and patterns
+- Advanced Error Handling
+- Custom Error Types
+- Dependency Injection patterns in rust
+
+### 5.7. Specialized topics
+- Writing a custom allocator
+- Self-referential structs (`box`, `rc`, `Arc`)
 
 ## [6. Projects](./projects/)
 
@@ -156,11 +169,6 @@ cargo test --bin huffman
 3. [Basic Password `vault`](projects/vault/README.md) `cargo run --bin vault`
 4. [Basic `TODO` Web Application](projects/todo-web/README.md) `cargo run --bin todo`
 
-> **Note**: Topics that do not contain hyperlinks are work in progress and will
-> be updated as soon as the solution gets completed.
->
-> You can also create a PR with solution/enhancement to each topics.
->
 ## Running binaries
 
 To run any binary, you can run the command `cargo run --bin <bin_name>`
