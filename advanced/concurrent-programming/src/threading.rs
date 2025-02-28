@@ -37,10 +37,6 @@ impl TextLoader {
             self.display_content();
         }
     }
-
-    fn load_and_spawn(&mut self, max_wait: u64) {
-        todo!()
-    }
 }
 
 #[tokio::main]
