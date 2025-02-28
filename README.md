@@ -168,6 +168,7 @@ cargo test --bin huffman
 2. [`ruscrypt` basic encryption](projects/ruscrypt/README.md) `cargo run --bin ruscrypt`
 3. [Basic Password `vault`](projects/vault/README.md) `cargo run --bin vault`
 4. [Basic `TODO` Web Application](projects/todo-web/README.md) `cargo run --bin todo`
+5. File Downloader with Concurrency
 
 ## Running binaries
 
