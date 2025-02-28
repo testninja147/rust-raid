@@ -17,4 +17,45 @@ use tokio::{spawn, try_join};
 /// In the following example, the first request will have slower response
 /// and the second will have faster one, because of which, second thread will be
 /// spawnned while first thread waits for the response
-fn main() {}
+async fn request(message: &str, delay: usize) {
+    println!("⛔ Request for: {message}");
+    let client = Client::new();
+    if let Ok(resp) = client
+        .get(format!("https://httpbin.org/delay/{delay}"))
+        .send()
+        .await
+    {
+        println!("✅ Response for {message}: {}", resp.text().await.unwrap());
+    }
+}
+
+#[tokio::main]
+async fn main() {
+    println!("Spawning");
+
+    let slower = spawn(request("First Request", 5));
+    let faster = spawn(request("Second Request", 1));
+
+    let _ = try_join!(slower, faster);
+}
+
+/*
+   Output:
+ ----------
+
+Spawning
+⛔ Request for: First Request
+⛔ Request for: Second Request
+✅ Response for Second Request: {
+  "args": {},
+  ...
+  "origin": "27.34.73.162",
+  "url": "https://httpbin.org/delay/1"
+}
+✅ Response for First Request: {
+  "args": {},
+  ...
+  "origin": "27.34.73.162",
+  "url": "https://httpbin.org/delay/5"
+}
+*/

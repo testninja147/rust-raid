@@ -139,6 +139,7 @@ cargo test --bin huffman
 
 ### 5.3. Concurrency and Parallelism
 - [`Async/Await` and `Futures`](advanced/concurrent-programming/src/threading.rs) `cargo run --bin threading`
+- [Thread Spawning](advanced/concurrent-programming/src/spawning.rs) `cargo run --bin spawning`
 - Task Executors
 - Concurrency
 
