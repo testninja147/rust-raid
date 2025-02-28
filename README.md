@@ -139,6 +139,7 @@ cargo test --bin huffman
 
 ### 5.3. Concurrency and Parallelism
 - [`Async/Await` and `Futures`](advanced/concurrent-programming/src/threading.rs) `cargo run --bin threading`
+- [Thread Spawning](advanced/concurrent-programming/src/spawning.rs) `cargo run --bin spawning`
 - Task Executors
 - Concurrency
 
@@ -168,6 +169,7 @@ cargo test --bin huffman
 2. [`ruscrypt` basic encryption](projects/ruscrypt/README.md) `cargo run --bin ruscrypt`
 3. [Basic Password `vault`](projects/vault/README.md) `cargo run --bin vault`
 4. [Basic `TODO` Web Application](projects/todo-web/README.md) `cargo run --bin todo`
+5. File Downloader with Concurrency
 
 ## Running binaries
 
