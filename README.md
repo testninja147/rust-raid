@@ -138,7 +138,7 @@ cargo test --bin huffman
 - Lifetime Sub-typing
 
 ### 5.3. Concurrency and Parallelism
-- `Async/Await` and `Futures`
+- [`Async/Await` and `Futures`](advanced/concurrent-programming/src/threading.rs) `cargo run --bin threading`
 - Task Executors
 - Concurrency
 
