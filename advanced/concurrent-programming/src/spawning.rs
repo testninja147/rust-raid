@@ -1,3 +1,4 @@
+use futures::future::join_all;
 use reqwest::Client;
 use tokio::{spawn, try_join};
 
@@ -31,31 +32,50 @@ async fn request(message: &str, delay: usize) {
 
 #[tokio::main]
 async fn main() {
-    println!("Spawning");
+    {
+        println!("Spawning");
 
-    let slower = spawn(request("First Request", 5));
-    let faster = spawn(request("Second Request", 1));
+        let slower = spawn(request("First Request", 5));
+        let faster = spawn(request("Second Request", 1));
 
-    let _ = try_join!(slower, faster);
+        let _ = try_join!(slower, faster);
+    }
+    /*
+       Output:
+     ----------
+
+    Spawning
+    ⛔ Request for: First Request
+    ⛔ Request for: Second Request
+    ✅ Response for Second Request: {
+      "args": {},
+      ...
+      "origin": "27.34.73.162",
+      "url": "https://httpbin.org/delay/1"
+    }
+    ✅ Response for First Request: {
+      "args": {},
+      ...
+      "origin": "27.34.73.162",
+      "url": "https://httpbin.org/delay/5"
+    }
+    */
+
+    // spawning and joining from iterators
+    // here, we can see the similar behavior as of above, but in case of using
+    // different keywords and identifiers, we create iterators and join all of
+    // the responses at once using `future` trait.
+    {
+        let tasks = vec![
+            ("First Request", 5),
+            ("Second Request", 2),
+            ("Third Request", 1),
+        ];
+
+        let handles = tasks
+            .into_iter()
+            .map(|(message, delay)| spawn(request(message, delay)))
+            .collect::<Vec<_>>();
+        join_all(handles).await;
+    }
 }
-
-/*
-   Output:
- ----------
-
-Spawning
-⛔ Request for: First Request
-⛔ Request for: Second Request
-✅ Response for Second Request: {
-  "args": {},
-  ...
-  "origin": "27.34.73.162",
-  "url": "https://httpbin.org/delay/1"
-}
-✅ Response for First Request: {
-  "args": {},
-  ...
-  "origin": "27.34.73.162",
-  "url": "https://httpbin.org/delay/5"
-}
-*/

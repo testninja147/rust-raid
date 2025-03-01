@@ -3,6 +3,24 @@ use std::io::Write;
 use rand::seq::SliceRandom;
 use tokio::time::{Duration, sleep};
 
+/// # Threading and Async programming in rustlang
+/// ---------------------------------------------
+///
+/// Threading is a process of doing different tasks independently of each other.
+/// Rustlang has some task executor libraries such as `tokio`, `future-rs`, etc
+/// to handle async operations.
+///
+/// Async operations are helpful when we need to run tasks that require large
+/// amount of time and the processor needs some wait time before the task is
+/// executed.
+///
+/// Examples of async operations are as follows:
+/// 1. Network Requests
+/// 2. Streaming large files over http
+/// 3. Processing Websocket Messages
+///
+/// To know more about threading, please refer to the rust async book:
+/// https://rust-lang.github.io/async-book/intro.html
 struct TextLoader {
     content: Vec<(char, bool)>,
 }
