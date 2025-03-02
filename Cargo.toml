@@ -15,6 +15,7 @@ members = [
     "advanced/systems-programming",
     "advanced/types-and-generics",
     "advanced/concurrent-programming",
+    "advanced/error-handling",
     # projects
     "projects/pandas",
     "projects/ruscrypt",
