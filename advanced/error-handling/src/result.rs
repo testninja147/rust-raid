@@ -77,3 +77,20 @@ fn main() {
         // No such file or directory (os error 2)
     }
 }
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    #[should_panic]
+    fn panics() {
+        String::from("Not a Number").parse::<usize>().unwrap();
+    }
+
+    #[test]
+    fn returns_0() {
+        assert_eq!(
+            String::from("Not a Number").parse::<usize>().unwrap_or(0),
+            0
+        );
+    }
+}
