@@ -165,6 +165,8 @@ cargo test --bin huffman
 - Embedded rust and Bare-metal programming
 
 ### 5.6. Error handling and patterns
+- [Unrecoverable error and `panic!` macro](advanced/error-handling/src/panic.rs) `cargo run --bin panic`
+- [Recoverable error and `Result` enum](advanced/error-handling/src/result.rs) `cargo run --bin result`
 - Advanced Error Handling
 - Custom Error Types
 - Dependency Injection patterns in rust
