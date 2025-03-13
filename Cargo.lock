@@ -2286,6 +2286,7 @@ dependencies = [
  "aes-gcm",
  "argon2",
  "cipher",
+ "common",
  "crypto",
  "hex",
  "rand 0.9.0",

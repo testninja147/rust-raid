@@ -1,4 +1,4 @@
-use common::input; // common library for this repository
+use common::parse_input; // common library for this repository
 use std::cmp::Ordering::{Equal, Greater, Less};
 /**
 * Binary Search
@@ -46,10 +46,7 @@ fn binary_search(array: &mut [i32], item: i32) -> Option<usize> {
 fn main() {
     let mut arr_1 = [1, 4, 7, 8, 9, 10, 11, 12, 15, 20];
     // ! input() is a common library function, not included in std
-    let search_item = input("Enter a number to search")
-        .trim()
-        .parse::<i32>()
-        .unwrap();
+    let search_item = parse_input("Enter a number to search: ").unwrap();
     match binary_search(arr_1.as_mut(), search_item) {
         Some(idx) => println!("The item {} is at index: {}", search_item, idx),
         None => println!("The item {} does not exist in the array", search_item),

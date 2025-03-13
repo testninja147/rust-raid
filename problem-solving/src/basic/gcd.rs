@@ -42,8 +42,7 @@ fn gcd(mut list: Vec<usize>) -> usize {
 }
 fn main() {
     // ! input() is a common library function, not included in std
-    let numbers: Vec<usize> = input("Enter numbers separated by space")
-        .trim()
+    let numbers: Vec<usize> = input("Enter numbers separated by space: ")
         .split(" ")
         .map(|v| v.parse::<usize>().unwrap())
         .collect();
