@@ -1,8 +1,9 @@
 [workspace]
 package.edition = "2024"
 resolver = "3"
+
 members = [
-    "_lib",
+    "_common",
     # topics
     "algorithms",
     "data-structures",
@@ -22,3 +23,6 @@ members = [
     "projects/vault",
     "projects/todo-web",
 ]
+
+[workspace.dependencies]
+common = { path = "./_common" }

@@ -3,10 +3,6 @@
 version = 4
 
 [[package]]
-name = "_lib"
-version = "0.1.0"
-
-[[package]]
 name = "actix-codec"
 version = "0.5.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -288,7 +284,7 @@ dependencies = [
 name = "algorithms"
 version = "0.1.0"
 dependencies = [
- "_lib",
+ "common",
 ]
 
 [[package]]
@@ -451,6 +447,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "common"
+version = "0.1.0"
+
+[[package]]
 name = "concurrent-programming"
 version = "0.1.0"
 dependencies = [
@@ -583,7 +583,7 @@ dependencies = [
 name = "design_patterns"
 version = "0.1.0"
 dependencies = [
- "_lib",
+ "common",
  "console",
  "rand 0.9.0",
  "serde",
@@ -1520,7 +1520,7 @@ checksum = "5b40af805b3121feab8a3c29f04d8ad262fa8e0561883e7653e024ae4479e6de"
 name = "problem_solving"
 version = "0.1.0"
 dependencies = [
- "_lib",
+ "common",
 ]
 
 [[package]]
