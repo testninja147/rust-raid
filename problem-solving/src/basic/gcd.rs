@@ -3,7 +3,7 @@
  *
  * The task is to find the GCD among  numbers input in the console
  */
-use common::input;
+use common::input; // common library for this repository
 
 fn divisors(num: usize) -> Vec<usize> {
     let mut divisors: Vec<usize> = Vec::new();
@@ -41,6 +41,7 @@ fn gcd(mut list: Vec<usize>) -> usize {
     return 1;
 }
 fn main() {
+    // ! input() is a common library function, not included in std
     let numbers: Vec<usize> = input("Enter numbers separated by space")
         .trim()
         .split(" ")
