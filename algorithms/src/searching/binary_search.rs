@@ -1,4 +1,4 @@
-use _lib::input;
+use common::input;
 use std::cmp::Ordering::{Equal, Greater, Less};
 /**
 * Binary Search

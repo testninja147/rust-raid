@@ -3,7 +3,7 @@
  *
  * The task is to find the GCD among  numbers input in the console
  */
-use _lib::input;
+use common::input;
 
 fn divisors(num: usize) -> Vec<usize> {
     let mut divisors: Vec<usize> = Vec::new();

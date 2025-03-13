@@ -1,4 +1,5 @@
-use _lib::input;
+// use common::input;
+use common::input;
 use rand;
 use std::collections::HashMap;
 /**
