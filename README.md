@@ -16,6 +16,18 @@
 [Rust Raid](https://github.com/ghimiresdp/rust-raid) is a repository for Rust
 learners and coding challenge seekers.
 
+> **Note**: In some linux distributions (specially WSL), the following packages
+> might need to be installed to run some binaries that require network request.
+> 1. **`pkg-config`**
+> 2. **`libssl-dev`**
+>
+> Example commands for installing in ubuntu
+> ```bash
+> sudo apt install pkgconf
+> sudo apt install libssl-dev
+> ```
+> You can check similar commands for other distributions
+
 **The repository contains the following**:
 
 - `Algorithms` that can be used to solve various problems.
@@ -153,6 +165,8 @@ cargo test --bin huffman
 - Embedded rust and Bare-metal programming
 
 ### 5.6. Error handling and patterns
+- [Unrecoverable error and `panic!` macro](advanced/error-handling/src/panic.rs) `cargo run --bin panic`
+- [Recoverable error and `Result` enum](advanced/error-handling/src/result.rs) `cargo run --bin result`
 - Advanced Error Handling
 - Custom Error Types
 - Dependency Injection patterns in rust

@@ -1,3 +1,4 @@
+/// ! to run, execute: cargo run --bin panic
 /// # Panic - an unrecoverable error
 /// ---------------------------------
 ///
@@ -23,6 +24,23 @@ fn main() {
     for x in 0..6 {
         // the code panics at 5th iteration
         println!("Prime at index 5 is: {}", _primes[x]);
-        // index out of bounds: the length is 5 but the index is 5
+    }
+    // Panic Examples
+    // Prime at index 5 is: 2
+    // Prime at index 5 is: 3
+    // Prime at index 5 is: 5
+    // Prime at index 5 is: 7
+    // Prime at index 5 is: 11
+    // thread 'main' panicked at advanced/error-handling/src/panic.rs:25:45:
+    // index out of bounds: the len is 5 but the index is 5
+    // note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+}
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    #[should_panic]
+    fn panics() {
+        String::from("Not a Number").parse::<usize>().unwrap();
     }
 }
