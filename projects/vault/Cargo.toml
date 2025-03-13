@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+common = { workspace = true }
 crypto = "0.5.1"
 argon2 = "0.5.3"
 cipher = "0.4.4"

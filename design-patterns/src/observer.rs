@@ -1,4 +1,4 @@
-use _lib::input;
+use common::input; // common library for this repository
 use rand;
 use std::collections::HashMap;
 /**
@@ -90,6 +90,7 @@ fn main() {
     sensor.readings().subscribe(SensorType::Wind, wind_listener);
     loop {
         println!("R: reading, U: Unsubscribe, E: Exit");
+        // ! input() is a common library function, not included in std
         match input("Enter option: ").as_str().trim() {
             "R" | "r" => {
                 // display readings of subscribed sensors

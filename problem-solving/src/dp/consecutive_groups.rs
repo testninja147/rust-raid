@@ -14,7 +14,7 @@
  *   total number of groups to be created is 2.
  *
  */
-use _lib::input; // core library for this repo
+use common::input; // common library for this repository
 
 fn find_groups(mut list: Vec<usize>) -> usize {
     let mut sets = 1;
@@ -28,6 +28,7 @@ fn find_groups(mut list: Vec<usize>) -> usize {
 }
 
 fn main() {
+    // ! input() is a common library function, not included in std
     let value = input("enter numbers separated by space");
     println!("{}", value);
     let int_list: Vec<usize> = value

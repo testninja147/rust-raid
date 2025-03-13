@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-_lib = { path = "../_lib" }
+common = { workspace = true }
 
 # ==============================[ BASIC CHALLENGES]==============================
 

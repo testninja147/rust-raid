@@ -1,25 +1,7 @@
-use std::io::{stdin, stdout, Write};
 mod vault;
+use common::input;
 use rpassword::prompt_password;
 use vault::Vault;
-/// This function reads input from the standard input (stdin) and returns it as a String.
-///
-/// # Parameters
-///
-/// * `prompt` - A string that is printed to the console before reading input. This is used to
-///              prompt the user for input.
-///
-/// # Return
-///
-/// * A String containing the input read from the console. The leading and trailing whitespace are
-///   trimmed from the input.
-fn input(prompt: &str) -> String {
-    print!("{}", prompt);
-    stdout().flush().unwrap();
-    let mut input = String::new();
-    stdin().read_line(&mut input).expect("");
-    input.trim().to_owned()
-}
 
 fn message_box(message: impl ToString) {
     println!("+{}+", "-".repeat(78));
