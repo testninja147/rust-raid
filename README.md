@@ -84,7 +84,7 @@ cargo test --bin huffman
 2. [selection sort](algorithms/src/sorting/selection_sort.rs) `cargo run --bin selection_sort`
 3. [insertion sort](algorithms/src/sorting/insertion_sort.rs) `cargo run --bin insertion_sort`
 4. [quick sort](algorithms/src/sorting/quick_sort.rs) `cargo run --bin quick_sort`
-5. [Merge sort]
+5. [Merge sort](algorithms/src/sorting/merge_sort.rs) `cargo run --bin merge_sort`
 6. [heap Sort]
 7. [Counting Sort]
 8. [Radix Sort]

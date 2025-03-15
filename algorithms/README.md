@@ -10,18 +10,18 @@ List Of Algorithms are as follows:
 
 ### searching
 
-1. [Linear Searching](searching/linear_search.rs) `cargo run --bin linear_search`
-2. [Binary Searching](searching/binary_search.rs) `cargo run --bin binary_search`
+1. [Linear Searching](src/searching/linear_search.rs) `cargo run --bin linear_search`
+2. [Binary Searching](src/searching/binary_search.rs) `cargo run --bin binary_search`
 3. [Depth First Search (DFS)]
 4. [Breadth First Search (BFS)]
 
 ### sorting
 
-1. [bubble sort](sorting/bubble_sort.rs) `cargo run --bin bubble_sort`
-2. [selection sort](sorting/selection_sort.rs) `cargo run --bin selection_sort`
-3. [insertion sort](sorting/insertion_sort.rs) `cargo run --bin insertion_sort`
-4. [quick sort](sorting/quick_sort.rs) `cargo run --bin quick_sort`
-5. [Merge sort]
+1. [bubble sort](src/sorting/bubble_sort.rs) `cargo run --bin bubble_sort`
+2. [selection sort](src/sorting/selection_sort.rs) `cargo run --bin selection_sort`
+3. [insertion sort](src/sorting/insertion_sort.rs) `cargo run --bin insertion_sort`
+4. [quick sort](src/sorting/quick_sort.rs) `cargo run --bin quick_sort`
+5. [Merge sort](src/sorting/merge_sort.rs) `cargo run --bin merge_sort`
 6. [heap Sort]
 7. [Counting Sort]
 8. [Radix Sort]
@@ -29,8 +29,8 @@ List Of Algorithms are as follows:
 ### Greedy and graph algorithms
 
 1. [Activity Selection]
-2. [Huffman Coding](greedy/huffman_coding.rs) `cargo run --bin huffman`
-3. [Krushkal's algorithm](greedy/kruskal.rs)  `cargo run --bin kruskal`
+2. [Huffman Coding](src/greedy/huffman_coding.rs) `cargo run --bin huffman`
+3. [Krushkal's algorithm](src/greedy/kruskal.rs)  `cargo run --bin kruskal`
 4. [Prim's Algorithm]
 5. [Dijkstra's Algorithm]
 6. [Bellman-Ford Algorithm]
