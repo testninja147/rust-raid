@@ -14,3 +14,7 @@ path = "src/panic.rs"
 [[bin]]
 name = "result"
 path = "src/result.rs"
+
+[[bin]]
+name = "propagation"
+path = "src/propagation.rs"
