@@ -27,8 +27,11 @@ rust. The following topics will be discussed in this section:
    - Foreign Function Interface (FFI)
    - Embedded rust and Bare-metal programming
 6. Error handling and patterns
+   - [Unrecoverable error and `panic!` macro](error-handling/src/panic.rs) `cargo run --bin panic`
+   - [Recoverable error and `Result` enum](error-handling/src/result.rs) `cargo run --bin result`
    - Advanced Error Handling
-   - Custom Error Types
+     - [Propagating Errors with `?` operator](error-handling/src/propagation.rs) `cargo run --bin propagation`
+     - [Custom Errors](error-handling/src/custom-error.rs) `cargo run --bin custom-error`
    - Dependency Injection patterns in rust
 7. Specialized topics
    - Writing a custom allocator
