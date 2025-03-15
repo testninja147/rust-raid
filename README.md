@@ -168,7 +168,8 @@ cargo test --bin huffman
 - [Unrecoverable error and `panic!` macro](advanced/error-handling/src/panic.rs) `cargo run --bin panic`
 - [Recoverable error and `Result` enum](advanced/error-handling/src/result.rs) `cargo run --bin result`
 - Advanced Error Handling
-- Custom Error Types
+  - [Propagating Errors with `?` operator](advanced/error-handling/src/propagation.rs) `cargo run --bin propagation`
+  - [Custom Errors](advanced/error-handling/src/custom-error.rs) `cargo run --bin custom-error`
 - Dependency Injection patterns in rust
 
 ### 5.7. Specialized topics

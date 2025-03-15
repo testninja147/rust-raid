@@ -18,3 +18,7 @@ path = "src/result.rs"
 [[bin]]
 name = "propagation"
 path = "src/propagation.rs"
+
+[[bin]]
+name = "custom-error"
+path = "src/custom-error.rs"
