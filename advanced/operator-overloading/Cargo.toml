@@ -9,5 +9,5 @@ edition = "2024"
 # --------------------------[ Systems and Low Levels ]--------------------------
 
 [[bin]]
-name = "struct-overloading"
-path = "src/struct-overloading.rs"
+name = "operator-overloading"
+path = "src/main.rs"
