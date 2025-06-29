@@ -1,0 +1,13 @@
+[package]
+name = "operator-overloading"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+
+# --------------------------[ Systems and Low Levels ]--------------------------
+
+[[bin]]
+name = "operator-overloading"
+path = "src/main.rs"

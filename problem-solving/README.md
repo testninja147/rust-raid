@@ -4,13 +4,13 @@
 
 ### [4.1. Basic Problems](basic/)
 
-1. [Practical Number](basic/practical_number.rs)  `cargo run --bin practical_number`
-2. [Greatest Common Divisor](basic/gcd.rs) `cargo run --bin gcd`
-3. [Median](basic/median.rs) `cargo run --bin median`
-4. [Reverse digits of the integer](basic/reverse_integer.rs) `cargo run --bin reverse_integer`
-5. [List Comprehension](basic/comprehension.rs) `cargo run --bin comprehension`
-6. [Linear Regression Model](basic/linear_regression.rs) `cargo run --bin linear_regression`
-7. [Matrix Multiplication Model](basic/matrix_multiplication.rs) `cargo run --bin matmul`
+1. [Practical Number](src/basic/practical_number.rs)  `cargo run --bin practical_number`
+2. [Greatest Common Divisor](src/basic/gcd.rs) `cargo run --bin gcd`
+3. [Median](src/basic/median.rs) `cargo run --bin median`
+4. [Reverse digits of the integer](src/basic/reverse_integer.rs) `cargo run --bin reverse_integer`
+5. [List Comprehension](src/basic/comprehension.rs) `cargo run --bin comprehension`
+6. [Linear Regression Model](src/basic/linear_regression.rs) `cargo run --bin linear_regression`
+7. [Matrix Multiplication Model](src/basic/matrix_multiplication.rs) `cargo run --bin matmul`
 
 ### [4.2. Dynamic Programming](dp/)
 
