@@ -269,7 +269,7 @@ dependencies = [
 
 [[package]]
 name = "algorithms"
-version = "0.1.0"
+version = "0.5.0"
 dependencies = [
  "common",
 ]
@@ -435,11 +435,11 @@ dependencies = [
 
 [[package]]
 name = "common"
-version = "0.1.0"
+version = "0.5.0"
 
 [[package]]
 name = "concurrent-programming"
-version = "0.1.0"
+version = "0.5.0"
 dependencies = [
  "futures",
  "rand",
@@ -542,7 +542,7 @@ dependencies = [
 
 [[package]]
 name = "data-structures"
-version = "0.1.0"
+version = "0.5.0"
 
 [[package]]
 name = "deranged"
@@ -589,7 +589,7 @@ dependencies = [
 
 [[package]]
 name = "design_patterns"
-version = "0.1.0"
+version = "0.5.0"
 dependencies = [
  "common",
  "console",
@@ -653,7 +653,7 @@ dependencies = [
 
 [[package]]
 name = "error-handling"
-version = "0.1.0"
+version = "0.5.0"
 
 [[package]]
 name = "fastrand"
@@ -1284,7 +1284,7 @@ checksum = "30bde2b3dc3671ae49d8e2e9f044c7c005836e7a023ee57cffa25ab82764bb9e"
 
 [[package]]
 name = "macros"
-version = "0.1.0"
+version = "0.5.0"
 dependencies = [
  "shape",
  "shape_derive",
@@ -1298,11 +1298,11 @@ checksum = "78ca9ab1a0babb1e7d5695e3530886289c18cf2f87ec19a575a0abdce112e3a3"
 
 [[package]]
 name = "memory-management"
-version = "0.1.0"
+version = "0.5.0"
 
 [[package]]
 name = "meta-programming"
-version = "0.1.0"
+version = "0.5.0"
 dependencies = [
  "xml-derive",
 ]
@@ -1434,11 +1434,11 @@ dependencies = [
 
 [[package]]
 name = "operator-overloading"
-version = "0.1.0"
+version = "0.5.0"
 
 [[package]]
 name = "pandas"
-version = "0.1.0"
+version = "0.5.0"
 
 [[package]]
 name = "parking_lot"
@@ -1527,7 +1527,7 @@ dependencies = [
 
 [[package]]
 name = "problem_solving"
-version = "0.1.0"
+version = "0.5.0"
 dependencies = [
  "common",
 ]
@@ -1714,7 +1714,7 @@ dependencies = [
 
 [[package]]
 name = "ruscrypt"
-version = "0.1.0"
+version = "0.5.0"
 
 [[package]]
 name = "rustc-demangle"
@@ -1896,11 +1896,11 @@ dependencies = [
 
 [[package]]
 name = "shape"
-version = "0.1.0"
+version = "0.5.0"
 
 [[package]]
 name = "shape_derive"
-version = "0.1.0"
+version = "0.5.0"
 dependencies = [
  "quote",
  "syn",
@@ -2012,7 +2012,7 @@ dependencies = [
 
 [[package]]
 name = "systems-programming"
-version = "0.1.0"
+version = "0.5.0"
 
 [[package]]
 name = "tempfile"
@@ -2071,7 +2071,7 @@ dependencies = [
 
 [[package]]
 name = "todo"
-version = "0.1.0"
+version = "0.5.0"
 dependencies = [
  "actix-files",
  "actix-web",
@@ -2214,7 +2214,7 @@ checksum = "1dccffe3ce07af9386bfd29e80c0ab1a8205a2fc34e4bcd40364df902cfa8f3f"
 
 [[package]]
 name = "types-and-generics"
-version = "0.1.0"
+version = "0.5.0"
 
 [[package]]
 name = "unicase"
@@ -2287,7 +2287,7 @@ checksum = "4e8257fbc510f0a46eb602c10215901938b5c2a7d5e70fc11483b1d3c9b5b18c"
 
 [[package]]
 name = "vault"
-version = "0.1.0"
+version = "0.5.0"
 dependencies = [
  "aes-gcm",
  "argon2",
@@ -2686,7 +2686,7 @@ checksum = "1e9df38ee2d2c3c5948ea468a8406ff0db0b29ae1ffde1bcf20ef305bcc95c51"
 
 [[package]]
 name = "xml-derive"
-version = "0.1.0"
+version = "0.5.0"
 dependencies = [
  "quote",
  "syn",
