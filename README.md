@@ -172,7 +172,10 @@ cargo test --bin huffman
   - [Custom Errors](advanced/error-handling/src/custom-error.rs) `cargo run --bin custom-error`
 - Dependency Injection patterns in rust
 
-### 5.7. Specialized topics
+### 5.7. Operator Overloading
+- [Structs overloading](advanced/operator-overloading/src/struct-overloading.rs) `cargo run --bin struct-overloading`
+
+### 5.8. Specialized topics
 - Writing a custom allocator
 - Self-referential structs (`box`, `rc`, `Arc`)
 

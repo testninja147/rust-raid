@@ -33,6 +33,8 @@ rust. The following topics will be discussed in this section:
      - [Propagating Errors with `?` operator](error-handling/src/propagation.rs) `cargo run --bin propagation`
      - [Custom Errors](error-handling/src/custom-error.rs) `cargo run --bin custom-error`
    - Dependency Injection patterns in rust
-7. Specialized topics
+7. Operator overloading
+   - [Structs overloading](advanced/operator-overloading/src/struct-overloading.rs) `cargo run --bin struct-overloading`
+8. Specialized topics
    - Writing a custom allocator
    - Self-referential structs (`box`, `rc`, `Arc`)

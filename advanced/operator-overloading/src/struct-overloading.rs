@@ -70,3 +70,40 @@ fn main() {
         //Net Score by B: Score { goals: -1, penalties: 1 }
     }
 }
+
+#[cfg(test)]
+mod test {
+    use crate::Score;
+
+    #[test]
+    fn test_addition() {
+        let a = Score {
+            goals: 5,
+            penalties: 5,
+        };
+        let b = Score {
+            goals: 5,
+            penalties: 5,
+        };
+        let c = a + b;
+
+        assert_eq!(a.goals + b.goals, c.goals);
+        assert_eq!(a.penalties + b.penalties, c.penalties);
+    }
+
+    #[test]
+    fn test_subtraction() {
+        let a = Score {
+            goals: 5,
+            penalties: 5,
+        };
+        let b = Score {
+            goals: 5,
+            penalties: 5,
+        };
+        let c = a - b;
+
+        assert_eq!(a.goals - b.goals, c.goals);
+        assert_eq!(a.penalties - b.penalties, c.penalties);
+    }
+}
