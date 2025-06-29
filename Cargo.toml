@@ -16,6 +16,7 @@ members = [
     "advanced/types-and-generics",
     "advanced/concurrent-programming",
     "advanced/error-handling",
+    "advanced/operator-overloading",
     # projects
     "projects/pandas",
     "projects/ruscrypt",
