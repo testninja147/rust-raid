@@ -33,8 +33,10 @@ rust. The following topics will be discussed in this section:
      - [Propagating Errors with `?` operator](error-handling/src/propagation.rs) `cargo run --bin propagation`
      - [Custom Errors](error-handling/src/custom-error.rs) `cargo run --bin custom-error`
    - Dependency Injection patterns in rust
-7. Operator overloading
-   - [Structs overloading](advanced/operator-overloading/src/struct-overloading.rs) `cargo run --bin struct-overloading`
+7. [Operator overloading](operator-overloading/src/main.rs) `cargo run --bin operator-overloading`
+~     - Example 1: Operator Overloading in structs (overloading `+` and `-` operators)
+     - Example 2: Matrix Multiplication ( overloading `*` operator)
+     - Example 3: Scalar Multiplication (operator overloading with heterogenous data type)~
 8. Specialized topics
    - Writing a custom allocator
    - Self-referential structs (`box`, `rc`, `Arc`)
