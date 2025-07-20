@@ -1,4 +1,4 @@
-use std::ops::{Mul, Sub};
+use std::ops::Mul;
 
 #[derive(Debug, Clone, Copy)]
 pub struct Vector {

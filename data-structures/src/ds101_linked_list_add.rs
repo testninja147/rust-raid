@@ -98,7 +98,7 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    use crate::{add_two_numbers, ListNode};
+    use crate::{ListNode, add_two_numbers};
 
     #[test]
     fn test_sum() {
