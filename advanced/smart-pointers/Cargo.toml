@@ -11,3 +11,7 @@ rust-version.workspace = true
 [[bin]]
 name = 'box-pointer'
 path = 'src/box-pointer.rs'
+
+[[bin]]
+name = 'rc'
+path = 'src/rc.rs'

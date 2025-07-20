@@ -179,7 +179,7 @@ cargo test --bin huffman
 
 ### 5.8. Smart Pointers
 - [Box Pointers](advanced/smart-pointers/src/box-pointer.rs) `cargo run --bin box-pointer`
-- Reference Counters (`Rc`)
+- [Reference Counters (`Rc`)](advanced/smart-pointers/src/rc.rs) `cargo run --bin rc`
 - Asynchronous Reference Counters (`Arc`)
 - `RefCell`
 
