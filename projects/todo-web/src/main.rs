@@ -2,9 +2,9 @@ use std::sync::Mutex;
 
 use actix_files as fs;
 use actix_web::{
+    App, HttpServer,
     middleware::DefaultHeaders,
     web::{self},
-    App, HttpServer,
 };
 
 mod api;

@@ -5,8 +5,8 @@ use std::io::{Read, Write};
 use std::{collections::HashMap, fs::OpenOptions};
 
 use aes_gcm::{
-    aead::{Aead, AeadCore, KeyInit, OsRng},
     Aes256Gcm, Key, Nonce,
+    aead::{Aead, AeadCore, KeyInit, OsRng},
 };
 
 use crate::message_box;

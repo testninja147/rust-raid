@@ -1,6 +1,6 @@
-use actix_web::{web, HttpResponse, Responder};
+use actix_web::{HttpResponse, Responder, web};
 
-use crate::{todo::TodoCreateUpdate, ApplicationState};
+use crate::{ApplicationState, todo::TodoCreateUpdate};
 
 pub(crate) async fn list(data: web::Data<ApplicationState>) -> impl Responder {
     let items = &data.todo_list.lock().unwrap().items;
