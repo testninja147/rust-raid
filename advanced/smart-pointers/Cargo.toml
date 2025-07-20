@@ -1,0 +1,13 @@
+[package]
+name = "smart-pointers"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+
+
+[[bin]]
+name = 'box-pointer'
+path = 'src/box-pointer.rs'

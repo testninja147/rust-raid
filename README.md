@@ -16,7 +16,7 @@
 [Rust Raid](https://github.com/ghimiresdp/rust-raid) is a repository for Rust
 learners and coding challenge seekers.
 
-> **Note**: In some linux distributions (specially WSL), the following packages
+> **Note**: In some linux distributions (especially WSL), the following packages
 > might need to be installed to run some binaries that require network request.
 > 1. **`pkg-config`**
 > 2. **`libssl-dev`**
@@ -37,9 +37,9 @@ learners and coding challenge seekers.
 - `Demo projects` to polish your skills to the depth.
 
 Each workspace contains multiple binaries so that it will be easier to run
-specific problem by selecting binaries.
+a specific problem by selecting binaries.
 
-You can run the `cargo run --bin <binary_name>` to run binaries.To run all test cases,
+You can run the `cargo run --bin <binary_name>` to run binaries. To run all test cases,
 you can run `cargo test` command, or to run specific test, you can run
 `cargo test --bin <binary_name>`
 
@@ -53,14 +53,14 @@ cargo test --bin huffman
 > _Topics that do not contain hyperlinks are work in progress and will be_
 > _updated once the solution gets completed._
 >
-> _You can also create a PR with solution/enhancement to each topics._
+> _You can also create a PR with the solution/enhancement to each topic._
 >
 
 ## [1. Data Structures](data-structures/)
 
 1. **Arrays**
     - [Find the missing number](data-structures/src/ds001_find_missing_number.rs) `cargo run --bin ds001`
-    - [Find the length of the longest sub-array with sum K](data-structures/src/ds002_longest_subarray.rs) `cargo run --bin ds002`
+    - [Find the length of the longest subarray with sum K](data-structures/src/ds002_longest_subarray.rs) `cargo run --bin ds002`
 2. **Singly Linked Lists**
     - [Add two linked list](data-structures/src/ds101_linked_list_add.rs) `cargo run --bin ds101`
 3. [**Doubly Linked Lists**](data-structures/src/doubly_linked_list.rs) `cargo run --bin doubly_linked_list`
@@ -129,7 +129,7 @@ cargo test --bin huffman
 
 1. [List group by consecutive numbers](problem-solving/src/dp/consecutive_groups.rs) `cargo run --bin consecutive_groups`
 2. [Find the length of the longest substring with maximum 2 repetition](problem-solving/src/dp/repeat.rs)`cargo run --bin repeat`
-3. [Find the index of 2 numbers in an array whose sum equals to the provided target](problem-solving/src/dp/two_sum.rs) `cargo run --bin two_sum`
+3. [Find the index of two numbers in an array whose sum equals to the provided target](problem-solving/src/dp/two_sum.rs) `cargo run --bin two_sum`
 4. [Minimize the Sum from an array](problem-solving/src/dp/minimize_sum.rs) `cargo run --bin minimize_sum`
 5. [Fibonacci Series](problem-solving/src/dp/fibonacci.rs) `cargo run --bin fibonacci`
 6. [Longest Common Subsequence](problem-solving/src/dp/longest_common_subsequence.rs) `cargo run --bin lcs`
@@ -158,7 +158,7 @@ cargo test --bin huffman
 - [Derive Macros](advanced/meta-programming/src/derive-macro.rs) `cargo run --bin derive`
 - [Building Domain-Specific Languages (DSL)](advanced/meta-programming/src/dsl.rs) `cargo run --bin dsl`
 
-### 5.5. Low level and systems programming
+### 5.5. Low-level and systems programming
 - [Conditional Compilation](advanced/systems-programming/src/conditional-compilation.rs) `cargo run --bin cc`
 - [Inline Assembly](advanced/systems-programming/src/inline-assembly.rs) `cargo run --bin assembly`
 - Foreign Function Interface (FFI)
@@ -175,9 +175,15 @@ cargo test --bin huffman
 ### [5.7. Operator Overloading](advanced/operator-overloading/src/main.rs) `cargo run --bin operator-overloading`
 - Example 1: Operator Overloading in structs (overloading `+` and `-` operators)
 - Example 2: Matrix Multiplication ( overloading `*` operator)
-- Example 3: Scalar Multiplication (operator overloading with heterogenous data type)
+- Example 3: Scalar Multiplication (operator overloading with heterogeneous data type)
 
-### 5.8. Specialized topics
+### 5.8. Smart Pointers
+- [Box Pointers](advanced/smart-pointers/src/box-pointer.rs) `cargo run --bin box-pointer`
+- Reference Counters (`Rc`)
+- Asynchronous Reference Counters (`Arc`)
+- `RefCell`
+
+### 5.9. Specialized topics
 - Writing a custom allocator
 - Self-referential structs (`box`, `rc`, `Arc`)
 
@@ -203,13 +209,13 @@ cargo run --bin practical_number
 > shorter version of the solution name is used to make easier to type. You can
 > see the name of binary in the respective `README.md` file or the `docstring`
 > of the respective solution.
-> some examples of shorter version of solution name are as follows:
+> Example:
 >
 > - The binary for `huffman_coding.rs` is just `huffman`.
 
 ## Testing
 
-There are test cases for each functions/challenges which will be beneficial
+There are test cases for each function/challenge that will be beneficial
 for you to learn testing as well as test programs for errors.
 
 To test programs, you can run `cargo test` command.
