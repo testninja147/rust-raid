@@ -178,10 +178,9 @@ cargo test --bin huffman
 - Example 3: Scalar Multiplication (operator overloading with heterogeneous data type)
 
 ### 5.8. Smart Pointers
-- [Box Pointers](advanced/smart-pointers/src/box-pointer.rs) `cargo run --bin box-pointer`
+- [Box Pointers](advanced/smart-pointers/src/box.rs) `cargo run --bin box`
 - [Reference Counters (`Rc`)](advanced/smart-pointers/src/rc.rs) `cargo run --bin rc`
-- Asynchronous Reference Counters (`Arc`)
-- `RefCell`
+- [`RefCell`](advanced/smart-pointers/src/refcell.rs)`cargo run --bin refcell`
 
 ### 5.9. Specialized topics
 - Writing a custom allocator
