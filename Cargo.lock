@@ -1284,7 +1284,7 @@ checksum = "30bde2b3dc3671ae49d8e2e9f044c7c005836e7a023ee57cffa25ab82764bb9e"
 
 [[package]]
 name = "macros"
-version = "0.5.0"
+version = "0.6.0"
 dependencies = [
  "shape",
  "shape_derive",
@@ -1900,7 +1900,7 @@ version = "0.5.0"
 
 [[package]]
 name = "shape_derive"
-version = "0.5.0"
+version = "0.6.0"
 dependencies = [
  "quote",
  "syn",
@@ -1938,7 +1938,7 @@ checksum = "7fcf8323ef1faaee30a44a340193b1ac6814fd9b7b4e88e9d4519a3e4abe1cfd"
 
 [[package]]
 name = "smart-pointers"
-version = "0.5.0"
+version = "0.6.0"
 
 [[package]]
 name = "socket2"
@@ -2075,7 +2075,7 @@ dependencies = [
 
 [[package]]
 name = "todo"
-version = "0.5.0"
+version = "0.6.0"
 dependencies = [
  "actix-files",
  "actix-web",
@@ -2291,7 +2291,7 @@ checksum = "4e8257fbc510f0a46eb602c10215901938b5c2a7d5e70fc11483b1d3c9b5b18c"
 
 [[package]]
 name = "vault"
-version = "0.5.0"
+version = "0.6.0"
 dependencies = [
  "aes-gcm",
  "argon2",

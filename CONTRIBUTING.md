@@ -10,7 +10,7 @@
     - [Prohibited Behavior](#prohibited-behavior)
     - [Additional Notes](#additional-notes)
   - [Submitting a Pull Request](#submitting-a-pull-request)
-  - [Releasing a new version](#releasing-a-new-version)
+  - [Tagging a new version](#tagging-a-new-version)
 
 ## Getting Started
 
@@ -66,22 +66,22 @@ respectful environment where everyone feels welcome and valued.
 - Submit the pull request.
 
 
-## Releasing a new version
+## Tagging a new version
 
-Install package `cargo-release`
+Install package `cargo-workspaces`
 
 ```shell
-cargo install cargo-release
+cargo install cargo-workspaces
 ```
 
-Run `cargo release` command
+Run `cargo workspaces` command
 ```shell
 # major version
-cargo release major --workspace
+cargo workspaces version major
 
 # minor version
-cargo release minor --workspace
+cargo workspaces version minor
 
 # patch version
-cargo release patch --workspace
+cargo workspaces version patch
 ```
