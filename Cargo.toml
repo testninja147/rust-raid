@@ -21,7 +21,9 @@ members = [
     "projects/pandas",
     "projects/ruscrypt",
     "projects/vault",
-    "projects/todo-web", "advanced/smart-pointers",
+    "projects/todo-web",
+    "advanced/smart-pointers",
+    "projects/cget",
 ]
 
 [workspace.package]
