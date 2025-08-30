@@ -192,7 +192,8 @@ cargo test --bin huffman
 2. [`ruscrypt` basic encryption](projects/ruscrypt/README.md) `cargo run --bin ruscrypt`
 3. [Basic Password `vault`](projects/vault/README.md) `cargo run --bin vault`
 4. [Basic `TODO` Web Application](projects/todo-web/README.md) `cargo run --bin todo`
-5. [`wget` -like File Downloader with Concurrency - `cget`]() `cargo run --bin cget <DOWNLOAD_URL>`
+5. [`wget` -like File Downloader with Concurrency - `cget`]() `cargo run --bin cget <DOWNLOAD_URL> `
+   Example: `cargo run --bin cget https://filesamples.com/samples/document/docx/sample4.docx -t 8`
 
 ## Running binaries
 
