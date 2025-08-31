@@ -4,11 +4,14 @@ use reqwest::{
 };
 // use tokio::stream;
 use futures_util::StreamExt;
+use indicatif::{HumanBytes, ProgressBar, ProgressStyle};
 use tokio::io::AsyncWriteExt;
 
 pub(crate) struct Downloader {
     url: String,
     headers: HeaderMap,
+    file_size: u64,
+    filename: Option<String>,
     // timeouts, follow_redirects, etc.
     // threads: u8,
 }
@@ -27,7 +30,7 @@ pub trait HeaderUtils {
     /// example response: `Content-Range` `bytes 0-0/360996864`
     ///
     /// From the above response header, we can extract value in bytes
-    fn extract_file_size(&self) -> Result<usize, Box<dyn std::error::Error>>;
+    fn extract_file_size(&self) -> Result<u64, Box<dyn std::error::Error>>;
 }
 
 impl HeaderUtils for HeaderMap {
@@ -42,7 +45,7 @@ impl HeaderUtils for HeaderMap {
         // TODO: guess filename from content type
     }
 
-    fn extract_file_size(&self) -> Result<usize, Box<dyn std::error::Error>> {
+    fn extract_file_size(&self) -> Result<u64, Box<dyn std::error::Error>> {
         if let Some(cr) = &self.get(CONTENT_RANGE) {
             if let Some(content_range) = cr.to_str()?.split("/").into_iter().last() {
                 return Ok(content_range.parse().unwrap_or(0));
@@ -71,32 +74,57 @@ impl Downloader {
     pub fn new(url: &str) -> Self {
         Self {
             url: url.to_owned(),
-            // threads,
             headers: HeaderMap::new(),
+            file_size: 0,
+            filename: None,
         }
     }
 
     // fixme: use this instead of get_file while handling threads
     async fn get_chunk(
         &self,
-        range: Option<(usize, usize)>,
-    ) -> Result<usize, Box<dyn std::error::Error>> {
-        let response = reqwest::get(&self.url).await?;
+        range: Option<(u64, u64)>,
+    ) -> Result<u64, Box<dyn std::error::Error>> {
+        let client = reqwest::Client::new();
+        let mut builder = client.get(&self.url);
+        if let Some((start, end)) = range {
+            builder = builder.header(RANGE, &format!("bytes={start}-{end})"));
+        }
+
+        let response = builder.send().await?;
+        let mut file = tokio::fs::File::create(self.filename.clone().unwrap()).await?;
         let mut stream = response.bytes_stream();
-        let mut downloaded = 0usize;
-        println!("");
+        let mut downloaded = 0u64;
+        let bar = match self.file_size {
+            0 => ProgressBar::new_spinner(),
+            size => {
+                let bar = ProgressBar::new(size);
+                bar.set_style(ProgressStyle::with_template(
+                    "[{elapsed_precise}] {wide_bar:40.white/black} {binary_bytes}/{binary_total_bytes} ({percent}%) {msg}"
+                ).unwrap());
+                bar
+            }
+        };
+
+        // progress_bar
         while let Some(chunk) = stream.next().await {
             let chunk = chunk?;
             // FIXME: save file TO THE FORMAT PROVIDED IN THE RESPONSE
-            // file.write_all(&chunk).await?;
-            downloaded += chunk.len();
-            print!("\rdownloaded: {:?} bytes", downloaded);
+            file.write_all(&chunk).await?;
+            downloaded += chunk.len() as u64;
+            if self.file_size > 0 {
+                bar.inc(chunk.len() as u64);
+            } else {
+                bar.tick();
+                bar.set_message(format!("downloaded: {}", HumanBytes(downloaded),));
+            }
         }
-        println!("");
+        bar.finish();
+
         return Ok(0);
     }
 
-    pub async fn download(&mut self) -> Result<(), Box<dyn std::error::Error>> {
+    pub async fn download(&mut self, path: &str) -> Result<(), Box<dyn std::error::Error>> {
         let client = reqwest::Client::new();
         // get response headers to get file name, length, etc.
         let response = client
@@ -116,27 +144,15 @@ impl Downloader {
         println!("⛔filename: {filename}");
 
         let file_size = (&self.headers.extract_file_size().unwrap_or(0)).to_owned();
-        println!("⛔file size: {file_size}");
+        if file_size > 0 {
+            self.file_size = file_size;
+        }
+        self.filename = Some(format!("{path}/{filename}"));
+        println!("⛔file size: {}", HumanBytes(file_size));
 
         // todo: handle threads
-        let _ = get_file(&self.url, filename).await;
+        // let _ = get_file(&self.url, format!("{path}/{filename}")).await;
+        let _ = self.get_chunk(None).await;
         Ok(())
     }
-}
-
-async fn get_file(url: &str, filename: String) -> Result<usize, Box<dyn std::error::Error>> {
-    let response = reqwest::get(url).await?;
-    let mut file = tokio::fs::File::create(filename).await?;
-    let mut stream = response.bytes_stream();
-    let mut downloaded = 0usize;
-    println!("");
-    while let Some(chunk) = stream.next().await {
-        let chunk = chunk?;
-        // FIXME: save file TO THE FORMAT PROVIDED IN THE RESPONSE
-        file.write_all(&chunk).await?;
-        downloaded += chunk.len();
-        print!("\rdownloaded: {:?} bytes", downloaded);
-    }
-    println!("");
-    return Ok(0);
 }

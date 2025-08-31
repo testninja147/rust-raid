@@ -1,9 +1,10 @@
 use clap::Parser;
 use regex::Regex;
-use std::{env::current_dir, path::PathBuf, process::exit};
+use std::process::exit;
 
 mod downloader;
 use downloader::Downloader;
+use std::path::Path;
 
 #[derive(Debug, Parser)]
 #[command(version, about, long_about=None)]
@@ -18,13 +19,17 @@ struct Args {
 #[tokio::main]
 async fn main() {
     let args = Args::parse();
-    let url = args.url;
+    let path = Path::new(&args.dest);
+    if !path.exists() {
+        println!("The destination path does not exist");
+        exit(1);
+    }
 
     // FIXME: add extensive url pattern matcher if it does not work on all cases
     let re = Regex::new(r"https?://[^\s/$.?#].[^\s]*").unwrap();
-    if let Some(_) = re.captures(url.as_str()) {
-        let mut downloader = Downloader::new(&url);
-        if let Ok(_) = downloader.download().await {
+    if let Some(_) = re.captures(&args.url) {
+        let mut downloader = Downloader::new(&args.url);
+        if let Ok(_) = downloader.download(&args.dest).await {
             println!("Download Complete!")
         }
     } else {
