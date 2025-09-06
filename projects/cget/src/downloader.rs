@@ -1,3 +1,5 @@
+use std::error::Error;
+
 use reqwest::{
     self, Url,
     header::{CONTENT_DISPOSITION, CONTENT_RANGE, HeaderMap, RANGE},
@@ -46,12 +48,16 @@ impl HeaderUtils for HeaderMap {
     }
 
     fn extract_file_size(&self) -> Result<u64, Box<dyn std::error::Error>> {
-        if let Some(cr) = &self.get(CONTENT_RANGE) {
-            if let Some(content_range) = cr.to_str()?.split("/").into_iter().last() {
-                return Ok(content_range.parse().unwrap_or(0));
-            }
-        }
-        return Ok(0);
+        let &cr = &self
+            .get(CONTENT_RANGE)
+            .ok_or_else(|| Box::<dyn Error>::from("Content_range not found"))?;
+        let content_range = cr
+            .to_str()?
+            .split("/")
+            .into_iter()
+            .last()
+            .ok_or_else(|| Box::<dyn Error>::from("Invalid Content_range_format"))?;
+        Ok(content_range.parse()?)
     }
 }
 
@@ -142,13 +148,14 @@ impl Downloader {
             },
         };
         println!("⛔filename: {filename}");
-
-        let file_size = (&self.headers.extract_file_size().unwrap_or(0)).to_owned();
-        if file_size > 0 {
-            self.file_size = file_size;
-        }
         self.filename = Some(format!("{path}/{filename}"));
-        println!("⛔file size: {}", HumanBytes(file_size));
+
+        if let Ok(file_size) = self.headers.extract_file_size() {
+            self.file_size = file_size;
+            println!("⛔file size: {}", HumanBytes(file_size));
+        } else {
+            println!("⛔ Unable to determine the file size. skipping threads")
+        }
 
         // todo: handle threads
         // let _ = get_file(&self.url, format!("{path}/{filename}")).await;
