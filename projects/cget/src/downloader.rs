@@ -151,7 +151,7 @@ impl Downloader {
         self.filename = Some(format!("{path}/{filename}"));
 
         if let Ok(file_size) = self.headers.extract_file_size() {
-            self.file_size = Some<file_size>;
+            self.file_size = Some(file_size);
             println!("⛔file size: {}", HumanBytes(file_size));
         } else {
             println!("⛔ Unable to determine the file size. skipping threads")
