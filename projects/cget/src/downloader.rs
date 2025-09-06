@@ -12,7 +12,7 @@ use tokio::io::AsyncWriteExt;
 pub(crate) struct Downloader {
     url: String,
     headers: HeaderMap,
-    file_size: u64,
+    file_size: Option<u64>,
     filename: Option<String>,
     // timeouts, follow_redirects, etc.
     // threads: u8,
@@ -81,7 +81,7 @@ impl Downloader {
         Self {
             url: url.to_owned(),
             headers: HeaderMap::new(),
-            file_size: 0,
+            file_size: None,
             filename: None,
         }
     }
@@ -102,14 +102,14 @@ impl Downloader {
         let mut stream = response.bytes_stream();
         let mut downloaded = 0u64;
         let bar = match self.file_size {
-            0 => ProgressBar::new_spinner(),
-            size => {
+            Some(size) => {
                 let bar = ProgressBar::new(size);
                 bar.set_style(ProgressStyle::with_template(
                     "[{elapsed_precise}] {wide_bar:40.white/black} {binary_bytes}/{binary_total_bytes} ({percent}%) {msg}"
                 ).unwrap());
                 bar
             }
+            None => ProgressBar::new_spinner(),
         };
 
         // progress_bar
@@ -118,7 +118,7 @@ impl Downloader {
             // FIXME: save file TO THE FORMAT PROVIDED IN THE RESPONSE
             file.write_all(&chunk).await?;
             downloaded += chunk.len() as u64;
-            if self.file_size > 0 {
+            if let Some(_) = self.file_size {
                 bar.inc(chunk.len() as u64);
             } else {
                 bar.tick();
@@ -151,7 +151,7 @@ impl Downloader {
         self.filename = Some(format!("{path}/{filename}"));
 
         if let Ok(file_size) = self.headers.extract_file_size() {
-            self.file_size = file_size;
+            self.file_size = Some<file_size>;
             println!("⛔file size: {}", HumanBytes(file_size));
         } else {
             println!("⛔ Unable to determine the file size. skipping threads")
