@@ -106,47 +106,57 @@ impl Downloader {
     async fn get_chunk(
         &self,
         range: Option<(u64, u64)>,
-    ) -> Result<u64, Box<dyn std::error::Error>> {
+        progress_bar: Option<ProgressBar>,
+        file: Option<Arc<Mutex<File>>>,
+        chunk_index: Option<usize>,
+    ) -> Result<u64, Box<dyn std::error::Error + Send + Sync>> {
         let client = reqwest::Client::new();
         let mut builder = client.get(&self.url);
         if let Some((start, end)) = range {
-            builder = builder.header(RANGE, &format!("bytes={start}-{end})"));
+            builder = builder.header(RANGE, &format!("bytes={start}-{end}"));
         }
-
         let response = builder.send().await?;
-        let mut file = tokio::fs::File::create(self.filename.clone().unwrap()).await?;
         let mut stream = response.bytes_stream();
         let mut downloaded = 0u64;
-        let bar = match self.file_size {
-            Some(size) => {
-                let bar = ProgressBar::new(size);
-                bar.set_style(ProgressStyle::with_template(
-                    "[{elapsed_precise}] {wide_bar:40.white/black} {binary_bytes}/{binary_total_bytes} ({percent}%) {msg}"
-                ).unwrap());
-                bar
-            }
-            None => ProgressBar::new_spinner(),
-        };
+        let mut chunk_data = Vec::new();
 
         // progress_bar
         while let Some(chunk) = stream.next().await {
             let chunk = chunk?;
-            // FIXME: save file TO THE FORMAT PROVIDED IN THE RESPONSE
-            file.write_all(&chunk).await?;
+            chunk_data.extend_from_slice(&chunk);
             downloaded += chunk.len() as u64;
-            if let Some(_) = self.file_size {
+
+            if let Some(bar) = &progress_bar {
                 bar.inc(chunk.len() as u64);
-            } else {
-                bar.tick();
-                bar.set_message(format!("downloaded: {}", HumanBytes(downloaded),));
+            }
+
+            // Update chunk progress in shared state
+            if let Some(idx) = chunk_index {
+                let mut chunks = self.chunks.lock().await;
+                if idx < chunks.len() {
+                    chunks[idx].downloaded = downloaded;
+                }
             }
         }
-        bar.finish();
 
-        return Ok(0);
+        // Write to file at correct position
+        if let (Some(file), Some((start, _))) = (file, range) {
+            let mut f = file.lock().await;
+            f.seek(SeekFrom::Start(start)).await?;
+            f.write_all(&chunk_data).await?;
+        }
+
+        if let Some(bar) = progress_bar {
+            bar.finish();
+        }
+
+        Ok(downloaded)
     }
 
-    pub async fn download(&mut self, path: &str) -> Result<(), Box<dyn std::error::Error>> {
+    pub async fn download(
+        &mut self,
+        path: &str,
+    ) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
         let client = reqwest::Client::new();
         // get response headers to get file name, length, etc.
         let response = client
@@ -173,9 +183,100 @@ impl Downloader {
             println!("⛔ Unable to determine the file size. skipping threads")
         }
 
-        // todo: handle threads
-        // let _ = get_file(&self.url, format!("{path}/{filename}")).await;
-        let _ = self.get_chunk(None).await;
+        // handle chunks with threads
+        if let Some(file_size) = self.file_size {
+            // Create file and set its size
+            let file = Arc::new(Mutex::new(
+                File::create(self.filename.as_ref().unwrap()).await?,
+            ));
+            file.lock().await.set_len(file_size).await?;
+
+            let mut start = 0;
+            let byte_size = file_size / 8;
+
+            // split chunks to download
+            while start < file_size {
+                let end = min(start + byte_size, file_size);
+                self.chunks.lock().await.push(Chunk::new(start, end));
+                start = end + 1;
+            }
+
+            let num_chunks = self.chunks.lock().await.len();
+            println!("Created {} chunks for download", num_chunks);
+
+            let multi_progress = Arc::new(MultiProgress::new());
+
+            // Create tasks for concurrent downloading
+            let mut tasks = Vec::new();
+            let chunks_clone = Arc::clone(&self.chunks);
+
+            for i in 0..num_chunks {
+                let chunks = Arc::clone(&chunks_clone);
+                let file_clone = Arc::clone(&file);
+                let url = self.url.clone();
+                let multi_progress_clone = Arc::clone(&multi_progress);
+
+                let task = tokio::spawn(async move {
+                    // Get chunk info
+                    let (start, end) = {
+                        let chunks_guard = chunks.lock().await;
+                        if i >= chunks_guard.len() {
+                            return Err("Chunk index out of bounds".into());
+                        }
+                        (chunks_guard[i].start_byte, chunks_guard[i].end_byte)
+                    };
+
+                    // Create progress bar for this chunk
+                    let chunk_size = end - start + 1;
+                    let progress_bar = multi_progress_clone.add(ProgressBar::new(chunk_size));
+                    progress_bar.set_style(ProgressStyle::with_template(
+                        &format!("[Chunk {}] {{wide_bar:40.cyan/blue}} {{binary_bytes}}/{{binary_total_bytes}} ({{percent}}%)", i)
+                    ).unwrap());
+
+                    // Create a downloader instance for this chunk
+                    let downloader = Downloader {
+                        url,
+                        headers: HeaderMap::new(),
+                        file_size: None,
+                        filename: None,
+                        chunks: chunks,
+                    };
+
+                    // Download the chunk
+                    downloader
+                        .get_chunk(
+                            Some((start, end)),
+                            Some(progress_bar),
+                            Some(file_clone),
+                            Some(i),
+                        )
+                        .await
+                });
+
+                tasks.push(task);
+            }
+
+            // Wait for all downloads to complete
+            println!("Starting concurrent downloads...");
+            let results = future::try_join_all(tasks)
+                .await
+                .map_err(|e| format!("Task join error: {}", e))?;
+
+            let total_downloaded: u64 = results
+                .into_iter()
+                .collect::<Result<Vec<_>, _>>()?
+                .into_iter()
+                .sum();
+
+            println!(
+                "Download completed! Total bytes: {}",
+                HumanBytes(total_downloaded)
+            );
+        } else {
+            let bar = ProgressBar::new_spinner();
+            let _ = self.get_chunk(None, Some(bar), None, None).await;
+        }
+
         Ok(())
     }
 }
