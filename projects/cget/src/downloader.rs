@@ -1,21 +1,39 @@
-use std::error::Error;
+use std::{cmp::min, error::Error, sync::Arc};
 
 use reqwest::{
     self, Url,
     header::{CONTENT_DISPOSITION, CONTENT_RANGE, HeaderMap, RANGE},
 };
 // use tokio::stream;
-use futures_util::StreamExt;
-use indicatif::{HumanBytes, ProgressBar, ProgressStyle};
-use tokio::io::AsyncWriteExt;
+use futures_util::{StreamExt, future};
+use indicatif::{HumanBytes, MultiProgress, ProgressBar, ProgressStyle};
+use tokio::fs::File;
+use tokio::io::{AsyncSeekExt, AsyncWriteExt, SeekFrom};
+use tokio::sync::Mutex;
 
+#[derive(Debug)]
+struct Chunk {
+    start_byte: u64,
+    end_byte: u64,
+    downloaded: u64,
+}
+impl Chunk {
+    fn new(start_byte: u64, end_byte: u64) -> Self {
+        Self {
+            start_byte,
+            end_byte,
+            downloaded: 0,
+        }
+    }
+}
+
+#[derive(Debug)]
 pub(crate) struct Downloader {
     url: String,
     headers: HeaderMap,
     file_size: Option<u64>,
     filename: Option<String>,
-    // timeouts, follow_redirects, etc.
-    // threads: u8,
+    chunks: Arc<Mutex<Vec<Chunk>>>, // this stores downloaded chunk size
 }
 
 pub trait HeaderUtils {
@@ -23,7 +41,7 @@ pub trait HeaderUtils {
     /// When response header provides content disposition or any other keys to provide
     /// file name or file type, we can extract it from here. We can also guess the
     /// file name from the url and content-type too.
-    fn extract_filename(&self) -> Result<String, Box<dyn std::error::Error>>;
+    fn extract_filename(&self) -> Result<String, Box<dyn std::error::Error + Send + Sync>>;
 
     /// # Extract file Size
     /// When response header provides content-range, it is easy to extract the
@@ -32,11 +50,11 @@ pub trait HeaderUtils {
     /// example response: `Content-Range` `bytes 0-0/360996864`
     ///
     /// From the above response header, we can extract value in bytes
-    fn extract_file_size(&self) -> Result<u64, Box<dyn std::error::Error>>;
+    fn extract_file_size(&self) -> Result<u64, Box<dyn std::error::Error + Send + Sync>>;
 }
 
 impl HeaderUtils for HeaderMap {
-    fn extract_filename(&self) -> Result<String, Box<dyn std::error::Error>> {
+    fn extract_filename(&self) -> Result<String, Box<dyn std::error::Error + Send + Sync>> {
         if let Some(disposition) = &self.get(CONTENT_DISPOSITION) {
             let value = disposition.to_str()?;
             if let Some(filename) = value.split("filename=").nth(1) {
@@ -47,16 +65,14 @@ impl HeaderUtils for HeaderMap {
         // TODO: guess filename from content type
     }
 
-    fn extract_file_size(&self) -> Result<u64, Box<dyn std::error::Error>> {
+    fn extract_file_size(&self) -> Result<u64, Box<dyn std::error::Error + Send + Sync>> {
         let &cr = &self
             .get(CONTENT_RANGE)
-            .ok_or_else(|| Box::<dyn Error>::from("Content_range not found"))?;
-        let content_range = cr
-            .to_str()?
-            .split("/")
-            .into_iter()
-            .last()
-            .ok_or_else(|| Box::<dyn Error>::from("Invalid Content_range_format"))?;
+            .ok_or_else(|| Box::<dyn Error + Send + Sync>::from("Content_range not found"))?;
+        let content_range =
+            cr.to_str()?.split("/").into_iter().last().ok_or_else(|| {
+                Box::<dyn Error + Send + Sync>::from("Invalid Content_range_format")
+            })?;
         Ok(content_range.parse()?)
     }
 }
@@ -83,10 +99,10 @@ impl Downloader {
             headers: HeaderMap::new(),
             file_size: None,
             filename: None,
+            chunks: Arc::new(Mutex::new(Vec::new())),
         }
     }
 
-    // fixme: use this instead of get_file while handling threads
     async fn get_chunk(
         &self,
         range: Option<(u64, u64)>,
