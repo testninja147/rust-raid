@@ -1,4 +1,4 @@
-use std::{cmp::min, error::Error, sync::Arc};
+use std::{cmp::min, error::Error, sync::Arc, time::Duration};
 
 use reqwest::{
     self, Url,
@@ -174,7 +174,8 @@ impl Downloader {
             },
         };
         println!("⛔filename: {filename}");
-        self.filename = Some(format!("{path}/{filename}"));
+        // trim trailing / from original path
+        self.filename = Some(format!("{path}/{filename}").replace("//", "/"));
 
         if let Ok(file_size) = self.headers.extract_file_size() {
             self.file_size = Some(file_size);
@@ -183,12 +184,14 @@ impl Downloader {
             println!("⛔ Unable to determine the file size. skipping threads")
         }
 
+        let file = Arc::new(Mutex::new(
+            File::create(self.filename.as_ref().unwrap()).await?,
+        ));
+
         // handle chunks with threads
         if let Some(file_size) = self.file_size {
-            // Create file and set its size
-            let file = Arc::new(Mutex::new(
-                File::create(self.filename.as_ref().unwrap()).await?,
-            ));
+            // allocate file's size if size is known
+            // this helps seeking to the position and writing the chunk at that position
             file.lock().await.set_len(file_size).await?;
 
             let mut start = 0;
@@ -273,8 +276,23 @@ impl Downloader {
                 HumanBytes(total_downloaded)
             );
         } else {
+            let file_clone = Arc::clone(&file);
             let bar = ProgressBar::new_spinner();
-            let _ = self.get_chunk(None, Some(bar), None, None).await;
+            bar.enable_steady_tick(Duration::from_millis(100));
+            println!("");
+            bar.set_style(
+                ProgressStyle::with_template(&format!(
+                    "{{spinner:.cyan}} {:?} ({{binary_bytes}} downloaded)",
+                    self.filename.as_ref().unwrap()
+                ))
+                .unwrap()
+                // .tick_chars("⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏"),
+                // set tick character as a moon's phase as progress indicator
+                .tick_chars("🌑🌒🌓🌔🌕🌖🌗🌘"),
+            );
+            let _ = self
+                .get_chunk(None, Some(bar), Some(file_clone), None)
+                .await;
         }
 
         Ok(())
