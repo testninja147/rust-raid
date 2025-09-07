@@ -74,14 +74,14 @@ Install package `cargo-workspaces`
 cargo install cargo-workspaces
 ```
 
-Run `cargo workspaces` command
+Run `cargo workspaces` or `cargo ws` command
 ```shell
 # major version
-cargo workspaces version major
+cargo ws version major
 
 # minor version
-cargo workspaces version minor
+cargo ws version minor
 
 # patch version
-cargo workspaces version patch
+cargo ws version patch
 ```
