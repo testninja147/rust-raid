@@ -104,7 +104,7 @@ fn main() {
     for handle in handles {
         handle.join().unwrap();
     }
-
+    println!("{}", "=".repeat(50));
     println!(
         "The bike had a total ride of {} hours",
         bike.as_ref().lock().unwrap().ride_time
@@ -142,3 +142,32 @@ fn main() {
 // [ The bike has been returned ]
 // ==================================================
 // The bike had a total ride of 14 hours
+
+#[cfg(test)]
+mod test {
+    use std::sync::{Arc, Mutex};
+
+    use crate::Bike;
+
+    #[test]
+    fn test_lock_unlock() {
+        let bike = Arc::new(Mutex::new(Bike::new()));
+
+        // Lock and mutate
+        {
+            let mut guard = bike.lock().unwrap();
+            guard.ride(5);
+            assert_eq!(guard.ride_time, 5);
+            // guard goes out of scope here, lock is released
+        }
+        // remember, the first lock is released here as the guard goes out of
+        // scope, so we can lock it again otherwise it will result in a deadlock
+        // and the program will hang  forever.
+        // Lock again and mutate
+        {
+            let mut guard = bike.lock().unwrap();
+            guard.ride(3); // total ride time is now 8
+            assert_eq!(guard.ride_time, 8);
+        }
+    }
+}
