@@ -93,9 +93,6 @@ fn main() {
             // for the given time in seconds. Until the thread is completed,
             // another thread will not be able to lock the bike so it will wait
             // until previous thread is released.
-
-            // If you comment the line below, there will not be any mutation so
-            // the order of execution may be different so output will be jumbled.
             rental.ride(rent.time);
 
             println!("The bike ran {} hours.", rental.ride_time);
@@ -113,3 +110,35 @@ fn main() {
         bike.as_ref().lock().unwrap().ride_time
     );
 }
+// Output (order might differ) due to threading
+// ==================================================
+// [       Alice        ] waiting!!
+// --------------------------------------------------
+// The bike is now rented by Alice for 5 hours.
+// [      Charlie       ] waiting!!
+// [       Daniel       ] waiting!!
+// A 5 hours bike ride has been started
+// [        Bob         ] waiting!!
+// ride complete!!
+// The bike ran 5 hours.
+// [ The bike has been returned ]
+// --------------------------------------------------
+// The bike is now rented by Charlie for 4 hours.
+// A 4 hours bike ride has been started
+// ride complete!!
+// The bike ran 9 hours.
+// [ The bike has been returned ]
+// --------------------------------------------------
+// The bike is now rented by Daniel for 3 hours.
+// A 3 hours bike ride has been started
+// ride complete!!
+// The bike ran 12 hours.
+// [ The bike has been returned ]
+// --------------------------------------------------
+// The bike is now rented by Bob for 2 hours.
+// A 2 hours bike ride has been started
+// ride complete!!
+// The bike ran 14 hours.
+// [ The bike has been returned ]
+// ==================================================
+// The bike had a total ride of 14 hours
