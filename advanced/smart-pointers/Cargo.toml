@@ -19,3 +19,7 @@ path = 'src/rc.rs'
 [[bin]]
 name = 'refcell'
 path = 'src/refcell.rs'
+
+[[bin]]
+name = 'arc-mutex'
+path = 'src/arc-mutex.rs'
