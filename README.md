@@ -202,7 +202,10 @@ cargo test --bin huffman
 
 ### [6.1. `pandas` - pandas-like mini-dataframe container project](projects/pandas/README.md)
 
-Command: `cargo run --bin pandas`
+Command:
+```sh
+cargo run --bin pandas
+```
 
 ![pandas](res/images/pandas.png)
 
@@ -210,19 +213,32 @@ Command: `cargo run --bin pandas`
 
 ### [6.2. `ruscrypt` - A basic encryption mini-project](projects/ruscrypt/README.md)
 
-Command: `cargo run --bin ruscrypt`
+Command:
+```sh
+cargo run --bin ruscrypt
+```
 
 ---
 
 ### [6.3. Basic Password `vault`](projects/vault/README.md)
 
-Command: `cargo run --bin vault`
+Command:
+```sh
+cargo run --bin vault
+```
 
 ---
 
-### [6.4. Basic `TODO` Web Application](projects/todo-web/README.md)
+### [6.4. A Basic `TODO` Web Application mini project](projects/todo-web/README.md)
 
-Command:`cargo run --bin todo`
+Command:
+```sh
+cargo run --bin todo
+```
+
+and browse: http://localhost:8080
+
+![todo](res/images/todo.png)
 
 ---
 
