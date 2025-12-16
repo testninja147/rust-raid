@@ -4,7 +4,6 @@
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/ghimiresdp/rust-raid/rust.yml)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ghimiresdp/rust-raid)
 
-
 > **DISCLAIMER !!**
 >
 > This project is not affiliated with, endorsed by, or sponsored by the Rust
@@ -18,14 +17,17 @@ learners and coding challenge seekers.
 
 > **Note**: In some linux distributions (especially WSL), the following packages
 > might need to be installed to run some binaries that require network request.
+>
 > 1. **`pkg-config`**
 > 2. **`libssl-dev`**
 >
 > Example commands for installing in ubuntu
+>
 > ```bash
 > sudo apt install pkgconf
 > sudo apt install libssl-dev
 > ```
+>
 > You can check similar commands for other distributions
 
 **The repository contains the following**:
@@ -54,7 +56,6 @@ cargo test --bin huffman
 > _updated once the solution gets completed._
 >
 > _You can also create a PR with the solution/enhancement to each topic._
->
 
 ## [1. Data Structures](data-structures/)
 
@@ -67,7 +68,7 @@ cargo test --bin huffman
 4. [**Stacks**](data-structures/src/stack.rs) `cargo run --bin stack`
 5. [**Queues**](data-structures/src/queue.rs) `cargo run --bin queue`
 6. [**Binary Trees**](data-structures/src/binary_tree.rs) `cargo run --bin binary_tree`
-7.  [**Trie**](data-structures/src/trie.rs) `cargo run --bin trie`
+7. [**Trie**](data-structures/src/trie.rs) `cargo run --bin trie`
 
 ## [2. Algorithms](./algorithms/README.md)
 
@@ -116,7 +117,7 @@ cargo test --bin huffman
 
 ### [4.1. Basic Problems](problem-solving/src/basic/)
 
-1. [Practical Number](problem-solving/src/basic/practical_number.rs)  `cargo run --bin practical_number`
+1. [Practical Number](problem-solving/src/basic/practical_number.rs) `cargo run --bin practical_number`
 2. [Greatest Common Divisor](problem-solving/src/basic/gcd.rs) `cargo run --bin gcd`
 3. [Median](problem-solving/src/basic/median.rs) `cargo run --bin median`
 4. [Reverse digits of the integer](problem-solving/src/basic/reverse_integer.rs) `cargo run --bin reverse_integer`
@@ -136,65 +137,106 @@ cargo test --bin huffman
 7. [Coin Change Problem](problem-solving/src/dp/coin_change.rs) `cargo run --bin coin_change`
 8. [Palindrome Partition](problem-solving/src/dp/palindrome_partition.rs) `cargo run --bin palindrome_partition`
 
-
 ## [5. Advanced Concepts](advanced/README.md)
 
 ### 5.1. Memory Management
+
 - [Ownership, borrowing, and Lifetimes](advanced/memory-management/src/ownership.rs) `cargo run --bin ownership`
 - [Unsafe Rust](advanced/memory-management/src/unsafe.rs)
 
 ### 5.2. Type System and Generics
+
 - [Generic Types](advanced/types-and-generics/src/generics.rs) `cargo run --bin generics`
 - [Trait Objects and Dynamic Dispatch](advanced/types-and-generics/src/traits.rs) `cargo run --bin traits`
 - Associated types and Generic Type parameters
 - Lifetime Sub-typing
 
 ### 5.3. Concurrency and Parallelism
+
 - [`Async/Await` and `Futures`](advanced/concurrent-programming/src/threading.rs) `cargo run --bin threading`
 - [Thread Spawning](advanced/concurrent-programming/src/spawning.rs) `cargo run --bin spawning`
 
 ### 5.4. Macros and Meta programming
+
 - [`macro_rules!`](advanced/meta-programming/src/macro-rules.rs) `cargo run --bin macro`
 - [Derive Macros](advanced/meta-programming/src/derive-macro.rs) `cargo run --bin derive`
 - [Building Domain-Specific Languages (DSL)](advanced/meta-programming/src/dsl.rs) `cargo run --bin dsl`
 
 ### 5.5. Low-level and systems programming
+
 - [Conditional Compilation](advanced/systems-programming/src/conditional-compilation.rs) `cargo run --bin cc`
 - [Inline Assembly](advanced/systems-programming/src/inline-assembly.rs) `cargo run --bin assembly`
 - Foreign Function Interface (FFI)
 - Embedded rust and Bare-metal programming
 
 ### 5.6. Error handling and patterns
+
 - [Unrecoverable error and `panic!` macro](advanced/error-handling/src/panic.rs) `cargo run --bin panic`
 - [Recoverable error and `Result` enum](advanced/error-handling/src/result.rs) `cargo run --bin result`
 - Advanced Error Handling
-  - [Propagating Errors with `?` operator](advanced/error-handling/src/propagation.rs) `cargo run --bin propagation`
-  - [Custom Errors](advanced/error-handling/src/custom-error.rs) `cargo run --bin custom-error`
+    - [Propagating Errors with `?` operator](advanced/error-handling/src/propagation.rs) `cargo run --bin propagation`
+    - [Custom Errors](advanced/error-handling/src/custom-error.rs) `cargo run --bin custom-error`
 - Dependency Injection patterns in rust
 
 ### [5.7. Operator Overloading](advanced/operator-overloading/src/main.rs) `cargo run --bin operator-overloading`
+
 - Example 1: Operator Overloading in structs (overloading `+` and `-` operators)
 - Example 2: Matrix Multiplication ( overloading `*` operator)
 - Example 3: Scalar Multiplication (operator overloading with heterogeneous data type)
 
 ### 5.8. Smart Pointers
+
 - [Box Pointers](advanced/smart-pointers/src/box.rs) `cargo run --bin box`
 - [Reference Counters (`Rc`)](advanced/smart-pointers/src/rc.rs) `cargo run --bin rc`
 - [`RefCell`](advanced/smart-pointers/src/refcell.rs)`cargo run --bin refcell`
 - [`Arc Mutex`](advanced/smart-pointers/src/arc-mutex.rs)`cargo run --bin arc-mutex`
 
 ### 5.9. Specialized topics
+
 - Writing a custom allocator
 - Self-referential structs (`box`, `rc`, `Arc`)
 
+---
+
 ## [6. Projects](./projects/)
 
-1. [Python's `Pandas` like dataframe container](projects/pandas/README.md) `cargo run --bin pandas`
-2. [`ruscrypt` basic encryption](projects/ruscrypt/README.md) `cargo run --bin ruscrypt`
-3. [Basic Password `vault`](projects/vault/README.md) `cargo run --bin vault`
-4. [Basic `TODO` Web Application](projects/todo-web/README.md) `cargo run --bin todo`
-5. [`wget` -like File Downloader with Concurrency - `cget`]() `cargo run --bin cget <DOWNLOAD_URL>`
-   Example: `cargo run --bin cget https://filesamples.com/samples/document/docx/sample4.docx`
+### [6.1. `pandas` - pandas-like mini-dataframe container project](projects/pandas/README.md)
+
+Command: `cargo run --bin pandas`
+
+![pandas](res/images/pandas.png)
+
+---
+
+### [6.2. `ruscrypt` - A basic encryption mini-project](projects/ruscrypt/README.md)
+
+Command: `cargo run --bin ruscrypt`
+
+---
+
+### [6.3. Basic Password `vault`](projects/vault/README.md)
+
+Command: `cargo run --bin vault`
+
+---
+
+### [6.4. Basic `TODO` Web Application](projects/todo-web/README.md)
+
+Command:`cargo run --bin todo`
+
+---
+
+### [6.5. `cget` - a wget-like file downloader utility with multithreading](projects/cget/Cargo.toml)
+
+Command: `cargo run --bin cget <DOWNLOAD_URL>`
+
+Example:
+```shell
+cargo run --bin cget https://mirrors.saswata.cc/kde/stable/krita/5.2.14/krita-x64-5.2.14-setup.exe
+```
+
+![cget](res/images/cget.png)
+
 
 ## Running binaries
 
