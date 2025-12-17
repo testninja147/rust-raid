@@ -1,7 +1,12 @@
 /// To run/test the binary, pease use the following commands:
-/// * cargo run --bin color_converter
-/// * cargo test --bin color_converter
-use std::cmp::{max, min};
+/// * cargo run --bin color-converter
+/// * cargo test --bin color-converter
+use std::{
+    cmp::{max, min},
+    process::exit,
+};
+
+use common::input;
 
 /// The enum `Color` can store one of the following values:
 /// * RGB
@@ -155,7 +160,11 @@ impl Color {
                 Color::RGB(r, g, b)
             }
             Color::HEX(hex) => {
-                let (_, rgb) = hex.split_at(1);
+                let (_, rgb) = if hex.starts_with("#") {
+                    hex.split_at(1)
+                } else {
+                    ("", hex.as_str())
+                };
                 println!("{:?}", rgb);
                 let rgb = u32::from_str_radix(rgb, 16).unwrap();
                 Color::RGB(

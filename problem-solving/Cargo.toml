@@ -37,8 +37,8 @@ name = "matrix_multiplication"
 path = "src/basic/matrix_multiplication.rs"
 
 [[bin]]
-name = "color_converter"
-path = "src/basic/color_converter.rs"
+name = "color-converter"
+path = "src/basic/color-converter.rs"
 
 # ============================[ Dynamic Programmign]============================
 
