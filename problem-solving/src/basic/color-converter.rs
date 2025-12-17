@@ -203,6 +203,36 @@ fn main() {
     println!("blue HEX: {:?}", blue.to_hex());
     println!("blue RGB: {:?}", blue.to_rgb());
     println!("blue HSL: {:?}", blue.to_hsl());
+
+    println!("{}", "=".repeat(80));
+    match input("Enter Source Format:\n1. RGB\n2. HSL\n3.HEX\n\nANY OTHER KEY TO EXIT\n").as_str() {
+        "1" => {
+            let data = input("Enter color in RGB separated by space(example: 255 0 0): ");
+            let rgb: Vec<&str> = data.split(" ").collect();
+            let rgb: Vec<u8> = rgb.iter().map(|v| v.parse().unwrap()).collect();
+            let rgb = Color::RGB(rgb[0], rgb[1], rgb[2]);
+            println!("RGB to HEX: {:?}", rgb.to_hex());
+            println!("RGB to HSL: {:?}", rgb.to_hsl());
+        }
+        "2" => {
+            let data = input("Enter color in HSL separated by space(example: 60 50 75): ");
+            let hsl: Vec<&str> = data.split(" ").collect();
+            let hsl: Vec<u16> = hsl.iter().map(|v| v.parse().unwrap()).collect();
+            let hsl = Color::HSL(hsl[0], hsl[1] as u8, hsl[2] as u8);
+            println!("HSL to HEX: {:?}", hsl.to_hex());
+            println!("HSL to RGB: {:?}", hsl.to_rgb());
+        }
+        "3" => {
+            let data = input("Enter HEX color code(example: 0066aa or #0066aa): ");
+            let hex = Color::HEX(data);
+            println!("HEX to RGB: {:?}", hex.to_rgb());
+            println!("HEX to HSL: {:?}", hex.to_hsl());
+        }
+        _ => {
+            println!("Exiting now");
+            exit(0);
+        }
+    }
 }
 
 #[cfg(test)]
