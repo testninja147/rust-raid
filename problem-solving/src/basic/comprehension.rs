@@ -18,16 +18,16 @@
  * To run the code, run the following:
  * =============================================================================
  *
- * cargo run --bin m3
- * cargo test --bin m3
+ * cargo run --bin comprehension
+ * cargo test --bin comprehension
  *
  * =============================================================================
  **/
 macro_rules! comprehension {
-    (foreach $iterable:expr_2021; apply $function:expr_2021) => {
+    (foreach $iterable:expr; apply $function:expr) => {
         $iterable.iter().map($function).collect::<Vec<_>>()
     };
-    (foreach $iterable:expr_2021; apply $function:expr_2021; where $condition:expr_2021) => {
+    (foreach $iterable:expr; apply $function:expr; where $condition:expr) => {
         $iterable
             .iter()
             .filter($condition)
