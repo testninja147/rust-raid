@@ -26,7 +26,7 @@
 //! The code snippet below uses observer pattern to notify users
 //! once it receives readings in the weather data.
 //!*/
-use common::input; // common library for this repository
+use console::Term;
 use rand;
 use std::collections::HashMap;
 
@@ -84,57 +84,61 @@ fn main() {
     let rain_listener: Subscriber = |value| {
         println!("RAIN:\t\t{value}mm");
     };
+
     let wind_listener: Subscriber = |value| {
         println!("WIND:\t\t{value}m/s2");
     };
     println!("Observer Pattern");
     let mut sensor = Sensor::default();
 
+    let stdout = Term::stdout();
     sensor.readings().subscribe(SensorType::Rain, rain_listener);
     sensor.readings().subscribe(SensorType::Wind, wind_listener);
     loop {
         println!(
             r#"
-            -------------------------------------------
-            [r/R]: Read
-            [sr/SR]: Subscribe to the Rain data
-            [sw/SW]: Subscribe to the Wind data
-            [ur/UR]: Unsubscribe to the Rain data
-            [uw/UW]: Unsubscribe to the Wind data
-            [e/E]: Exit
-            -------------------------------------------
-            "#
+------------------------------------------------------------------
+[r]: Subscribe to the Rain data
+[w]: Subscribe to the Wind data
+[f]: Unsubscribe to the Rain data
+[s]: Unsubscribe to the Wind data
+[e]: Exit
+
+press [space] to read the subscribed data
+-----------------------------------------------------------------
+"#,
         );
-        // ! input() is a common library function, not included in std
-        match input("Enter option: ").as_str().trim() {
-            "R" | "r" => {
-                // display readings of subscribed sensors
-                sensor.get_new_reading(SensorType::Rain);
-                sensor.get_new_reading(SensorType::Wind);
-            }
-            "SR" | "sr" => {
-                // Subscribe to rain sensor readings
-                sensor.readings().subscribe(SensorType::Rain, rain_listener);
-            }
-            "SW" | "sw" => {
-                // Subscribe to wind sensor readings
-                sensor.readings().subscribe(SensorType::Wind, wind_listener);
-            }
-            "UR" | "ur" => {
-                // Unsubscribe to rain sensor readings
-                sensor
-                    .readings()
-                    .unsubscribe(SensorType::Rain, rain_listener);
-            }
-            "UW" | "uw" => {
-                // Unsubscribe to wind sensor readings
-                sensor
-                    .readings()
-                    .unsubscribe(SensorType::Wind, wind_listener);
-            }
-            _ => {
-                break;
-            }
-        };
+        if let Ok(character) = stdout.read_char() {
+            match character {
+                'r' => {
+                    // Subscribe to rain sensor readings
+                    sensor.readings().subscribe(SensorType::Rain, rain_listener);
+                }
+                'w' => {
+                    // Subscribe to wind sensor readings
+                    sensor.readings().subscribe(SensorType::Wind, wind_listener);
+                }
+                'f' => {
+                    // Unsubscribe to rain sensor readings
+                    sensor
+                        .readings()
+                        .unsubscribe(SensorType::Rain, rain_listener);
+                }
+                's' => {
+                    // Unsubscribe to wind sensor readings
+                    sensor
+                        .readings()
+                        .unsubscribe(SensorType::Wind, wind_listener);
+                }
+                'e' => {
+                    break;
+                }
+                _ => {
+                    // do nothing
+                }
+            };
+            sensor.get_new_reading(SensorType::Rain);
+            sensor.get_new_reading(SensorType::Wind);
+        }
     }
 }
