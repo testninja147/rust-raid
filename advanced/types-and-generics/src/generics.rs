@@ -18,7 +18,7 @@
 /// Example, if we pass vector instead of integer, addition will not work
 ///
 /// To know more about generics, please check:
-/// https://doc.rust-lang.org/book/ch10-01-syntax.html
+/// <https://doc.rust-lang.org/book/ch10-01-syntax.html>
 
 fn main() {
     println!("Generics Example");

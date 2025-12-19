@@ -1,31 +1,41 @@
-/**
- * Bubble Sorting Algorithm
- *
- * Bubble sorting technique compares and swaps value one by one by traversing
- * through the list.
- *
- * If there are no swaps, the sorting is complete.
- *
- * example:
- *
- * step 1
- *  (4  2) 9  0  7  5  1     <- Swap 4 and 2
- *   2 (4  9) 0  7  5  1
- *   2  4 (9  0) 7  5  1     <- Swap 9 and 0
- *   2  4  0 (9  7) 5  1     <- Swap 9 and 7
- *   2  4  0  7 (9  5) 1     <- Swap 9 and 5
- *   2  4  0  7  5 (9  1)     <- Swap 9 and 1
- *   2  4  0  7  5  1 [9]     <- [9] is sorted
- *
- * Step 2 : 9 is sorted so sort remaining
- *
- *  (2  4) 0  7  5  1 [9]
- *   2 (4  0) 7  5  1 [9]   <- sort 4 and 0
- *  ...
- *   2  0  4  5  1 [7  9]     <- [7, 9] are sorted
- *
- *  do this process until every elements are sorted
- **/
+//! # Bubble Sorting Algorithm
+//!
+//! To run/test, please run the following commands in your terminal
+//!
+//! ```sh
+//! cargo run --bin bubble_sort
+//! ```
+//!
+//! ```sh
+//! cargo test --bin bubble_sort
+//! ```
+//!
+//! Bubble sorting technique compares and swaps value one by one by traversing
+//! through the list.
+//!
+//! If there are no swaps, the sorting is complete.
+//!
+//! example:
+//!
+//! ## step 1
+//! - ` 4  2  9  0  7  5  1 `
+//! - `(4  2) 9  0  7  5  1 `     <- Swap 4 and 2
+//! - ` 2 (4  9) 0  7  5  1 `
+//! - ` 2  4 (9  0) 7  5  1 `     <- Swap 9 and 0
+//! - ` 2  4  0 (9  7) 5  1 `     <- Swap 9 and 7
+//! - ` 2  4  0  7 (9  5) 1 `     <- Swap 9 and 5
+//! - ` 2  4  0  7  5 (9  1)`    <- Swap 9 and 1
+//! - ` 2  4  0  7  5  1 [9]`    <- [9] is sorted
+//!
+//! ## Step 2 : 9 is sorted so sort remaining
+//!
+//! - `(2  4) 0  7  5  1 [9]`
+//! - ` 2 (4  0) 7  5  1 [9]`   <- sort 4 and 0
+//! - ...
+//! - ` 2  0  4  5  1 [7  9]`   <- [7, 9] are sorted
+//!
+//!  do this process until every elements are sorted
+//!
 
 fn bubble_sort(array: &mut [isize]) -> &mut [isize] {
     for i in 0..array.len() {
@@ -53,9 +63,10 @@ fn bubble_sort(array: &mut [isize]) -> &mut [isize] {
 
 fn main() {
     let mut unsorted = [4, 2, 9, 0, 7, 5, 1];
+    println!("Unsorted Array: {unsorted:?}");
     let sorted = bubble_sort(unsorted.as_mut());
 
-    println!("Sorted data: {:?}", sorted);
+    println!("Sorted Array: {:?}", sorted);
 }
 
 #[cfg(test)]

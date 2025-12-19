@@ -1,22 +1,26 @@
-/**
- * -----------------------------------------------------------------------------
- * FACTORY PATTERN
- *
- * To execute, please run: cargo run --bin factory
- * To run tests, please run: cargo test --bin factory
- * -----------------------------------------------------------------------------
- *
- *
- * Factory pattern provides an interface for creating an object.
- * The factory pattern will validate all the initialization parameter before it
- * gets initialized and raises error / panics if we provide an invalid data.
- *
- * The components of Factory pattern are as follows:
- *  1. client: part of code that creates object
- *  2. Factory: interface that defines methods (example: traits)
- *  3. Concrete Factory:
- *  4. Product: it is an instance that factory creates
- **/
+//!
+//! # Factory Design Pattern
+//!
+//! To run/test, please run the following commands in your terminal
+//!
+//! ```sh
+//! cargo run --bin factory
+//! ```
+//!
+//! ```sh
+//! cargo test --bin factory
+//! ```
+//!
+//! Factory pattern provides an interface for creating an object.
+//! The factory pattern will validate all the initialization parameter before it
+//! gets initialized and raises error / panics if we provide an invalid data.
+//!
+//! The components of Factory pattern are as follows:
+//!  1. `client`: part of code that creates object
+//!  2. `Factory`: interface that defines methods (example: traits)
+//!  3. `Concrete Factory`: implementation of Factory interface
+//!  4. `Product`: it is an instance that factory creates
+//!
 
 // Create a trait that can be implemented on other structs
 trait Shape {

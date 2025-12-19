@@ -1,17 +1,27 @@
-/**
- *
- * Stacks
- * Stacks are data types that follows Last In First Out principle.
- * You can imaging stack as a stack of plates, or a packet of cookies.
- * The last item added in the stack is going to be picked to be used.
- *
- * The main purpose of this program is only to understand how stack works since
- * stacks are used everywhere in the low level. We will be using an example that
- * behaves as s stack, but in the memory, it might take either heap or stack.
- *
- * Rust's Vector data type already works as a stack, but we are wrapping it to
- * a custom structure named `Stack` to make the concept clearer.
- */
+//! # Stack
+//!
+//! To run/test, please run the following commands in your terminal
+//!
+//! ```sh
+//! cargo run --bin stack
+//! ```
+//!
+//! ```sh
+//! cargo test --bin stack
+//! ```
+//!
+//! Stacks
+//! Stacks are data types that follows Last In First Out principle.
+//! You can imaging stack as a stack of plates, or a packet of cookies.
+//! The last item added in the stack is going to be picked to be used.
+//!
+//! The main purpose of this program is only to understand how stack works since
+//! stacks are used everywhere in the low level. We will be using an example that
+//! behaves as s stack, but in the memory, it might take either heap or stack.
+//!
+//! Rust's Vector data type already works as a stack, but we are wrapping it to
+//! a custom structure named `Stack` to make the concept clearer.
+//!
 
 struct Stack<T> {
     content: Vec<T>, // container for items to store in the stack

@@ -1,23 +1,33 @@
-/**
- * Selection Sort
- *
- * Selection sort is another sorting algorithm, which compares smallest of all
- * values and and put it in the first position. Similarly, after swapping value,
- * it will find out second most smallest value and swap it  with second item in
- * the array.
- *
- * Unlike bubble sort, the sorting will be done from the beginning.
- *
- * Example:
- *
- *  4 2 9 0 7 5 1   <- Swap 4 and 0
- *  ^     ^
- *  [0] 2 9 4 7 5 1 <- 0 is sorted
- *  [0] 2 9 4 7 5 1 <- Swap 2 and 1
- *      ^         ^
- * ...
- * Swap values until all values are sorted
-**/
+//! # Selection Sort
+//! To run/test, please run the following commands in your terminal
+//!
+//! ```sh
+//! cargo run --bin selection_sort
+//! ```
+//!
+//! ```sh
+//! cargo test --bin selection_sort
+//! ```
+//!
+//! Selection sort is another sorting algorithm, which compares smallest of all
+//! values and and put it in the first position. Similarly, after swapping value,
+//! it will find out second most smallest value and swap it  with second item in
+//! the array.
+//!
+//! Unlike bubble sort, the sorting will be done from the beginning.
+//!
+//! Example:
+//!
+//! ```text
+//!  4 2 9 0 7 5 1   <- Swap 4 and 0
+//!  ^     ^
+//!  `0` 2 9 4 7 5 1 <- 0 is sorted
+//!  `0` 2 9 4 7 5 1 <- Swap 2 and 1
+//!      ^         ^
+//! ...
+//! ```
+//! Swap values until all values are sorted
+//!
 fn selection_sort(array: &mut [isize]) -> &mut [isize] {
     for i in 0..array.len() {
         let mut smallest = i;
@@ -41,9 +51,11 @@ fn selection_sort(array: &mut [isize]) -> &mut [isize] {
 
 fn main() {
     let mut unsorted = [4, 2, 9, 0, 7, 5, 1];
+    println!("{}", "-".repeat(80));
+    println!("Unsorted data: {unsorted:?}");
     let sorted = selection_sort(unsorted.as_mut());
-
-    println!("Sorted data: {:?}", sorted);
+    println!("{}", "-".repeat(80));
+    println!("Sorted data: {sorted:?}");
 }
 
 #[cfg(test)]

@@ -19,7 +19,7 @@ use std::rc::Rc;
 /// drop the value when not needed, however in case of GC, manual drop is not
 /// possible.
 ///
-/// Ref: https://doc.rust-lang.org/book/ch15-04-rc.html
+/// Ref: <https://doc.rust-lang.org/book/ch15-04-rc.html>
 fn main() {
     println!("Reference Counters");
 

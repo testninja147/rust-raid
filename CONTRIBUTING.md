@@ -62,9 +62,9 @@ respectful environment where everyone feels welcome and valued.
 
 - Navigate to your forked repository on GitHub.
 - Click the "Compare & pull request" button.
-- Add a descriptive title and provide details about your changes. You can see the PR template at `.github/PULL_REQUEST_TEMPLATE.md` file.
+- Add a descriptive title and provide details about your changes.
+  You can see the PR template at `.github/PULL_REQUEST_TEMPLATE.md` file.
 - Submit the pull request.
-
 
 ## Tagging a new version
 
@@ -75,6 +75,7 @@ cargo install cargo-workspaces
 ```
 
 Run `cargo workspaces` or `cargo ws` command
+
 ```shell
 # major version
 cargo ws version major

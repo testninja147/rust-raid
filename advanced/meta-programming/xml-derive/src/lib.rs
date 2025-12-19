@@ -10,7 +10,7 @@ use syn::{DeriveInput, parse_macro_input};
 /// time.
 ///
 /// To know more about procedural macro, please check the following:
-/// https://doc.rust-lang.org/reference/procedural-macros.html#procedural-macros
+/// <https://doc.rust-lang.org/reference/procedural-macros.html#procedural-macros>
 #[proc_macro_derive(Serialize)]
 pub fn serialize(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);

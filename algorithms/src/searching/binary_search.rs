@@ -1,34 +1,40 @@
+//! # Binary Search
+//!
+//! To run/test, please run the following commands in your terminal
+//!
+//! ```sh
+//! cargo run --bin binary_search
+//! ```
+//!
+//! ```sh
+//! cargo test --bin binary_search
+//! ```
+//! Binary Searching algorithm uses divide and conquer method to recursively find
+//! out elements of a sorted array.
+//!
+//! It first compares middle most item of an array and recursively divides the
+//! array into sub-arrays virtually until it finds out the exact element.
+//!
+//! It is possible, but not efficient, and hence not recommended to use recursion
+//! for such operation (especially in case of larger arrays), so we use while
+//! loop for the sort operation.
+//!
+//! **REMEMBER!!**: The binary search works only on the sorted array. If an array is
+//! not sorted, we must sort it before we can implement this algorithm.
+//!
+//! Example:
+//!
+//! we have an array `[1, 3, 4, 6, 7, 8, 9]` and we want to find out an index of `7`
+//!
+//! ### steps
+//! 1. compare the middle most item with 7 [6 < 7]
+//! 2. split an array and take the right slice [7 8 9] (take left if the comparison was different)
+//! 3. compare the middle most item of [7 8 9], i.e [8 > 7] (take the left slice)
+//! 4. compare the middle most item fo <7>: i.e [7 == 7]; return index of that number
 use common::parse_input; // common library for this repository
 use std::cmp::Ordering::{Equal, Greater, Less};
-/**
-* Binary Search
-*
-* Binary Searching algorithm uses divide and conquer method to recursively find
-* out elements of the item.
-*
-* It first compares middle most item of an array and recursively divides the
-* array into sub-arrays virtually until it finds out the exact element.
-*
-* It works recursively and non-recursively, but as recursive functions are not
-* good for larger arrays, we implemented while loop.
-*
-* REMEMBER!!: The binary search works only on the sorted array. If an array is
-* not sorted, we must sort it before we implement this algorithm.
-*
-* Example,
-*
-* we have an array [1, 3, 4, 6, 7, 8, 9] and we want to find out an index of 7
-*
-* step 1: compare the middle most item with 7 [6 < 7]
-* step 2: split an array and take the right slice [7 8 9] (take left if the comparison was different)
-* step 3: compare the middle most item of [7 8 9], i.e [8 > 7] (take the left slice)
-* step 4: compare the middle most item fo [7]: i.e [7 == 7]; return index of that number
-
-**/
 
 fn binary_search(array: &mut [i32], item: i32) -> Option<usize> {
-    array.sort();
-    println!("Sorted array is: {:?}", array);
     let mut left = 0;
     let mut right = array.len() - 1;
 
@@ -44,13 +50,16 @@ fn binary_search(array: &mut [i32], item: i32) -> Option<usize> {
 }
 
 fn main() {
-    let mut arr_1 = [1, 4, 7, 8, 9, 10, 11, 12, 15, 20];
+    let mut sorted_array = [1, 4, 7, 8, 9, 10, 11, 12, 15, 20];
+    println!("Sorted Array: {:?}", &sorted_array);
     // ! input() is a common library function, not included in std
-    let search_item = parse_input("Enter a number to search: ").unwrap();
-    match binary_search(arr_1.as_mut(), search_item) {
-        Some(idx) => println!("The item {} is at index: {}", search_item, idx),
-        None => println!("The item {} does not exist in the array", search_item),
+    if let Ok(search_item) = parse_input("Enter a number to search: ") {
+        return match binary_search(sorted_array.as_mut(), search_item) {
+            Some(idx) => println!("The item {} is at index: {}", search_item, idx),
+            None => println!("The item {} does not exist in the array", search_item),
+        };
     }
+    println!("Invalid number Entered")
 }
 #[cfg(test)]
 mod tests {

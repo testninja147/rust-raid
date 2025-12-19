@@ -16,7 +16,7 @@ use std::arch::asm;
 /// need to work with assembly programming where it is useful in this case.
 ///
 /// to learn more about inline assembly, please checkout the following:
-/// https://doc.rust-lang.org/reference/inline-assembly.html
+/// <https://doc.rust-lang.org/reference/inline-assembly.html>
 fn main() {
     println!("⛔ Inline assembly ⛔");
 

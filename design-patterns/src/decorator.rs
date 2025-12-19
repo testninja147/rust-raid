@@ -1,18 +1,21 @@
-/**
- * -----------------------------------------------------------------------------
- * DECORATOR PATTERN
- *
- * To execute, please run: cargo run --bin decorator
- * To run tests, please run: cargo test --bin decorator
- * -----------------------------------------------------------------------------
- *
- *
- * decorator pattern allows adding new functionality to the existing object
- * without changing the structure of the original object.
- *
- * The example below shows how decorator can be used as a logger in an
- * application
- **/
+//!
+//! # Decorator Design Pattern
+//!
+//! To run/test, please run the following commands in your terminal
+//!
+//! ```sh
+//! cargo run --bin decorator
+//! ```
+//!
+//! ```sh
+//! cargo test --bin decorator
+//! ```
+//!
+//! decorator pattern allows adding new functionality to the existing object
+//! without changing the structure of the original object.
+//!
+//! The example below shows how decorator can be used as a logger in an
+//! application
 
 // Auth Trait that prototypes login() method.
 trait Auth {

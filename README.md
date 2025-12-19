@@ -60,10 +60,10 @@ cargo test --bin huffman
 ## [1. Data Structures](data-structures/)
 
 1. **Arrays**
-    - [Find the missing number](data-structures/src/ds001_find_missing_number.rs) `cargo run --bin ds001`
-    - [Find the length of the longest subarray with sum K](data-structures/src/ds002_longest_subarray.rs) `cargo run --bin ds002`
+   - [Find the missing number](data-structures/src/missing-number.rs) `cargo run --bin missing-number`
+   - [Find the length of the longest subarray with sum K](data-structures/src/longest-subarray.rs) `cargo run --bin longest-subarray`
 2. **Singly Linked Lists**
-    - [Add two linked list](data-structures/src/ds101_linked_list_add.rs) `cargo run --bin ds101`
+   - [Add two numbers represented by linked list](data-structures/src/linked-list-add.rs) `cargo run --bin linked-list-add`
 3. [**Doubly Linked Lists**](data-structures/src/doubly_linked_list.rs) `cargo run --bin doubly_linked_list`
 4. [**Stacks**](data-structures/src/stack.rs) `cargo run --bin stack`
 5. [**Queues**](data-structures/src/queue.rs) `cargo run --bin queue`
@@ -174,8 +174,8 @@ cargo test --bin huffman
 - [Unrecoverable error and `panic!` macro](advanced/error-handling/src/panic.rs) `cargo run --bin panic`
 - [Recoverable error and `Result` enum](advanced/error-handling/src/result.rs) `cargo run --bin result`
 - Advanced Error Handling
-    - [Propagating Errors with `?` operator](advanced/error-handling/src/propagation.rs) `cargo run --bin propagation`
-    - [Custom Errors](advanced/error-handling/src/custom-error.rs) `cargo run --bin custom-error`
+  - [Propagating Errors with `?` operator](advanced/error-handling/src/propagation.rs) `cargo run --bin propagation`
+  - [Custom Errors](advanced/error-handling/src/custom-error.rs) `cargo run --bin custom-error`
 - Dependency Injection patterns in rust
 
 ### [5.7. Operator Overloading](advanced/operator-overloading/src/main.rs) `cargo run --bin operator-overloading`
@@ -203,6 +203,7 @@ cargo test --bin huffman
 ### [6.1. `pandas` - pandas-like mini-dataframe container project](projects/pandas/README.md)
 
 Command:
+
 ```sh
 cargo run --bin pandas
 ```
@@ -214,6 +215,7 @@ cargo run --bin pandas
 ### [6.2. `ruscrypt` - A basic encryption mini-project](projects/ruscrypt/README.md)
 
 Command:
+
 ```sh
 cargo run --bin ruscrypt
 ```
@@ -223,6 +225,7 @@ cargo run --bin ruscrypt
 ### [6.3. Basic Password `vault`](projects/vault/README.md)
 
 Command:
+
 ```sh
 cargo run --bin vault
 ```
@@ -232,11 +235,12 @@ cargo run --bin vault
 ### [6.4. A Basic `TODO` Web Application mini project](projects/todo-web/README.md)
 
 Command:
+
 ```sh
 cargo run --bin todo
 ```
 
-and browse: http://localhost:8080
+and browse: <http://localhost:8080>
 
 ![todo](res/images/todo.png)
 
@@ -247,12 +251,12 @@ and browse: http://localhost:8080
 Command: `cargo run --bin cget <DOWNLOAD_URL>`
 
 Example:
+
 ```shell
 cargo run --bin cget https://mirrors.saswata.cc/kde/stable/krita/5.2.14/krita-x64-5.2.14-setup.exe
 ```
 
 ![cget](res/images/cget.png)
-
 
 ## Running binaries
 

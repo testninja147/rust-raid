@@ -30,7 +30,7 @@ List Of Algorithms are as follows:
 
 1. [Activity Selection]
 2. [Huffman Coding](src/greedy/huffman_coding.rs) `cargo run --bin huffman`
-3. [Krushkal's algorithm](src/greedy/kruskal.rs)  `cargo run --bin kruskal`
+3. [Krushkal's algorithm](src/greedy/kruskal.rs) `cargo run --bin kruskal`
 4. [Prim's Algorithm]
 5. [Dijkstra's Algorithm]
 6. [Bellman-Ford Algorithm]
