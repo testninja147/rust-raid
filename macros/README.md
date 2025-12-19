@@ -1,6 +1,7 @@
 # Macros
 
-This module contains different examples for procedural macros as well as declarative macros.
+This module contains different examples for procedural macros as well as
+declarative macros.
 
 ## Declarative Macros
 

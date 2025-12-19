@@ -4,7 +4,7 @@
 
 ### [4.1. Basic Problems](basic/)
 
-1. [Practical Number](src/basic/practical_number.rs)  `cargo run --bin practical_number`
+1. [Practical Number](src/basic/practical_number.rs) `cargo run --bin practical_number`
 2. [Greatest Common Divisor](src/basic/gcd.rs) `cargo run --bin gcd`
 3. [Median](src/basic/median.rs) `cargo run --bin median`
 4. [Reverse digits of the integer](src/basic/reverse_integer.rs) `cargo run --bin reverse_integer`
