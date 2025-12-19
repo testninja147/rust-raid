@@ -1,58 +1,69 @@
+//! # Huffman Coding
+//!
+//! To run/test, please run the following commands in your terminal
+//!
+//! ```sh
+//! cargo run --bin huffman
+//! ```
+//!
+//! ```sh
+//! cargo test --bin huffman
+//! ```
+//!
+//! # Huffman Coding
+//! Suppose we have to transmit a word "SENSELESSNESS" through text message.
+//! Each character needs 8 bits of data in ASCII format.
+//!
+//! sending the above text requires 13 X 8 = 104 bits of data.
+//!
+//! Using the Huffman encoding, we can compress the data since it has more
+//! repetitions.
+//!
+//! The repetition is as follows:
+//! * S: 6,  E: 4,  N: 2,  L: 1
+//!
+//! If we encode the data in a way that the most repeated words are represented by
+//! smaller bits, then we can compress the data.
+//!
+//! To solve this problem, we use Huffman Encoding algorithm. This algorithm
+//! sorts the data by frequency and then creates a binary tree to assign 0 and 1
+//! to each character.
+//!
+//! in this process we add the 2 smallest values to create a new node and repeat
+//! until we have 1 node remaining.
+//!
+//! ```
+//! * L(1)     N(2)   E(4)  S(6)
+//! *   LN(3)  E(4)    S(6)     -> 1 + 2 = 3
+//! *     LNE(7)   S(6)       -> 3 + 4 = 7
+//! *       SLNE(13)        -> 6 + 7 = 13
+//! ```
+//! now we build the tree and assign [1] to larger and [0] to smaller values
+//! until we reach the end of the tree i.e.13.
+//!
+//! ```text
+//!                 (13)
+//!                 LNES
+//!             [1]/    \[0]
+//!               /      \
+//!         LNE(7)       S(6)
+//!      [0]/    \[1]    [0]
+//!        /      \
+//!     LN(3)      E(4)
+//! [0]/    \[1]   [11]
+//!   /      \
+//! L(1)     N(2)
+//! [100]   [101]
+//! ```
+//! evaluating this, we get the following:
+//! * S: 0
+//! * E: 11
+//! * N: 101
+//! * L: 100
+//!
+//! and the word will encode to
+//! `0-11-101-0-11-100-11-0-0-101-11-0-0`, which will be just 23 bits long.
 use std::collections::HashMap;
-
-/// # Huffman Coding
-/// Suppose we have to transmit a word "SENSELESSNESS" through text message.
-/// Each character needs 8 bits of data in ASCII format.
-///
-/// sending the above text requires 13 X 8 = 104 bits of data.
-///
-/// Using the Huffman encoding, we can compress the data since it has more
-/// repetitions.
-///
-/// The repetition is as follows:
-/// * S: 6,  E: 4,  N: 2,  L: 1
-///
-/// If we encode the data in a way that the most repeated words are represented by
-/// smaller bits, then we can compress the data.
-///
-/// To solve this problem, we use Huffman Encoding algorithm. This algorithm
-/// sorts the data by frequency and then creates a binary tree to assign 0 and 1
-/// to each character.
-///
-/// in this process we add the 2 smallest values to create a new node and repeat
-/// until we have 1 node remaining.
-///
-/// ```
-/// * L(1)     N(2)   E(4)  S(6)
-/// *   LN(3)  E(4)    S(6)     -> 1 + 2 = 3
-/// *     LNE(7)   S(6)       -> 3 + 4 = 7
-/// *       SLNE(13)        -> 6 + 7 = 13
-/// ```
-/// now we build the tree and assign [1] to larger and [0] to smaller values
-/// until we reach the end of the tree i.e.13.
-///
-/// ```
-///                 (13)
-///                 LNES
-///             [1]/    \[0]
-///               /      \
-///         LNE(7)       S(6)
-///      [0]/    \[1]    [0]
-///        /      \
-///     LN(3)      E(4)
-/// [0]/    \[1]   [11]
-///   /      \
-/// L(1)     N(2)
-/// [100]   [101]
-/// ```
-/// evaluating this, we get the following:
-/// * S: 0
-/// * E: 11
-/// * N: 101
-/// * L: 100
-///
-/// and the word will encode to
-/// `0-11-101-0-11-100-11-0-0-101-11-0-0`, which will be just 23 bits long.
 
 #[derive(Debug)]
 struct Node {

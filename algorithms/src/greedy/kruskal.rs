@@ -1,50 +1,60 @@
-/// Kruskal's Algorithm
-///
-/// Kruskal's Algorithm is a minimum spanning tree algorithm also known as MST
-/// algorithm. it takes a graph as input and finds the subset of the edges of
-/// that graph which
-/// - forms a tree that includes every vertex
-/// - has minimum sum of weights among all the trees that can be formed from
-/// - the graph.
-///
-/// It falls under the greedy algorithm.
-///
-/// ```
-///              8         7
-///        (A)-------(B)-------(C)
-///       / |         | \       |  \
-///     4/  |        2|  \      |   \ 9
-///     /   |         |   \     |    \
-///  (H)    11       (I)   \4   |14  (D)
-///     \   |      /  |     \   |    /
-///     8\  |  7 /   6|      \  |   /10
-///       \ |  /      |       \ |  /
-///        (G)-------(F)-------(E)
-///              1        2
-///```
-/// In the above figure, there are 9 vertices and 14 edes.
-/// so the minimum spanning tree(MST) will be 9 -1 = 8 edges.
-///
-/// after finding the mst, the graph will be as follows:
-/// ```
-///                        7
-///        (A)       (B)-------(C)
-///       /           | \          \
-///     4/           2|  \          \ 9
-///     /             |   \          \
-///  (H)             (I)   \4        (D)
-///     \                   \
-///     8\                   \
-///       \                   \
-///        (G)-------(F)-------(E)
-///              1         2
-///
-/// steps:
-/// 1. sort all the edges from low weight to high
-/// 2. Take the edge with the lowest weight and add it to the spanning tree.
-///    If the edge creates a cycle then reject the edge.
-/// 3. keep adding edges until we reach all vertices.
-///```
+//! # Kruskal's Algorithm
+//!
+//! To run/test, please run the following commands in your terminal
+//!
+//! ```sh
+//! cargo run --bin kruskal
+//! ```
+//!
+//! ```sh
+//! cargo test --bin kruskal
+//! ```
+//! Kruskal's Algorithm is a minimum spanning tree algorithm also known as MST
+//! algorithm. it takes a graph as input and finds the subset of the edges of
+//! that graph which
+//! - forms a tree that includes every vertex
+//! - has minimum sum of weights among all the trees that can be formed from
+//! - the graph.
+//!
+//! It falls under the greedy algorithm.
+//!
+//! ```
+//!              8         7
+//!        (A)-------(B)-------(C)
+//!       / |         | \       |  \
+//!     4/  |        2|  \      |   \ 9
+//!     /   |         |   \     |    \
+//!  (H)    11       (I)   \4   |14  (D)
+//!     \   |      /  |     \   |    /
+//!     8\  |  7 /   6|      \  |   /10
+//!       \ |  /      |       \ |  /
+//!        (G)-------(F)-------(E)
+//!              1        2
+//!```
+//! In the above figure, there are 9 vertices and 14 edes.
+//! so the minimum spanning tree(MST) will be 9 -1 = 8 edges.
+//!
+//! after finding the mst, the graph will be as follows:
+//! ```
+//!                        7
+//!        (A)       (B)-------(C)
+//!       /           | \          \
+//!     4/           2|  \          \ 9
+//!     /             |   \          \
+//!  (H)             (I)   \4        (D)
+//!     \                   \
+//!     8\                   \
+//!       \                   \
+//!        (G)-------(F)-------(E)
+//!              1         2
+//!
+//!```
+//! steps:
+//! 1. sort all the edges from low weight to high
+//! 2. Take the edge with the lowest weight and add it to the spanning tree.
+//!    If the edge creates a cycle then reject the edge.
+//! 3. keep adding edges until we reach all vertices.
+//!
 use std::collections::HashMap;
 
 /// # Edge
