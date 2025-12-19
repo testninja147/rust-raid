@@ -44,13 +44,16 @@ fn binary_search(array: &mut [i32], item: i32) -> Option<usize> {
 }
 
 fn main() {
-    let mut arr_1 = [1, 4, 7, 8, 9, 10, 11, 12, 15, 20];
+    let mut sorted_array = [1, 4, 7, 8, 9, 10, 11, 12, 15, 20];
+    println!("Sorted Array: {:?}", &sorted_array);
     // ! input() is a common library function, not included in std
-    let search_item = parse_input("Enter a number to search: ").unwrap();
-    match binary_search(arr_1.as_mut(), search_item) {
-        Some(idx) => println!("The item {} is at index: {}", search_item, idx),
-        None => println!("The item {} does not exist in the array", search_item),
+    if let Ok(search_item) = parse_input("Enter a number to search: ") {
+        return match binary_search(sorted_array.as_mut(), search_item) {
+            Some(idx) => println!("The item {} is at index: {}", search_item, idx),
+            None => println!("The item {} does not exist in the array", search_item),
+        };
     }
+    println!("Invalid number Entered")
 }
 #[cfg(test)]
 mod tests {

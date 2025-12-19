@@ -21,10 +21,17 @@ fn linear_search(array: &mut [i32], item: i32) -> Result<usize, i8> {
     return Err(-1);
 }
 fn main() {
-    let mut arr_1 = [1, 5, 9, 2, 8, 0, 10, 13, 7, 4, 6];
-    let search_item = 10;
-    let idx = linear_search(arr_1.as_mut(), search_item).unwrap();
-    println!("The item {} is at index: {}", search_item, idx);
+    let mut array = [1, 5, 9, 2, 8, 0, 10, 13, 7, 4, 6];
+    println!("Array: {:?}", array);
+    if let Ok(search_item) = parse_input("Enter a number to search: ") {
+        if let Ok(idx) = linear_search(array.as_mut(), search_item) {
+            println!("The item {} is at index: {}", search_item, idx);
+            return;
+        }
+        println!("The mumber '{search_item} does not exist in an array.'");
+        return;
+    };
+    println!("Invalid number entered");
 }
 
 #[cfg(test)]
