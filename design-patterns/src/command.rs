@@ -25,11 +25,14 @@
 //! | Client           | Part of a code that uses the above mechanism |
 //!
 
+use std::{thread::sleep, time::Duration};
+
 // Example below uses Command pattern to fire a weapon in a shooting game in
 // which firing command directly fires any weapon without knowing the detail
 // about each element's fire procedure.
 use console::Term;
 
+const MAX_AMMO: usize = 30;
 // Define Command
 trait Command {
     fn execute(&self) -> u8;
@@ -54,12 +57,14 @@ struct Sniper {
 
 impl WeaponTrait for AssultRifle {
     fn fire(&mut self) -> u8 {
+        // sleep(Duration::from_millis((100 - self.fire_rate as u64) * 10));
         self.fire_rate
     }
 }
 
 impl WeaponTrait for Sniper {
     fn fire(&mut self) -> u8 {
+        // sleep(Duration::from_millis((100 - self.fire_rate as u64) * 10));
         (self.fire_rate as f32 * self.efficiency as f32 * 0.01) as u8
     }
 }
@@ -88,9 +93,9 @@ impl Command for FireSniperCommand {
 }
 
 fn main() {
-    let assult_rifle = AssultRifle { fire_rate: 20 };
+    let assult_rifle = AssultRifle { fire_rate: 90 };
     let sniper = Sniper {
-        fire_rate: 10,
+        fire_rate: 30,
         efficiency: 90,
     };
 
@@ -105,57 +110,64 @@ fn main() {
     ];
 
     let mut selected = 0;
-    let mut ammo = 50;
-
+    let mut ammo = MAX_AMMO;
     let stdout = Term::stdout();
+
     loop {
         stdout.clear_screen().unwrap();
+        let ammo_emoji = if selected == 0 { "🔫" } else { "🚀" };
         println!(
             r#"
 ===============================================================================
 [ 1 ]: Rifle     [ 2 ]: Sniper    [ F ]: Fire    [ R ]: Reload   [ Q ]: Quit
 ===============================================================================
-[ {} ]:  {}
+
+[{:03}] {}
+-------------------------------------------------------------------------------
+{}
+
 "#,
-            if selected == 0 {
-                "︻デ═一"
-            } else {
-                "╾━╤デ╦︻"
-            },
+            ammo,
             if ammo > 0 {
-                "☢ ".repeat(ammo)
+                (ammo_emoji).repeat(ammo)
             } else {
                 "!! NO AMMO !!".to_string()
-            }
+            },
+            if selected == 0 {
+                "[Rifle] ︻デ═一💥"
+            } else {
+                "[Sniper] 💥╾━╤デ╦︻"
+            },
         );
         if let Ok(character) = stdout.read_char() {
             match character {
                 '1' => {
                     if selected != 0 {
                         selected = 0;
-                        ammo = 50;
+                        ammo = MAX_AMMO;
                     }
                 }
                 '2' => {
                     if selected != 1 {
                         selected = 1;
-                        ammo = 50;
+                        ammo = MAX_AMMO;
                     }
                 }
                 'f' => {
                     if ammo > 0 {
                         let command = commands.get(selected).clone().unwrap();
-                        let bullets_fired = command.execute();
-                        let a = (bullets_fired as f32 / 5f32).max(0.0) as usize;
-                        if a < ammo {
-                            ammo -= a;
-                        } else {
-                            ammo = 0;
+                        let fire_rate = command.execute();
+                        if ammo > 0 {
+                            ammo -= 1;
                         }
+                        // it pauses the execution depending the firerate. 100 means no pause
+                        // We are currently dealing with the rust std library without async, so the firing will not
+                        // block the key press buffer, so if you repeatedly press f, it takes time to complete firing.
+                        sleep(Duration::from_millis((100 - fire_rate as u64) * 10));
                     }
                 }
                 'r' => {
-                    ammo = 50;
+                    ammo = MAX_AMMO;
                 }
                 _ => {
                     break;
