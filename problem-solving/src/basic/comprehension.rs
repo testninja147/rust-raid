@@ -10,9 +10,9 @@
  * Structure:
  *
  * Pattern 1:
- *  comprehension!{foreach <iterable>; apply <function>}
+ *  `comprehension!{foreach <iterable>; apply <function>}`
  * Pattern 2:
- *  comprehension!{foreach <iterable>; apply <function>; where <condition>}
+ *  `comprehension!{foreach <iterable>; apply <function>; where <condition>}`
  *
  *
  * To run the code, run the following:

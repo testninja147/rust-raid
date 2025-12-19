@@ -5,7 +5,7 @@
 /// Smart pointers are used when we need multiple owners to the same resource. They are implemented
 /// using structs. Some examples of smart pointers are: Box, Rc, Ref, etc.
 ///
-/// REF: https://doc.rust-lang.org/book/ch15-00-smart-pointers.html
+/// REF: <https://doc.rust-lang.org/book/ch15-00-smart-pointers.html>
 ///
 /// ## Box pointer
 ///
@@ -18,7 +18,7 @@
 /// A good usecase of a box pointer is linked list. Since a linked list may have
 /// an infinite size, we cannot store the linked list directly without using
 /// box pointer.
-/// Ref: https://doc.rust-lang.org/book/ch15-01-box.html
+/// Ref: <https://doc.rust-lang.org/book/ch15-01-box.html>
 fn main() {
     println!("Box pointers");
 

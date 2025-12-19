@@ -27,7 +27,7 @@
 /// 3. Repeat
 ///
 /// Please check rustbook for more information:
-/// https://doc.rust-lang.org/rust-by-example/macros.html
+/// <https://doc.rust-lang.org/rust-by-example/macros.html>
 ///
 fn main() {
     println!("Meta Programming");

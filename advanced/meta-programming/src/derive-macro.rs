@@ -13,7 +13,7 @@ struct Student {
 /// ---------------
 ///
 /// Derive macro is a procedural macro, that generates code from the given token
-/// stream. It adds a new input interface to the #[Derive] attribute.
+/// stream. It adds a new input interface to the `#[Derive]` attribute.
 ///
 /// Some of the builtin procedural macros are as follows:
 /// - Debug
@@ -42,7 +42,7 @@ struct Student {
 /// part.
 ///
 /// To know more about procedural macro, please check the following:
-/// https://doc.rust-lang.org/reference/procedural-macros.html#procedural-macros
+/// <https://doc.rust-lang.org/reference/procedural-macros.html#procedural-macros>
 fn main() {
     println!("Derive Macro");
     let student_1 = Student {

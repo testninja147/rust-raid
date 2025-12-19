@@ -15,9 +15,9 @@
 //!
 //! CONSTRAINTS
 //! - The vector should have exactly 1 missing number.
-//! - The vector should have n distinct 32 bit integers  (i32).
-//! - The function should return the missing number as Option<i32>.
-//! - If there are no missing numbers, the function should return None.
+//! - The vector should have n distinct 32 bit integers  `(i32)`.
+//! - The function should return the missing number as `Option<i32>`.
+//! - If there are no missing numbers, the function should return `None`.
 //!
 //! EXAMPLE:
 //! - input: [3, 7, 1, 2, 8, 4, 5]

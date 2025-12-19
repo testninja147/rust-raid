@@ -20,7 +20,7 @@ use tokio::time::{Duration, sleep};
 /// 3. Processing Websocket Messages
 ///
 /// To know more about threading, please refer to the rust async book:
-/// https://rust-lang.github.io/async-book/intro.html
+/// <https://rust-lang.github.io/async-book/intro.html>
 struct TextLoader {
     content: Vec<(char, bool)>,
 }

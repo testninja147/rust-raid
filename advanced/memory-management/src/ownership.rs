@@ -21,7 +21,7 @@
 /// since the value will automatically be dropped when it goes out of scope, we
 /// do not need any garbage collectors in rust.
 ///
-/// you can check https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html
+/// you can check <https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html>
 /// to know more about ownership and how it works in detail.
 fn main() {
     // -------------------------------------------------------------------------

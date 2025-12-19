@@ -17,7 +17,7 @@ use std::{cell::RefCell, collections::HashMap, rc::Rc};
 /// the borrow checker rules will get followed at runtime, we can use refcell.
 ///
 ///
-/// Ref: https://doc.rust-lang.org/book/ch15-05-interior-mutability.html
+/// Ref: <https://doc.rust-lang.org/book/ch15-05-interior-mutability.html>
 fn main() {
     println!("Refcell");
 

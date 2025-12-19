@@ -16,7 +16,7 @@ use std::slice;
 /// try to borrow a moved value.
 ///
 /// To know more about unsafe rust, you can check the official documentation
-/// https://doc.rust-lang.org/book/ch19-01-unsafe-rust.html
+/// <https://doc.rust-lang.org/book/ch19-01-unsafe-rust.html>
 fn main() {
     println!("Unsafe rust");
     // -------------------------------------------------------------------------
