@@ -8,17 +8,17 @@ edition = "2024"
 
 # ==================================[ Arrays ]==================================
 [[bin]]
-name = "ds001"
-path = "src/ds001_find_missing_number.rs"
+name = "missing-number"
+path = "src/missing-number.rs"
 
 [[bin]]
-name = "ds002"
-path = "src/ds002_longest_subarray.rs"
+name = "longest-subarray"
+path = "src/longest-subarray.rs"
 
 # ===============================[ Linked Lists ]===============================
 [[bin]]
-name = "ds101"
-path = "src/ds101_linked_list_add.rs"
+name = "linked-list-add"
+path = "src/linked-list-add.rs"
 
 [[bin]]
 name = "doubly_linked_list"

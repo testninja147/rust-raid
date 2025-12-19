@@ -1,38 +1,41 @@
-///! to run or test, please run the following commands:
-/// ```shell
-/// cargo run --bin binary_tree
-/// cargo test --bin binary_tree
-/// ```
-///
+//! # Binary Tree
+//!
+//! To run/test, please run the following commands in your terminal
+//!
+//! ```sh
+//! cargo run --bin binary_tree
+//! ```
+//!
+//! ```sh
+//! cargo test --bin binary_tree
+//! ```
+//!
+//! Binary Tree is a non-linear data structure that contains at most 2 children.
+//! Specifically, left node and right node.
+//!
+//! In Rustlang, we can create a binary tree by adding optional values to the
+//! left and right along with the data of the node.
+//!
+//! A perfect binary tree is a binary tree in which all parent nodes contains
+//! both `left` and `right` nodes.
+//!
+//! An example of a perfect binary tree is shown below:
+//!
+//! ```text
+//!            (7)
+//!         /      \
+//!      (5)        (6)
+//!    /    \     /    \
+//! (1)     (2) (3)    (4)
+//!
+//! ```
+//! We Use Option data type so that we can choose either `None` or `Some` values
+//! for their children.
+//! We also use `Reference Counter` so that it can be accessed multiple times
+//! while adding new nodes.
 use std::{cell::RefCell, fmt::Debug, rc::Rc};
 
 type Node<T> = Rc<RefCell<BinaryTree<T>>>;
-
-/// # Binary Tree
-///
-/// Binary Tree is a non-linear data structure that contains at most 2 children.
-/// Specifically, left node and right node.
-///
-/// In Rustlang, we can create a binary tree by adding optional values to the
-/// left and right along with the data of the node.
-///
-/// A perfect binary tree is a binary tree in which all parent nodes contains
-/// both `left` and `right` nodes.
-///
-/// An example of a perfect binary tree is shown below:
-///
-/// ```
-///            (7)
-///         /      \
-///      (5)        (6)
-///    /    \     /    \
-/// (1)     (2) (3)    (4)
-///
-/// ```
-/// We Use Option data type so that we can choose either `None` or `Some` values
-/// for their children.
-/// We also use `Reference Counter` so that it can be accessed multiple times
-/// while adding new nodes.
 #[derive(Debug, Clone)]
 struct BinaryTree<T: Debug> {
     data: T,

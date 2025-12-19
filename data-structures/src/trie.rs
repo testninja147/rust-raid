@@ -1,31 +1,42 @@
+//!
+//! # Trie Data Structure
+//!
+//! To run/test, please run the following commands in your terminal
+//!
+//! ```sh
+//! cargo run --bin trie
+//! ```
+//!
+//! ```sh
+//! cargo test --bin trie
+//! ```
+//!
+//! TRIE is a data structure that creates a tree specifically for a purpose of
+//! retrieval of prefixed data. We can think of a dictionary book in which words
+//! are grouped by prefix and sorted in a way that we know which word exist at
+//! what position.
+//!
+//! A Trie data structure is similar to a mapping data type or a hashmap in
+//! which each hash corresponds to its data.
+//!
+//! For example we have different words ANT, AND, DAD, and DASH
+//!
+//! We can represent it in a TRIE data structure as follows
+//!
+//! Example words: CAT, CAN, DAD, DAN, DAMN
+//!
+//! ```txt
+//!                   [ROOT]
+//!
+//!             C               D
+//!         A               A
+//!     T       N       D       N   M
+//!                                     N
+//! ```
+//! Here first keys are `A` and `D`, where values are `N` and `A` which further
+//! branches into  `D`, `T`, `S`, etc. and so on.
+//!
 use std::{char, collections::HashMap};
-
-///
-/// TRIE DATA STRUCTURE
-/// --------------------
-///
-/// TRIE is a data structure that creates a tree specifically for a purpose of
-/// retrieval of prefixed data. We can think of a dictionary book in which words
-/// are grouped by prefix and sorted in a way that we know which word exist at
-/// what position.
-///
-/// A Trie data structure is similar to a mapping data type or a hashmap in
-/// which each hash corresponds to its data.
-///
-/// For example we have different words ANT, AND, DAD, and DASH
-///
-/// We can represent it in a TRIE data structure as follows
-///
-/// Example words: CAT, CAN, DAD, DAN, DAMN
-///
-///                   [ROOT]
-///
-///             C               D
-///         A               A
-///     T       N       D       N   M
-///                                     N
-/// Here first keys are `A` and `D`, where values are `N` and `A` which further
-/// branches into  `D`, `T`, `S`, etc. and so on.
 
 #[derive(Debug)]
 struct TrieNode {

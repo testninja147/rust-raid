@@ -60,10 +60,10 @@ cargo test --bin huffman
 ## [1. Data Structures](data-structures/)
 
 1. **Arrays**
-   - [Find the missing number](data-structures/src/ds001_find_missing_number.rs) `cargo run --bin ds001`
-   - [Find the length of the longest subarray with sum K](data-structures/src/ds002_longest_subarray.rs) `cargo run --bin ds002`
+   - [Find the missing number](data-structures/src/missing-number.rs) `cargo run --bin missing-number`
+   - [Find the length of the longest subarray with sum K](data-structures/src/longest-subarray.rs) `cargo run --bin longest-subarray`
 2. **Singly Linked Lists**
-   - [Add two linked list](data-structures/src/ds101_linked_list_add.rs) `cargo run --bin ds101`
+   - [Add two numbers represented by linked list](data-structures/src/linked-list-add.rs) `cargo run --bin linked-list-add`
 3. [**Doubly Linked Lists**](data-structures/src/doubly_linked_list.rs) `cargo run --bin doubly_linked_list`
 4. [**Stacks**](data-structures/src/stack.rs) `cargo run --bin stack`
 5. [**Queues**](data-structures/src/queue.rs) `cargo run --bin queue`

@@ -1,30 +1,38 @@
-//! To run the application, please run the following command
+//! # Doubly Linked List
+//!
+//! To run/test, please run the following commands in your terminal
+//!
+//! ```sh
 //! cargo run --bin doubly_linked_list
-//! cargo run --test doubly_linked_list
-
-// reference counter
+//! ```
+//!
+//! ```sh
+//! cargo test --bin doubly_linked_list
+//! ```
+//!
+//! since doubly linked list needs to have link for the previous and next nodes
+//! we need to use the reference counter.
+//!
+//! Since doubly linked list needs to have link  to the same node from multiple
+//! nodes. Example: in a linked list `[A]<--->[B]<--->[c]`,
+//! both nodes `[A] (next)` and `[c] (prev)` needs to reference the node `[B]`.
+//!
+//! As Rust does not allow ownership of the same resource, we need to work with
+//! references, i.e. Reference Counter, which allows shared ownership.
+//!
+//! However, we can only have one mutable reference or multiple immutable refs.
+//! In Doubly linked List we need to have both mutable and multiple references.
+//! To fix this we need to use RefCell, which is an immutable reference but has
+//! internal mutability which fixes our problem.
+//!
+//! Also the `Weak` Reference counter is used for the `prev` option since we can
+//! use the non-owning reference to the managed allocation. This will return us
+//! the `Option<Rc<Node>>` instead of `Rc<Node>`. This is specially useful when
+//! we pop out the value in the list.
 use std::{
     cell::RefCell,
     rc::{Rc, Weak},
 };
-
-// since doubly linked list needs to have link for the previous and next nodes
-// we need to use the reference counter
-/// Since doubly linked list needs to have link  to the same node from multiple
-/// nodes. Example: in a linked list [A]<--->[B]<--->[c], both nodes [A] (next)
-/// and [c] (prev) needs to reference the node [B].
-/// As Rust does not allow ownership of the same resource, we need to work with
-/// references, i.e. Reference Counter, which allows shared ownership.
-///
-/// However, we can only have one mutable reference or multiple immutable refs.
-/// In Doubly linked List we need to have both mutable and multiple references.
-/// To fix this we need to use RefCell, which is an immutable reference but has
-/// internal mutability which fixes our problem.
-///
-/// Also the `Weak` Reference counter is used for the `prev` option since we can
-/// use the non-owning reference to the managed allocation. This will return us
-/// the Option<Rc<Node>> instead of Rc<Node>. This is specially useful when we
-/// pop out the value in the list.
 
 struct Node {
     pub value: u32,
@@ -78,6 +86,11 @@ impl DoublyLinkedList {
     }
 }
 
+///! To run the application, please run the following command
+/// ```shell
+/// cargo run --bin doubly_linked_list
+/// cargo run --test doubly_linked_list
+/// ```
 fn main() {
     let mut dll = DoublyLinkedList::new();
     dll.push_back(0); // DLL < 0 >

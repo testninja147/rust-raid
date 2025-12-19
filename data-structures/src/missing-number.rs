@@ -1,24 +1,28 @@
-/**
- * -----------------------------------------------------------------------------
- * FIND THE MISSING NUMBER
- *
- * To execute, please run: cargo run --bin ds001
- * To run tests, please run: cargo test --bin ds001
- * -----------------------------------------------------------------------------
- *
- * Write a program (and a test case) that finds a missing number from an array
- * containing distinct numbers.
- *
- * CONSTRAINTS
- * - The vector should have exactly 1 missing number.
- * - The vector should have n distinct 32 bit integers  (i32).
- * - The function should return the missing number as Option<i32>.
- * - If there are no missing numbers, the function should return None.
- *
- * EXAMPLE:
- * - input: [3, 7, 1, 2, 8, 4, 5]
- * - output: 6
- */
+//! # FIND THE MISSING NUMBER
+//!
+//! To run/test, please run the following commands in your terminal
+//!
+//! ```sh
+//! cargo run --bin missing-number
+//! ```
+//!
+//! ```sh
+//! cargo test --bin missing-number
+//! ```
+//!
+//! Write a program (and a test case) that finds a missing number from an array
+//! containing distinct numbers.
+//!
+//! CONSTRAINTS
+//! - The vector should have exactly 1 missing number.
+//! - The vector should have n distinct 32 bit integers  (i32).
+//! - The function should return the missing number as Option<i32>.
+//! - If there are no missing numbers, the function should return None.
+//!
+//! EXAMPLE:
+//! - input: [3, 7, 1, 2, 8, 4, 5]
+//! - output: 6
+//!/
 
 /**
  * Approach 1: Using sorting.
@@ -60,12 +64,12 @@ fn find_missing_num(num: Vec<i32>) -> Option<i32> {
 fn main() {
     let numbers = vec![3, 7, 1, 2, 8, 4, 5];
     println!(
-        "missing number in an array {:?} is: {}",
+        "(approach 1) missing number in an array {:?} is: {}",
         numbers.clone(),
         find_missing_number(numbers.clone()).unwrap_or(-1)
     );
     println!(
-        "missing number in an array {:?} is: {}",
+        "(approach 2) missing number in an array {:?} is: {}",
         numbers.clone(),
         find_missing_num(numbers).unwrap_or(-1)
     )

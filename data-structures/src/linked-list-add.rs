@@ -1,24 +1,34 @@
-/**
- * -----------------------------------------------------------------------------
- * ADD TWO LINKED LISTS
- *
- * To execute, please run: cargo run --bin ds101
- * To run tests, please run: cargo test --bin ds101
- * -----------------------------------------------------------------------------
- *
- * Given linked list that contains i32 number as a digit of each place, perform
- * addition of two linked lists an return a new linked list.
- *
- * Example A linked list [4, 2, 0, 1] will represent a number 1024
- *
- * Additionally, implement a linked list that could perform addition operation
- *
- * Example:
- *  512 + 512 = 1024
- *  - Input linked list: [2,1,5], [2,1,5]
- *  - Output linked list: [4, 2, 0, 1]
- *
- */
+//! # Add 2 numbers represented as linked lists
+//!
+//! To run/test, please run the following commands in your terminal
+//!
+//! ```sh
+//! cargo run --bin linked-list-add
+//! ```
+//!
+//! ```sh
+//! cargo test --bin linked-list-add
+//! ```
+//!
+//! Given linked list that contains i32 number as a digit of each place, perform
+//! addition of two linked lists an return a new linked list.
+//!
+//! Example A linked list [4, 2, 0, 1] will represent a number 1024
+//!
+//! Additionally, implement a linked list that could perform addition operation
+//!
+//! Example:
+//!  512 + 512 = 1024
+//!
+//!  - Input linked list: [2,1,5], [2,1,5]
+//!  - Output linked list: [4, 2, 0, 1]
+//!
+//! Here, number 512 is represented in a linked list as 2 -> 1 -> 5
+//!
+//! So, the final addition result `1024` is also internally represented as
+//! 4 -> 2 -> 0 -> 1.
+//!
+//!
 
 // Definition for singly-linked list.
 #[derive(PartialEq, Eq, Clone, Debug)]
