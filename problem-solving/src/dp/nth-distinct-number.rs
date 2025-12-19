@@ -3,11 +3,11 @@
 //! To run/test, please run the following commands in your terminal
 //!
 //! ```sh
-//! cargo run --bin binary_tree
+//! cargo run --bin nth-distinct-number
 //! ```
 //!
 //! ```sh
-//! cargo test --bin binary_tree
+//! cargo test --bin nth-distinct-number
 //! ```
 //!
 //! To solve this problem, we must first create a hashmap to calculate all the
