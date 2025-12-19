@@ -73,3 +73,7 @@ path = 'src/dp/coin_change.rs'
 [[bin]]
 name = 'palindrome_partition'
 path = 'src/dp/palindrome_partition.rs'
+
+[[bin]]
+name = 'nth-distinct-number'
+path = 'src/dp/nth-distinct-number.rs'
