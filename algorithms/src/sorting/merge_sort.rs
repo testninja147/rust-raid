@@ -1,35 +1,45 @@
-/// # Merge Sort
-/// ------------
-///
-/// Merge sort is an efficient sorting algorithm, which works in a divide and
-/// conquer method. It first splits the sub-array until single element is left
-/// in each split, after that, it starts  merging all one by one.
-///
-/// Example:
-/// We have an array [ 7, 3 10, 2], we start splitting it in the middle until
-/// we get single element in an array
-///
-/// * STEP 1(split):              [ 7, 3] [10, 2]
-/// * STEP 2(further split):      [7] [3] [10] [2]
-/// we have single element, so we start merging arrays by sorting it
-/// At this point, we compare each element and select smallest to put at index 0
-/// for this we start comparing each item at index 0 since it is the smallest in
-/// each array.
-/// after that, we put another element by comparing
-///
-/// * STEP 3(merge singles):      [3, 7] [2, 10]
-/// ... repeat until the whole array is sorted
-/// * STEP 4(merge doubles):      [2, 3, 7, 10]
-/// ...
-///
-/// * Time complexity of Merge sort is O(n log(n) )
-///
-/// *Tradeoffs:
-/// - It has more space complexity since it requires storage to store temporary
-///   results
-/// - It requires copying sub arrays from the original array since we can not
-///   directly swap elements in place.
-///
+//! # Merge Sort
+//!
+//! To run/test, please run the following commands in your terminal
+//!
+//! ```sh
+//! cargo run --bin merge_sort
+//! ```
+//!
+//! ```sh
+//! cargo test --bin merge_sort
+//! ```
+//!
+//! Merge sort is an efficient sorting algorithm, which works in a divide and
+//! conquer method. It first splits the sub-array until single element is left
+//! in each split, after that, it starts  merging all one by one.
+//!
+//! Example:
+//! We have an array `[ 7, 3 10, 2]`, we start splitting it in the middle until
+//! we get single element in an array
+//!
+//! * STEP 1(split):              `[ 7, 3] [10, 2]`
+//! * STEP 2(further split):      `[7] [3] [10] [2]`
+//! we have single element, so we start merging arrays by sorting it
+//! At this point, we compare each element and select smallest to put at index 0
+//! for this we start comparing each item at index 0 since it is the smallest in
+//! each array.
+//! after that, we put another element by comparing
+//!
+//! * STEP 3(merge singles):      `[3, 7] [2, 10]`
+//! ... repeat until the whole array is sorted
+//! * STEP 4(merge doubles):      `[2, 3, 7, 10]`
+//! ...
+//!
+//! * Time complexity of Merge sort is `O(n log(n) )`
+//!
+//! **Tradeoffs:**
+//!
+//! - It has more space complexity since it requires storage to store temporary
+//!   results
+//! - It requires copying sub arrays from the original array since we can not
+//!   directly swap elements in place.
+//!
 
 fn merge(left: &Vec<isize>, right: &Vec<isize>) -> Vec<isize> {
     // ! both left and right should be sorted to successfully merge as sorted
@@ -66,6 +76,10 @@ fn split(array: &Vec<isize>) -> (Vec<isize>, Vec<isize>) {
     (Vec::from(v1), Vec::from(v2))
 }
 
+///
+/// If an array is empty or has only one element, the array is
+/// considered as sorted, so the array is returned without any change.
+///
 fn merge_sort(array: &Vec<isize>) -> Vec<isize> {
     if array.len() <= 1 {
         return array.to_owned();
@@ -78,8 +92,8 @@ fn merge_sort(array: &Vec<isize>) -> Vec<isize> {
 
 fn main() {
     let unsorted = vec![4, 2, 9, 0, 7, 5, 1];
+    println!("Unsorted data: {unsorted:?}");
     let sorted = merge_sort(&unsorted);
-
     println!("Sorted data: {:?}", sorted);
 }
 

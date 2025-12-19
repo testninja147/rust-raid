@@ -18,7 +18,7 @@
 //!
 //! It falls under the greedy algorithm.
 //!
-//! ```
+//! ```text
 //!              8         7
 //!        (A)-------(B)-------(C)
 //!       / |         | \       |  \
@@ -35,7 +35,7 @@
 //! so the minimum spanning tree(MST) will be 9 -1 = 8 edges.
 //!
 //! after finding the mst, the graph will be as follows:
-//! ```
+//! ```text
 //!                        7
 //!        (A)       (B)-------(C)
 //!       /           | \          \

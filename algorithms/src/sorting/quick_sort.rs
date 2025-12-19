@@ -1,14 +1,24 @@
-/**
- * Quick sort is an efficient algorithm that follows divide-and-conquer
- * approach
- *
- * Quick sorting process consists of the following steps:
- *
- * 1. Pivot selection   : Choose pivot point/element from the array
- * 2. Partitioning      : Rearrange the array
- * 3. Recursion         : Split and select pivot point until sub-array contains single element
- * 4. Combination       : Rearrange and combine all single items
- **/
+//! # Quick Sort
+//! To run/test, please run the following commands in your terminal
+//!
+//! ```sh
+//! cargo run --bin quick_sort
+//! ```
+//!
+//! ```sh
+//! cargo test --bin quick_sort
+//! ```
+//!
+//! Quick sort is an efficient algorithm that follows divide-and-conquer
+//! approach
+//!
+//! Quick sorting process consists of the following steps:
+//!
+//! 1. `Pivot selection`   : Choose pivot point/element from the array
+//! 2. `Partitioning`      : Rearrange the array
+//! 3. `Recursion`         : Split and select pivot point until sub-array contains single element
+//! 4. `Combination`       : Rearrange and combine all single items
+//!
 
 fn partition(array: &mut [i32]) -> usize {
     let mut tracker = 0;
@@ -39,8 +49,9 @@ fn quick_sort(array: &mut [i32]) -> &mut [i32] {
 }
 fn main() {
     let mut unsorted = [4, 2, 9, 0, 7, 5, 1];
+    println!("Unsorted data: {unsorted:?}");
     let sorted = quick_sort(unsorted.as_mut());
-    println!("Sorted data: {:?}", sorted);
+    println!("Sorted data: {sorted:?}");
 }
 
 #[cfg(test)]
