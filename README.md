@@ -124,7 +124,7 @@ cargo test --bin huffman
 5. [List Comprehension](problem-solving/src/basic/comprehension.rs) `cargo run --bin comprehension`
 6. [Linear Regression Model](problem-solving/src/basic/linear_regression.rs) `cargo run --bin linear_regression`
 7. [Matrix Multiplication Model](problem-solving/src/basic/matrix_multiplication.rs) `cargo run --bin matrix_multiplication`
-8. [Color Converter](problem-solving/src/basic/color_converter.rs) `cargo run --bin color_converter`
+8. [Color Converter](problem-solving/src/basic/color-converter.rs) `cargo run --bin color-converter`
 
 ### [4.2. Dynamic Programming](problem-solving/src/dp/)
 
@@ -136,6 +136,7 @@ cargo test --bin huffman
 6. [Longest Common Subsequence](problem-solving/src/dp/longest_common_subsequence.rs) `cargo run --bin lcs`
 7. [Coin Change Problem](problem-solving/src/dp/coin_change.rs) `cargo run --bin coin_change`
 8. [Palindrome Partition](problem-solving/src/dp/palindrome_partition.rs) `cargo run --bin palindrome_partition`
+9. [Find Nth distinct number](problem-solving/src/dp/nth-distinct-number.rs) `cargo run --bin nth-distinct-number`
 
 ## [5. Advanced Concepts](advanced/README.md)
 
