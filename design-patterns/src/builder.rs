@@ -1,23 +1,25 @@
+//!
+//! # Builder Design Pattern
+//!
+//! To run/test, please run the following commands in your terminal
+//!
+//! ```sh
+//! cargo run --bin builder
+//! ```
+//!
+//! ```sh
+//! cargo test --bin builder
+//! ```
+//!
+//! Builder Pattern lets us construct objects step by step. As rustlang does not
+//! support object-oriented programming, We can not build  different type of
+//! object with the help of inheritance, however we can construct structures with
+//! optional values.
+//!
+//! The example below shows a builder pattern that builds computer with processor
+//! and memory with optional
+//! Keyboard and Display.
 #![allow(dead_code)]
-
-/**
- * -----------------------------------------------------------------------------
- * BUILDER PATTERN
- *
- * To execute, please run: cargo run --bin builder
- * To run tests, please run: cargo test --bin builder
- * -----------------------------------------------------------------------------
- *
- *
- * Builder Pattern lets us construct objects step by step. As rustlang does not
- * support object-oriented programming, We can not build  different type of
- * object with the help of inheritance, however we can construct structures with
- * optional values.
- *
- * The example below shows a builder pattern that builds computer with processor
- * and memory with optional
- * Keyboard and Display.
- **/
 
 #[derive(Debug)]
 enum Processor {

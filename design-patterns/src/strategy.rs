@@ -1,32 +1,34 @@
-/**
- * -----------------------------------------------------------------------------
- * STRATEGY PATTERN
- *
- * To execute, please run: cargo run --bin strategy
- * To run tests, please run: cargo test --bin strategy
- * -----------------------------------------------------------------------------
- *
- * A strategy pattern is a behavioral pattern that allows us to create different
- * algorithms and encapsulate each one and make it interchangeable. It allows us
- * to select an algorithm from the list at runtime without altering the code.
- *
- * It follows SOLID principle.
- *
- * Strategy pattern consists of the following components:
- *
- * 1. Context   : It contains the reference to the strategy object.
- * 2. strategy  : It is a trait that defines the algorithm's contract.
- * 3. Concrete Strategies   : They are different algorithms that are isolated from each other.
- * 4. Client    : This is the target where the strategies are used.
- *
- * The code below shows Different payment Strategies that can be chosen by user
- * to pay bills at the time of checkout.
- *
- * > NOTE: The solution illustrate the payment example, however actual payment
- * > process is not included in the example below.
- */
+//!
+//! # Strategy Design Pattern
+//!
+//! To run/test, please run the following commands in your terminal
+//!
+//! ```sh
+//! cargo run --bin strategy
+//! ```
+//!
+//! ```sh
+//! cargo test --bin strategy
+//!```
+//!
+//! A strategy pattern is a behavioral pattern that allows us to create different
+//! algorithms and encapsulate each one and make it interchangeable. It allows us
+//! to select an algorithm from the list at runtime without altering the code.
+//!
+//! It follows SOLID principle.
+//!
+//! Strategy pattern consists of the following components:
+//!
+//! 1. Context   : It contains the reference to the strategy object.
+//! 2. strategy  : It is a trait that defines the algorithm's contract.
+//! 3. Concrete Strategies   : They are different algorithms that are isolated from each other.
+//! 4. Client    : This is the target where the strategies are used.
+//!
+//! The code below shows Different payment Strategies that can be chosen by user
+//! to pay bills at the time of checkout.
 
-//
+// _Note: The solution illustrate the payment example, however actual payment_
+// _process is not included in the example below._
 
 trait Strategy {
     fn pay(&self, amount: f64) -> bool;

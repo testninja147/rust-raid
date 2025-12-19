@@ -1,27 +1,33 @@
-/**
- * -----------------------------------------------------------------------------
- * COMMAND PATTERN
- *
- * To execute, please run: cargo run --bin command
- * To run tests, please run: cargo test --bin command
- * -----------------------------------------------------------------------------
- *
- *
- * Command pattern is a behavioral design pattern that turns a request into a
- * stand-alone object that contains all the information about the request.
- *
- * Key components in this pattern are as follows:
- *
- * 1. Command   : Trait that defines the common method
- * 2. Concrete Command  : Each struct that implements Command trait
- * 3. Invoker   : function that invokes the concrete command
- * 4. Receiver  : Function that performs actual work
- * 5: Client    : Part of a code that uses the above mechanism
- *
- * Example below uses Command pattern to fire a weapon in a shooting game in
- * which firing command directly fires any weapon without knowing the detail
- * about each element's fire procedure.
- */
+//!
+//! # Command Design Pattern
+//!
+//! To run/test, please run the following commands in your terminal
+//!
+//! ```sh
+//! cargo run --bin command
+//! ```
+//!
+//! ```sh
+//! cargo test --bin command
+//! ```
+//!
+//! Command pattern is a behavioral design pattern that turns a request into a
+//! stand-alone object that contains all the information about the request.
+//!
+//! Key components in this pattern are as follows:
+//!
+//! | component        | description                                  |
+//! | ---------------- | -------------------------------------------- |
+//! | command          | Trait that defines the common method         |
+//! | Concrete Command | Each struct that implements Command trait    |
+//! | Invoker          | function that invokes the concrete command   |
+//! | Receiver         | Function that performs actual work           |
+//! | Client           | Part of a code that uses the above mechanism |
+//!
+
+// Example below uses Command pattern to fire a weapon in a shooting game in
+// which firing command directly fires any weapon without knowing the detail
+// about each element's fire procedure.
 use console::Term;
 
 // Define Command

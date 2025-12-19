@@ -1,30 +1,34 @@
+//!
+//! # Observer Design Pattern
+//!
+//! To run/test, please run the following commands in your terminal
+//!
+//! ```sh
+//! cargo run --bin observer
+//! ```
+//!
+//! ```sh
+//! cargo test --bin observer
+//! ```
+//!
+//! An Observer Pattern defines a one to many dependency between objects so that
+//! all dependent objects automatically get notified once the state changes in
+//! one object.
+//!
+//! Observer pattern consists of 3 components:
+//!  - `Subject`   : It is the entity being observed for the changes.
+//!  - `Observer`  : It is an entity that observes changes in subjects.
+//!  - `Client`    : It is an entity that uses the state of the subject.
+//!
+//! As Rustlang is a functional programming language with some OOP features, we
+//! need to define traits and structs separately.
+//!
+//! The code snippet below uses observer pattern to notify users
+//! once it receives readings in the weather data.
+//!*/
 use common::input; // common library for this repository
 use rand;
 use std::collections::HashMap;
-/**
- * -----------------------------------------------------------------------------
- * OBSERVER PATTERN
- *
- * To execute, please run: cargo run --bin observer
- * To run tests, please run: cargo test --bin observer
- * -----------------------------------------------------------------------------
- *
- *
- * An Observer Pattern defines a one to many dependency between objects so that
- * all dependent objects automatically get notified once the state changes in
- * one object.
- *
- * Observer pattern consists of 3 components:
- *  - Subject   : It is the entity being observed for the changes.
- *  - Observer  : It is an entity that observes changes in subjects.
- *  - Client    : It is an entity that uses the state of the subject.
- *
- * As Rustlang is a functional programming language with some OOP features, we
- * need to define traits and structs separately.
- *
- * The code snippet below uses observer pattern to notify users
- * once it receives readings in the weather data.
- **/
 
 // Define Observers
 #[derive(PartialEq, Eq, Hash, Clone)]
@@ -89,7 +93,18 @@ fn main() {
     sensor.readings().subscribe(SensorType::Rain, rain_listener);
     sensor.readings().subscribe(SensorType::Wind, wind_listener);
     loop {
-        println!("R: reading, U: Unsubscribe, E: Exit");
+        println!(
+            r#"
+            -------------------------------------------
+            [r/R]: Read
+            [sr/SR]: Subscribe to the Rain data
+            [sw/SW]: Subscribe to the Wind data
+            [ur/UR]: Unsubscribe to the Rain data
+            [uw/UW]: Unsubscribe to the Wind data
+            [e/E]: Exit
+            -------------------------------------------
+            "#
+        );
         // ! input() is a common library function, not included in std
         match input("Enter option: ").as_str().trim() {
             "R" | "r" => {
@@ -103,7 +118,7 @@ fn main() {
             }
             "SW" | "sw" => {
                 // Subscribe to wind sensor readings
-                sensor.readings().subscribe(SensorType::Rain, wind_listener);
+                sensor.readings().subscribe(SensorType::Wind, wind_listener);
             }
             "UR" | "ur" => {
                 // Unsubscribe to rain sensor readings

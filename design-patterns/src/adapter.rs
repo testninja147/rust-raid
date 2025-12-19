@@ -1,35 +1,39 @@
-/**
- * -----------------------------------------------------------------------------
- * ADAPTER PATTERN
- *
- * To execute, please run: cargo run --bin adapter
- * To run tests, please run: cargo test --bin adapter
- * -----------------------------------------------------------------------------
- *
- * An adapter pattern is a structural design pattern which allows objects with
- * incompatible interfaces or traits to work together.
- *
- * An adapter works as a wrapper or an interpreter which allows to convert one
- * type of information to another so that the information can be passed to
- * another object. This process includes transformation of information.
- *
- * The main components of adapter pattern are as follows:
- *
- * 1. Target Interface  : It is an interface where interaction needs to be done.
- * 2. Adaptee   : It is a data structure which is incompatible with the
- *                existing target interface.
- * 3. Adapter   : It creates the compatibility layer between the target
- *                interface and adaptee.
- * 4. Client    : It is the part of the code that uses adaptee to perform tasks
- *                that are incompatible with target interface.
- *
- * Adapter pattern is useful when creating plugins, parsers, media converters,
- * media players, etc.
- *
- * The example below shows an adapter that integrates with an existing ORM to
- * generate database queries directly from the json data.
- *
- **/
+//! # Adapter Design Pattern
+//!
+//! To run/test, please run the following commands in your terminal
+//!
+//! ```sh
+//! cargo run --bin adapter
+//! ```
+//!
+//! ```sh
+//! cargo test --bin adapter
+//! ```
+//!
+//! An adapter pattern is a structural design pattern which allows objects with
+//! incompatible interfaces or traits to work together.
+//!
+//! An adapter works as a wrapper or an interpreter which allows to convert one
+//! type of information to another so that the information can be passed to
+//! another object. This process includes transformation of information.
+//!
+//! The main components of adapter pattern are as follows:
+//!
+//! 1. Target Interface  : It is an interface where interaction needs to be done.
+//! 2. Adaptee   : It is a data structure which is incompatible with the
+//!                existing target interface.
+//! 3. Adapter   : It creates the compatibility layer between the target
+//!                interface and adaptee.
+//! 4. Client    : It is the part of the code that uses adaptee to perform tasks
+//!                that are incompatible with target interface.
+//!
+//! Adapter pattern is useful when creating plugins, parsers, media converters,
+//! media players, etc.
+//!
+//! The example below shows an adapter that integrates with an existing ORM to
+//! generate database queries directly from the json data.
+//!
+//!
 
 mod my_orm {
     pub(crate) trait QueryTrait {

@@ -1,22 +1,26 @@
-/**
- * -----------------------------------------------------------------------------
- * # SINGLETON PATTERN
- *
- * To execute, please run: cargo run --bin singleton
- * To run tests, please run: cargo test --bin singleton
- * -----------------------------------------------------------------------------
- *
- * Singleton design pattern ensures that a class has only one instance and
- * provides a global point of access to it.
- *
- * Generally, Singleton design pattern is popular in Object-oriented programming
- * languages, however as we can create objects of structs in rust, we can use it
- * in structures to use the singleton pattern.
- *
- * We use ``std::sync::Mutex`` to hold the reference of the newly created
- * instance of the struct. This will not completely create a singleton however
- * we can see similar behavior from it.
- */
+//!
+//! # Singleton Design Pattern
+//!
+//! To run/test, please run the following commands in your terminal
+//!
+//! ```sh
+//! cargo run --bin singleton
+//! ```
+//!
+//! ```sh
+//! cargo test --bin singleton
+//! ```
+//!
+//! Singleton design pattern ensures that a class has only one instance and
+//! provides a global point of access to it.
+//!
+//! Generally, Singleton design pattern is popular in Object-oriented programming
+//! languages, however as we can create objects of structs in rust, we can use it
+//! in structures to use the singleton pattern.
+//!
+//! We use ``std::sync::Mutex`` to hold the reference of the newly created
+//! instance of the struct. This will not completely create a singleton however
+//! we can see similar behavior from it.
 use std::sync::Mutex;
 
 // initialize display mutex with default w and h set to 0
