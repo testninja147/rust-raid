@@ -21,9 +21,27 @@
 //! the key as the nth number.
 //!
 //!
-use std::collections::HashMap;
+use std::{collections::HashMap, hash::Hash};
 
 use common::parse_input;
+
+fn get_nth_distinct_number<T: Eq + Hash + Copy>(array: Vec<T>, pos: usize) -> Result<T, ()> {
+    let mut counter = pos;
+    let mut hash_map = HashMap::new();
+    for &k in &array {
+        *hash_map.entry(k).or_insert(0) += 1;
+    }
+    for k in array.into_iter() {
+        let count = hash_map[&k];
+        if count == 1 {
+            counter -= 1;
+            if counter == 0 {
+                return Ok(k);
+            }
+        }
+    }
+    Err(())
+}
 
 fn main() {
     println!("Nth distinct number");
@@ -36,25 +54,33 @@ fn main() {
         3 => "rd",
         _ => "th",
     };
+
     if let Ok(pos) = parse_input::<usize>("Enter value of n: ") {
-        let mut counter = pos;
-        let mut hash_map = HashMap::new();
-        array.iter().for_each(|v| {
-            *hash_map.entry(v).or_insert(0) += 1;
-        });
-        for &k in &array {
-            let &v = hash_map.get(&k).unwrap();
-            if v == 1 {
-                counter -= 1;
-                if counter == 0 {
-                    println!("\nThe {pos}{} distinct item is {k} ", suffix(pos));
-                    return;
-                }
-            }
+        if let Ok(num) = get_nth_distinct_number(array, pos) {
+            println!("\nThe {pos}{} distinct item is {num} ", suffix(pos));
+        } else {
+            println!(
+                "There is no {pos}{} distinct item in the array.",
+                suffix(pos)
+            );
         }
-        println!(
-            "There is no {pos}{} distinct item in the array.",
-            suffix(pos)
-        );
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::get_nth_distinct_number;
+
+    #[test]
+    fn check_existing() {
+        let array = vec![1, 5, 2, 7, 4, 0, 3, 4, 1, 3, 5, 6, 3, 1, 8];
+        assert_eq!(get_nth_distinct_number(array.clone(), 2), Ok(7));
+        assert_eq!(get_nth_distinct_number(array, 5), Ok(8));
+    }
+
+    #[test]
+    fn check_error() {
+        let array = vec![1, 5, 2, 7, 4, 0, 3, 4, 1, 3, 5, 6, 3, 1, 8];
+        assert_eq!(get_nth_distinct_number(array, 6), Err(()));
     }
 }
