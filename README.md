@@ -4,6 +4,7 @@
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/ghimiresdp/rust-raid/rust.yml)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ghimiresdp/rust-raid)
 
+> [!IMPORTANT]
 > **DISCLAIMER !!**
 >
 > This project is not affiliated with, endorsed by, or sponsored by the Rust
@@ -15,7 +16,8 @@
 [Rust Raid](https://github.com/ghimiresdp/rust-raid) is a repository for Rust
 learners and coding challenge seekers.
 
-> **Note**: In some linux distributions (especially WSL), the following packages
+> [!NOTE]
+> In some linux distributions (especially WSL), the following packages
 > might need to be installed to run some binaries that require network request.
 >
 > 1. **`pkg-config`**
@@ -51,7 +53,7 @@ cargo run --bin huffman
 cargo test --bin huffman
 ```
 
-> **Note**:
+> [!NOTE]
 > _Topics that do not contain hyperlinks are work in progress and will be_
 > _updated once the solution gets completed._
 >
@@ -269,7 +271,8 @@ Example:
 cargo run --bin practical_number
 ```
 
-> **Note:** Binary names might not always be the name of the file. Sometimes, a
+> [!NOTE]
+> Binary names might not always be the name of the file. Sometimes, a
 > shorter version of the solution name is used to make easier to type. You can
 > see the name of binary in the respective `README.md` file or the `docstring`
 > of the respective solution.
