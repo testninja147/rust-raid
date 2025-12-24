@@ -24,3 +24,4 @@
 7. [Coin Change Problem](src/dp/coin_change.rs) `cargo run --bin coin_change`
 8. [Palindrome Partition](src/dp/palindrome_partition.rs) `cargo run --bin palindrome_partition`
 9. [Find Nth distinct number](src/dp/nth-distinct-number.rs) `cargo run --bin nth-distinct-number`
+10. [Find the length of the longest substring without duplicates](src/dp/longest-substring.rs) `cargo run --bin longest-substring`
