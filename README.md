@@ -139,6 +139,7 @@ cargo test --bin huffman
 7. [Coin Change Problem](problem-solving/src/dp/coin_change.rs) `cargo run --bin coin_change`
 8. [Palindrome Partition](problem-solving/src/dp/palindrome_partition.rs) `cargo run --bin palindrome_partition`
 9. [Find Nth distinct number](problem-solving/src/dp/nth-distinct-number.rs) `cargo run --bin nth-distinct-number`
+10. [Find the length of the longest substring without duplicates](problem-solving/src/dp/longest-substring.rs) `cargo run --bin longest-substring`
 
 ## [5. Advanced Concepts](advanced/README.md)
 
