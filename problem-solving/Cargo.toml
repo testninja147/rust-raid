@@ -77,3 +77,7 @@ path = 'src/dp/palindrome_partition.rs'
 [[bin]]
 name = 'nth-distinct-number'
 path = 'src/dp/nth-distinct-number.rs'
+
+[[bin]]
+name = 'longest-substring'
+path = 'src/dp/longest-substring.rs'
