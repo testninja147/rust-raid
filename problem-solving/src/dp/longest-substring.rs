@@ -2,6 +2,15 @@
 //!
 //! Given a string `s`, find the length of the longest substring without
 //! duplicate characters.
+//!
+//! Here, we check if the duplicate exists using the sliding window.
+//!
+//! we start with the hashmap that stores the character, and it's occurrence
+//! index. if the duplicate is found, left index of that character is moved
+//! so that the starting point of the count will be from that index + 1.
+//!
+//! at the end of the loop, we check if we achieved max length by comparing prev
+//! max length, and updating it.
 
 use std::{cmp::max, collections::HashMap};
 
@@ -17,13 +26,14 @@ fn length_of_longest_substring(string: String) -> usize {
 
     for (right, char) in string.chars().enumerate() {
         if let Some(&index) = char_map.get(&char) {
-            if index > left {
+            if index >= left {
                 left = index + 1;
             }
         }
-        println!("{left}, {right}");
         char_map.insert(char, right);
-        max_len = max(max_len, right - left);
+        max_len = max(max_len, right - left + 1);
+        // TODO: uncomment to see assigned values
+        // println!("character: {char}, left: {left}, right: {right}, max_len: {max_len}");
     }
     return max_len;
 }
@@ -45,9 +55,14 @@ mod tests {
         assert_eq!(length_of_longest_substring("a".to_owned()), 1);
     }
     #[test]
+    fn two_items() {
+        assert_eq!(length_of_longest_substring("au".to_owned()), 2);
+    }
+    #[test]
     fn test_for_correctness() {
         assert_eq!(length_of_longest_substring("abcabcbb".to_owned()), 3);
         assert_eq!(length_of_longest_substring("bbbbb".to_owned()), 1);
+        assert_eq!(length_of_longest_substring("bbbabb".to_owned()), 2);
         assert_eq!(length_of_longest_substring("pwwkew".to_owned()), 3);
         assert_eq!(length_of_longest_substring("abcbcad".to_owned()), 4);
     }
