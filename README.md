@@ -262,6 +262,12 @@ cargo run --bin cget https://mirrors.saswata.cc/kde/stable/krita/5.2.14/krita-x6
 
 ![cget](res/images/cget.png)
 
+> [!NOTE]
+> [furl-cli (or fURL)](https://github.com/ghimiresdp/furl-cli)
+> is a successor to this project. It incorporates refined logic, improved
+> multithreading, and other features such as better error handling, and pause
+> and resume download from the original implementation.
+
 ## Running binaries
 
 To run any binary, you can run the command `cargo run --bin <bin_name>`
