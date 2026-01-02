@@ -14,7 +14,7 @@
  *   total number of groups to be created is 2.
  *
  */
-use common::input; // common library for this repository
+use utils::input; // common library for this repository
 
 fn find_groups(mut list: Vec<usize>) -> usize {
     let mut sets = 1;

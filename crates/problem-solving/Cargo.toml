@@ -1,10 +1,10 @@
 [package]
 name = "problem_solving"
-version = "0.9.0"
-edition = "2024"
+version.workspace = true
+edition.workspace = true
 
 [dependencies]
-common = { workspace = true }
+utils = { workspace = true }
 
 # ==============================[ BASIC CHALLENGES]==============================
 

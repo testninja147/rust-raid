@@ -1,6 +1,6 @@
 [package]
 name = "ruscrypt"
-version = "0.5.0"
-edition = "2024"
+version.workspace = true
+edition.workspace = true
 
 [dependencies]

@@ -31,8 +31,8 @@
 //! 2. split an array and take the right slice [7 8 9] (take left if the comparison was different)
 //! 3. compare the middle most item of [7 8 9], i.e [8 > 7] (take the left slice)
 //! 4. compare the middle most item fo <7>: i.e [7 == 7]; return index of that number
-use common::parse_input; // common library for this repository
 use std::cmp::Ordering::{Equal, Greater, Less};
+use utils::parse_input; // common library for this repository
 
 fn binary_search(array: &mut [i32], item: i32) -> Option<usize> {
     let mut left = 0;

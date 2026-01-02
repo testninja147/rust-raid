@@ -6,7 +6,7 @@ use std::{
     process::exit,
 };
 
-use common::input;
+use utils::input;
 
 /// The enum `Color` can store one of the following values:
 /// * RGB

@@ -1,41 +1,91 @@
 [package]
-name = "data-structures"
-version = "0.9.0"
-edition = "2024"
+name = "dsa"
+version.workspace = true
+edition.workspace = true
 
 [dependencies]
+utils = { workspace = true }
 
+# =============================[ Data Structures  ]=============================
 
-# ==================================[ Arrays ]==================================
-[[bin]]
-name = "missing-number"
-path = "src/missing-number.rs"
-
-[[bin]]
-name = "longest-subarray"
-path = "src/longest-subarray.rs"
-
-# ===============================[ Linked Lists ]===============================
+# Linked Lists
 [[bin]]
 name = "linked-list-add"
-path = "src/linked-list-add.rs"
+path = "src/structures/linked-list-add.rs"
 
 [[bin]]
 name = "doubly_linked_list"
-path = "src/doubly_linked_list.rs"
-# ==================================[ Stacks ]==================================
+path = "src/structures/doubly_linked_list.rs"
+
+# stacks
 [[bin]]
 name = "stack"
-path = "src/stack.rs"
-# ==================================[ Queues ]==================================
+path = "src/structures/stack.rs"
+
+# arrays
+[[bin]]
+name = "missing-number"
+path = "src/structures/missing-number.rs"
+
+[[bin]]
+name = "longest-subarray"
+path = "src/structures/longest-subarray.rs"
+
+# queue
 [[bin]]
 name = "queue"
-path = "src/queue.rs"
-# ===============================[ Binary Tree ]================================
+path = "src/structures/queue.rs"
+
 [[bin]]
 name = "binary_tree"
-path = "src/binary_tree.rs"
-# ===============================[ Binary Tree ]================================
+path = "src/structures/binary_tree.rs"
+
 [[bin]]
 name = "trie"
-path = "src/trie.rs"
+path = "src/structures/trie.rs"
+
+# ================================[ Algorithms ]================================
+# Searching
+[[bin]]
+name = "linear_search"
+path = "src/algorithms/searching/linear_search.rs"
+
+[[bin]]
+name = "binary_search"
+path = "src/algorithms/searching/binary_search.rs"
+
+# Sorting
+[[bin]]
+name = "bubble_sort"
+path = "src/algorithms/sorting/bubble_sort.rs"
+
+[[bin]]
+name = "selection_sort"
+path = "src/algorithms/sorting/selection_sort.rs"
+
+[[bin]]
+name = "insertion_sort"
+path = "src/algorithms/sorting/insertion_sort.rs"
+
+[[bin]]
+name = "quick_sort"
+path = "src/algorithms/sorting/quick_sort.rs"
+
+[[bin]]
+name = "merge_sort"
+path = "src/algorithms/sorting/merge_sort.rs"
+
+# Greedy
+[[bin]]
+name = "huffman"
+path = "src/algorithms/greedy/huffman_coding.rs"
+
+[[bin]]
+name = "kruskal"
+path = "src/algorithms/greedy/kruskal.rs"
+
+# Miscellaneous
+
+[[bin]]
+name = "luhn"
+path = "src/algorithms/misc/luhn.rs"

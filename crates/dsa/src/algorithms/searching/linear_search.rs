@@ -22,7 +22,7 @@
 //! step 3: check third item (index = 2), item = 9 , == 9 [return index : 2]
 //!
 
-use common::parse_input;
+use utils::parse_input;
 
 fn linear_search(array: &mut [i32], item: i32) -> Result<usize, i8> {
     for (index, _item) in array.iter().enumerate() {

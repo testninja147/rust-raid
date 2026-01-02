@@ -23,7 +23,7 @@
 //!
 use std::{collections::HashMap, hash::Hash};
 
-use common::parse_input;
+use utils::parse_input;
 
 fn get_nth_distinct_number<T: Eq + Hash + Copy>(array: Vec<T>, pos: usize) -> Result<T, ()> {
     let mut counter = pos;

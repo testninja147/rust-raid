@@ -31,7 +31,7 @@
 //!
 //! for more details, check <https://en.wikipedia.org/wiki/Luhn_algorithm>.
 
-use common::input;
+use utils::input;
 
 struct CreditCard {
     number: String,

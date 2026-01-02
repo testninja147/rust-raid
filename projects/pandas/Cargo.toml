@@ -1,12 +1,12 @@
 [package]
 name = "pandas"
-version = "0.5.0"
-edition = "2024"
+version.workspace = true
+edition.workspace = true
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 
 [[bin]]
-name="pandas"
-path="src/main.rs"
+name = "pandas"
+path = "src/main.rs"
