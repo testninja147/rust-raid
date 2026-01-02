@@ -1,0 +1,17 @@
+[package]
+name = "memory-management"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+
+
+# ----------------------------[ Memory Management ]----------------------------
+
+[[bin]]
+name = "ownership"
+path = "src/ownership.rs"
+
+[[bin]]
+name = "unsafe"
+path = "src/unsafe.rs"

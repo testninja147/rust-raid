@@ -1,0 +1,83 @@
+[package]
+name = "problem_solving"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+utils = { workspace = true }
+
+# ==============================[ BASIC CHALLENGES]==============================
+
+[[bin]]
+name = "practical_number"
+path = "src/basic/practical_number.rs"
+
+[[bin]]
+name = "gcd"
+path = "src/basic/gcd.rs"
+
+[[bin]]
+name = "reverse_integer"
+path = "src/basic/reverse_integer.rs"
+
+[[bin]]
+name = "median"
+path = "src/basic/median.rs"
+
+[[bin]]
+name = "linear_regression"
+path = "src/basic/linear_regression.rs"
+
+[[bin]]
+name = "comprehension"
+path = "src/basic/comprehension.rs"
+
+[[bin]]
+name = "matrix_multiplication"
+path = "src/basic/matrix_multiplication.rs"
+
+[[bin]]
+name = "color-converter"
+path = "src/basic/color-converter.rs"
+
+# ============================[ Dynamic Programmign]============================
+
+[[bin]]
+name = "consecutive"
+path = "src/dp/consecutive_groups.rs"
+
+[[bin]]
+name = "repeat"
+path = "src/dp/repeat.rs"
+
+[[bin]]
+name = "minimize_sum"
+path = "src/dp/minimize_sum.rs"
+
+[[bin]]
+name = 'two_sum'
+path = "src/dp/two_sum.rs"
+
+[[bin]]
+name = "fibonacci"
+path = "src/dp/fibonacci.rs"
+
+[[bin]]
+name = 'lcs'
+path = "src/dp/longest_common_subsequence.rs"
+
+[[bin]]
+name = 'coin_change'
+path = 'src/dp/coin_change.rs'
+
+[[bin]]
+name = 'palindrome_partition'
+path = 'src/dp/palindrome_partition.rs'
+
+[[bin]]
+name = 'nth-distinct-number'
+path = 'src/dp/nth-distinct-number.rs'
+
+[[bin]]
+name = 'longest-substring'
+path = 'src/dp/longest-substring.rs'

@@ -1,12 +1,8 @@
 [package]
-name = "pandas"
+name = "utils"
 version.workspace = true
 edition.workspace = true
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-
-[[bin]]
-name = "pandas"
-path = "src/main.rs"

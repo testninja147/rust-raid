@@ -1,0 +1,24 @@
+[package]
+name = "error-handling"
+edition.workspace = true
+version.workspace = true
+
+[dependencies]
+
+
+# =================================[ Binaries ]=================================
+[[bin]]
+name = "panic"
+path = "src/panic.rs"
+
+[[bin]]
+name = "result"
+path = "src/result.rs"
+
+[[bin]]
+name = "propagation"
+path = "src/propagation.rs"
+
+[[bin]]
+name = "custom-error"
+path = "src/custom-error.rs"

@@ -1,0 +1,21 @@
+[package]
+name = "concurrent-programming"
+edition.workspace = true
+version.workspace = true
+
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+futures = { version = "*" }
+rand = { version = "*" }
+reqwest = "*"
+
+# ---------------------------------[ Binaries ]---------------------------------
+
+[[bin]]
+name = "threading"
+path = "src/threading.rs"
+
+[[bin]]
+name = "spawning"
+path = "src/spawning.rs"

@@ -1,0 +1,21 @@
+[package]
+name = "meta-programming"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+xml-derive = { path = "xml-derive" }
+
+
+# ---------------------------------[ Binaries ]---------------------------------
+[[bin]]
+name = "macro"
+path = "src/macro-rules.rs"
+
+[[bin]]
+name = "dsl"
+path = "src/dsl.rs"
+
+[[bin]]
+name = "derive"
+path = "src/derive-macro.rs"

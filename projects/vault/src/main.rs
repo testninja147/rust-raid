@@ -1,6 +1,6 @@
 mod vault;
-use common::input;
 use rpassword::prompt_password;
+use utils::input;
 use vault::Vault;
 
 fn message_box(message: impl ToString) {

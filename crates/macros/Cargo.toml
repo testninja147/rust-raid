@@ -1,0 +1,13 @@
+[package]
+name = "macros"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+shape = { path = "./shape" }
+shape_derive = { path = "./shape_derive" }
+
+
+[[bin]]
+name = "procedural_derive"
+path = "src/procedural_derive.rs"

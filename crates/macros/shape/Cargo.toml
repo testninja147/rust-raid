@@ -1,5 +1,5 @@
 [package]
-name = "ruscrypt"
+name = "shape"
 version.workspace = true
 edition.workspace = true
 
