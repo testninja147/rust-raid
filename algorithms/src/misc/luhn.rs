@@ -41,6 +41,9 @@ impl CreditCard {
         return Self { number };
     }
     fn is_valid(&self) -> bool {
+        if self.number.len() == 0 {
+            return false;
+        }
         let number = self
             .number
             .replace(" ", "") // remove spaces if available
@@ -74,4 +77,58 @@ fn main() {
         "The card number is {}.",
         if card.is_valid() { "valid" } else { " invalid" }
     )
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::CreditCard;
+
+    #[test]
+    fn test_valid_cards() {
+        assert_eq!(
+            CreditCard::new("4242424242424242".to_owned()).is_valid(),
+            true
+        );
+        assert_eq!(
+            CreditCard::new("5105105105105100".to_owned()).is_valid(),
+            true
+        );
+        assert_eq!(
+            CreditCard::new("5555552500001001".to_owned()).is_valid(),
+            true
+        );
+    }
+
+    #[test]
+    fn test_valid_cards_with_spaces() {
+        assert_eq!(
+            CreditCard::new("4242 4242 4242 4242".to_owned()).is_valid(),
+            true
+        );
+        assert_eq!(
+            CreditCard::new("5105 1051 0510 5100".to_owned()).is_valid(),
+            true
+        );
+        assert_eq!(
+            CreditCard::new("5555 5525 0000 1001".to_owned()).is_valid(),
+            true
+        );
+    }
+
+    #[test]
+    fn test_invalid_cards() {
+        assert_eq!(
+            CreditCard::new("4242 4242 4242 4243".to_owned()).is_valid(),
+            false
+        );
+        assert_eq!(
+            CreditCard::new("5105 1051 0510 5101".to_owned()).is_valid(),
+            false
+        );
+    }
+
+    #[test]
+    fn test_empty() {
+        assert_eq!(CreditCard::new("".to_owned()).is_valid(), false);
+    }
 }
