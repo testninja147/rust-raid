@@ -104,6 +104,15 @@ cargo test --bin huffman
 8. [Topological Sort]
 9. [A* Search Algorithm]
 
+### [2.4. Miscellaneous Algorithms](algorithms/src/misc/)
+
+1. [Luhn's algorithm to validate credit card number.](algorithms/src/misc/luhn.rs)
+
+   ```shell
+   cargo run --bin luhn
+   cargo test --bin luhn
+   ```
+
 ## [3. Design Patterns](./design-patterns/README.md)
 
 1. [Singleton Pattern](design-patterns/src/singleton.rs) `cargo run --bin singleton`

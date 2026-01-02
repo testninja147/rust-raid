@@ -42,3 +42,9 @@ path = "src/greedy/huffman_coding.rs"
 [[bin]]
 name = "kruskal"
 path = "src/greedy/kruskal.rs"
+
+# =======================[ Miscellaneous Algorithms  ]==========================
+
+[[bin]]
+name = "luhn"
+path = "src/misc/luhn.rs"

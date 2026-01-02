@@ -37,3 +37,12 @@ List Of Algorithms are as follows:
 7. [Floyd-Warshall Algorithm]
 8. [Topological Sort]
 9. [A* Search Algorithm]
+
+### Miscellaneous Algorithms
+
+1. Luhn's algorithm to validate credit card number.
+
+   ```shell
+   cargo run --bin luhn
+   cargo test --bin luhn
+   ```
