@@ -1,8 +1,14 @@
 [workspace]
 resolver = "3"
 
-members = ["crates/*", "projects/*", "crates/advanced/*"]
-exclude = ["crates/advanced"]
+members = [
+"crates/dsa",
+"crates/design-patterns",
+"crates/problem-solving",
+"crates/macros",
+"crates/advanced/*",
+"projects/*",
+]
 
 [workspace.package]
 version = "0.10.0"
