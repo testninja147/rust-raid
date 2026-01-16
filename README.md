@@ -244,6 +244,7 @@ cargo test --bin huffman
    ```
 
 8. [Adapter Pattern](crates/design-patterns/src/adapter.rs)
+
    ```sh
    cargo run --bin adapter
    ```

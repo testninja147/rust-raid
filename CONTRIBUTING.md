@@ -50,7 +50,8 @@ respectful environment where everyone feels welcome and valued.
   - Discrimination
   - Threats
   - Bullying
-- **Hate Speech**: Language that promotes hatred or discrimination against any group of people.
+- **Hate Speech**: Language that promotes hatred or discrimination against any
+  group of people.
 - **Personal Attacks**: Attacks on a person's character or abilities.
 - **Plagiarism**: Claiming credit for work that is not your own.
 
