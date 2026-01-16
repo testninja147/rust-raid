@@ -175,7 +175,7 @@ cargo test --bin huffman
 1. [List group by consecutive numbers](crates/problem-solving/src/dp/consecutive_groups.rs)
    `cargo run --bin consecutive_groups`
 2. [Find the length of the longest substring with maximum 2 repetition](crates/problem-solving/src/dp/repeat.rs)
-  `cargo run --bin repeat`
+   `cargo run --bin repeat`
 3. [Find the index of two numbers in an array whose sum equals to the provided target](crates/problem-solving/src/dp/two_sum.rs)
    `cargo run --bin two_sum`
 4. [Minimize the Sum from an array](crates/problem-solving/src/dp/minimize_sum.rs)
@@ -190,7 +190,7 @@ cargo test --bin huffman
    `cargo run --bin palindrome_partition`
 9. [Find Nth distinct number](crates/problem-solving/src/dp/nth-dFFistinct-number.rs)
    `cargo run --bin nth-distinct-number`
-10. [Find the length of the longest substring without duplicates](crates/problem-solving/src/dp/longest-substring.rs) 
+10. [Find the length of the longest substring without duplicates](crates/problem-solving/src/dp/longest-substring.rs)
     `cargo run --bin longest-substring`
 
 ## [4. Advanced Concepts](crates/advanced/README.md)
@@ -204,50 +204,72 @@ cargo test --bin huffman
 
 ### 4.2. Type System and Generics
 
-- [Generic Types](crates/advanced/types-and-generics/src/generics.rs) `cargo run --bin generics`
-- [Trait Objects and Dynamic Dispatch](crates/advanced/types-and-generics/src/traits.rs) `cargo run --bin traits`
+- [Generic Types](crates/advanced/types-and-generics/src/generics.rs)
+  `cargo run --bin generics`
+- [Trait Objects and Dynamic Dispatch](crates/advanced/types-and-generics/src/traits.rs)
+  `cargo run --bin traits`
 - Associated types and Generic Type parameters
 - Lifetime Sub-typing
 
 ### 4.3. Concurrency and Parallelism
 
-- [`Async/Await` and `Futures`](crates/advanced/concurrent-programming/src/threading.rs) `cargo run --bin threading`
-- [Thread Spawning](crates/advanced/concurrent-programming/src/spawning.rs) `cargo run --bin spawning`
+- [`Async/Await` and `Futures`](crates/advanced/concurrent-programming/src/threading.rs)
+  `cargo run --bin threading`
+- [Thread Spawning](crates/advanced/concurrent-programming/src/spawning.rs)
+  `cargo run --bin spawning`
 
 ### 4.4. Macros and Meta programming
 
-- [`macro_rules!`](crates/advanced/meta-programming/src/macro-rules.rs) `cargo run --bin macro`
-- [Derive Macros](crates/advanced/meta-programming/src/derive-macro.rs) `cargo run --bin derive`
-- [Building Domain-Specific Languages (DSL)](crates/advanced/meta-programming/src/dsl.rs) `cargo run --bin dsl`
+- [`macro_rules!`](crates/advanced/meta-programming/src/macro-rules.rs)
+  `cargo run --bin macro`
+- [Derive Macros](crates/advanced/meta-programming/src/derive-macro.rs)
+  `cargo run --bin derive`
+- [Building Domain-Specific Languages (DSL)](crates/advanced/meta-programming/src/dsl.rs)
+  `cargo run --bin dsl`
 
 ### 4.5. Low-level and systems programming
 
-- [Conditional Compilation](crates/advanced/systems-programming/src/conditional-compilation.rs) `cargo run --bin cc`
-- [Inline Assembly](crates/advanced/systems-programming/src/inline-assembly.rs) `cargo run --bin assembly`
+- [Conditional Compilation](crates/advanced/systems-programming/src/conditional-compilation.rs)
+  `cargo run --bin cc`
+- [Inline Assembly](crates/advanced/systems-programming/src/inline-assembly.rs)
+  `cargo run --bin assembly`
 - Foreign Function Interface (FFI)
 - Embedded rust and Bare-metal programming
 
 ### 4.6. Error handling and patterns
 
-- [Unrecoverable error and `panic!` macro](crates/advanced/error-handling/src/panic.rs) `cargo run --bin panic`
-- [Recoverable error and `Result` enum](crates/advanced/error-handling/src/result.rs) `cargo run --bin result`
+- [Unrecoverable error and `panic!` macro](crates/advanced/error-handling/src/panic.rs)
+  `cargo run --bin panic`
+- [Recoverable error and `Result` enum](crates/advanced/error-handling/src/result.rs)
+  `cargo run --bin result`
 - Advanced Error Handling
-  - [Propagating Errors with `?` operator](crates/advanced/error-handling/src/propagation.rs) `cargo run --bin propagation`
-  - [Custom Errors](crates/advanced/error-handling/src/custom-error.rs) `cargo run --bin custom-error`
+  - [Propagating Errors with `?` operator](crates/advanced/error-handling/src/propagation.rs)
+    `cargo run --bin propagation`
+  - [Custom Errors](crates/advanced/error-handling/src/custom-error.rs)
+    `cargo run --bin custom-error`
 - Dependency Injection patterns in rust
 
-### [4.7. Operator Overloading](crates/advanced/operator-overloading/src/main.rs) `cargo run --bin operator-overloading`
+### [4.7. Operator Overloading](crates/advanced/operator-overloading/src/main.rs)
+
+```sh
+cargo run --bin operator-overloading
+```
 
 - Example 1: Operator Overloading in structs (overloading `+` and `-` operators)
 - Example 2: Matrix Multiplication ( overloading `*` operator)
-- Example 3: Scalar Multiplication (operator overloading with heterogeneous data type)
+- Example 3: Scalar Multiplication
+  (operator overloading with heterogeneous data type)
 
 ### 4.8. Smart Pointers
 
-- [Box Pointers](crates/advanced/smart-pointers/src/box.rs) `cargo run --bin box`
-- [Reference Counters (`Rc`)](crates/advanced/smart-pointers/src/rc.rs) `cargo run --bin rc`
-- [`RefCell`](crates/advanced/smart-pointers/src/refcell.rs)`cargo run --bin refcell`
-- [`Arc Mutex`](crates/advanced/smart-pointers/src/arc-mutex.rs)`cargo run --bin arc-mutex`
+- [Box Pointers](crates/advanced/smart-pointers/src/box.rs)
+  `cargo run --bin box`
+- [Reference Counters (`Rc`)](crates/advanced/smart-pointers/src/rc.rs)
+  `cargo run --bin rc`
+- [`RefCell`](crates/advanced/smart-pointers/src/refcell.rs)
+  `cargo run --bin refcell`
+- [`Arc Mutex`](crates/advanced/smart-pointers/src/arc-mutex.rs)
+  `cargo run --bin arc-mutex`
 
 ### 4.9. Specialized topics
 
