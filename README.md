@@ -65,44 +65,105 @@ cargo test --bin huffman
 
 1. **Arrays**
    - [Find the missing number](crates/dsa/src/structures/missing-number.rs)
-     `cargo run --bin missing-number`
+
+     ```sh
+     cargo run --bin missing-number
+     ```
+
    - [Find the length of the longest subarray with sum K](crates/dsa/src/structures/longest-subarray.rs)
-     `cargo run --bin longest-subarray`
+
+     ```sh
+     cargo run --bin longest-subarray
+     ```
+
 2. **Singly Linked Lists**
    - [Add two numbers represented by linked list](crates/dsa/src/structures/linked-list-add.rs)
-     `cargo run --bin linked-list-add`
-3. [**Doubly Linked Lists**](crates/dsa/src/structures/doubly_linked_list.rs)
-   `cargo run --bin doubly_linked_list`
 
-4. [**Stacks**](crates/dsa/src/structures/stack.rs) `cargo run --bin stack`
-5. [**Queues**](crates/dsa/src/structures/queue.rs) `cargo run --bin queue`
+     ```sh
+     cargo run --bin linked-list-add
+     ```
+
+3. [**Doubly Linked Lists**](crates/dsa/src/structures/doubly_linked_list.rs)
+
+   ```sh
+   cargo run --bin doubly_linked_list
+   ```
+
+4. [**Stacks**](crates/dsa/src/structures/stack.rs)
+
+   ```sh
+   cargo run --bin stack
+   ```
+
+5. [**Queues**](crates/dsa/src/structures/queue.rs)
+
+   ```sh
+   cargo run --bin queue
+   ```
+
 6. [**Binary Trees**](crates/dsa/src/structures/binary_tree.rs)
-   `cargo run --bin binary_tree`
-7. [**Trie**](crates/dsa/src/structures/trie.rs) `cargo run --bin trie`
+
+   ```sh
+   cargo run --bin binary_tree
+   ```
+
+7. [**Trie**](crates/dsa/src/structures/trie.rs)
+
+   ```sh
+   cargo run --bin trie
+   ```
 
 ### [1.2. Algorithms](crates/dsa/src/algorithms/README.md)
 
 #### [1.2.1. Searching](crates/dsa/src/algorithms/searching/)
 
 1. [Linear Searching](crates/dsa/src/algorithms/searching/linear_search.rs)
-   `cargo run --bin linear_search`
+
+   ```sh
+   cargo run --bin linear_search
+   ```
+
 2. [Binary Searching](crates/dsa/src/algorithms/searching/binary_search.rs)
-   `cargo run --bin binary_search`
+
+   ```sh
+   cargo run --bin binary_search
+   ```
+
 3. [Depth First Search (DFS)]
 4. [Breadth First Search (BFS)]
 
 #### [1.2.2. Sorting](crates/dsa/src/algorithms/sorting/)
 
 1. [bubble sort](crates/dsa/src/algorithms/sorting/bubble_sort.rs)
-   `cargo run --bin bubble_sort`
+
+   ```sh
+   cargo run --bin bubble_sort
+   ```
+
 2. [selection sort](crates/dsa/src/algorithms/sorting/selection_sort.rs)
-   `cargo run --bin selection_sort`
+
+   ```sh
+   cargo run --bin selection_sort
+   ```
+
 3. [insertion sort](crates/dsa/src/algorithms/sorting/insertion_sort.rs)
-   `cargo run --bin insertion_sort`
+
+   ```sh
+   cargo run --bin insertion_sort
+   ```
+
 4. [quick sort](crates/dsa/src/algorithms/sorting/quick_sort.rs)
-   `cargo run --bin quick_sort`
+
+   ```sh
+   cargo run --bin quick_sort
+   ```
+
 5. [Merge sort](crates/dsa/src/algorithms/sorting/merge_sort.rs)
-   `cargo run --bin merge_sort`
+
+   ```sh
+   cargo run --bin merge_sort
+   ```
+
 6. [heap Sort]
 7. [Counting Sort]
 8. [Radix Sort]
@@ -111,9 +172,17 @@ cargo test --bin huffman
 
 1. [Activity Selection]
 2. [Huffman Coding](crates/dsa/src/algorithms/greedy/huffman_coding.rs)
-   `cargo run --bin huffman`
+
+   ```sh
+   cargo run --bin huffman
+   ```
+
 3. [Krushkal's algorithm](crates/dsa/src/algorithms/greedy/kruskal.rs)
-   `cargo run --bin kruskal`
+
+   ```sh
+   cargo run --bin kruskal
+   ```
+
 4. [Prim's Algorithm]
 5. [Dijkstra's Algorithm]
 6. [Bellman-Ford Algorithm]
@@ -133,120 +202,277 @@ cargo test --bin huffman
 ## [2. Design Patterns](crates/design-patterns/README.md)
 
 1. [Singleton Pattern](crates/design-patterns/src/singleton.rs)
-   `cargo run --bin singleton`
+
+   ```sh
+   cargo run --bin singleton
+   ```
+
 2. [Factory Pattern](crates/design-patterns/src/factory.rs)
-   `cargo run --bin factory`
+
+   ```sh
+   cargo run --bin factory
+   ```
+
 3. [Builder Pattern](crates/design-patterns/src/builder.rs)
-   `cargo run --bin builder`
+
+   ```sh
+   cargo run --bin builder
+   ```
+
 4. [Decorator Pattern](crates/design-patterns/src/decorator.rs)
-   `cargo run --bin decorator`
+
+   ```sh
+   cargo run --bin decorator
+   ```
+
 5. [Observer Pattern](crates/design-patterns/src/observer.rs)
-   `cargo run --bin observer`
+
+   ```sh
+   cargo run --bin observer
+   ```
+
 6. [Strategy Pattern](crates/design-patterns/src/strategy.rs)
-   `cargo run --bin strategy`
+
+   ```sh
+   cargo run --bin strategy
+   ```
+
 7. [Command Pattern](crates/design-patterns/src/command.rs)
-   `cargo run --bin command`
+
+   ```sh
+   cargo run --bin command
+   ```
+
 8. [Adapter Pattern](crates/design-patterns/src/adapter.rs)
-   `cargo run --bin adapter`
+   ```sh
+   cargo run --bin adapter
+   ```
 
 ## [3. Problem Solving](crates/problem-solving/README.md)
 
 ### [3.1. Basic Problems](crates/problem-solving/src/basic/)
 
 1. [Practical Number](crates/problem-solving/src/basic/practical_number.rs)
-   `cargo run --bin practical_number`
+
+   ```sh
+   cargo run --bin practical_number
+   ```
+
 2. [Greatest Common Divisor](crates/problem-solving/src/basic/gcd.rs)
-   `cargo run --bin gcd`
+
+   ```sh
+   cargo run --bin gcd
+   ```
+
 3. [Median](crates/problem-solving/src/basic/median.rs)
-   `cargo run --bin median`
+
+   ```sh
+   cargo run --bin median
+   ```
+
 4. [Reverse digits of the integer](crates/problem-solving/src/basic/reverse_integer.rs)
-   `cargo run --bin reverse_integer`
+
+   ```sh
+   cargo run --bin reverse_integer
+   ```
+
 5. [List Comprehension](crates/problem-solving/src/basic/comprehension.rs)
-   `cargo run --bin comprehension`
+
+   ```sh
+   cargo run --bin comprehension
+   ```
+
 6. [Linear Regression Model](crates/problem-solving/src/basic/linear_regression.rs)
-   `cargo run --bin linear_regression`
+
+   ```sh
+   cargo run --bin linear_regression
+   ```
+
 7. [Matrix Multiplication Model](crates/problem-solving/src/basic/matrix_multiplication.rs)
-   `cargo run --bin matrix_multiplication`
+
+   ```sh
+   cargo run --bin matrix_multiplication
+   ```
+
 8. [Color Converter](crates/problem-solving/src/basic/color-converter.rs)
-   `cargo run --bin color-converter`
+
+   ```sh
+   cargo run --bin color-converter
+   ```
 
 ### [3.2. Dynamic Programming](crates/problem-solving/src/dp/)
 
 1. [List group by consecutive numbers](crates/problem-solving/src/dp/consecutive_groups.rs)
-   `cargo run --bin consecutive_groups`
+
+   ```sh
+   cargo run --bin consecutive_groups
+   ```
+
 2. [Find the length of the longest substring with maximum 2 repetition](crates/problem-solving/src/dp/repeat.rs)
-   `cargo run --bin repeat`
+
+   ```sh
+   cargo run --bin repeat
+   ```
+
 3. [Find the index of two numbers in an array whose sum equals to the provided target](crates/problem-solving/src/dp/two_sum.rs)
-   `cargo run --bin two_sum`
+
+   ```sh
+   cargo run --bin two_sum
+   ```
+
 4. [Minimize the Sum from an array](crates/problem-solving/src/dp/minimize_sum.rs)
-   `cargo run --bin minimize_sum`
+
+   ```sh
+   cargo run --bin minimize_sum
+   ```
+
 5. [Fibonacci Series](crates/problem-solving/src/dp/fibonacci.rs)
-   `cargo run --bin fibonacci`
+
+   ```sh
+   cargo run --bin fibonacci
+   ```
+
 6. [Longest Common Subsequence](crates/problem-solving/src/dp/longest_common_subsequence.rs)
-   `cargo run --bin lcs`
+
+   ```sh
+   cargo run --bin lcs
+   ```
+
 7. [Coin Change Problem](crates/problem-solving/src/dp/coin_change.rs)
-   `cargo run --bin coin_change`
+
+   ```sh
+   cargo run --bin coin_change
+   ```
+
 8. [Palindrome Partition](crates/problem-solving/src/dp/palindrome_partition.rs)
-   `cargo run --bin palindrome_partition`
+
+   ```sh
+   cargo run --bin palindrome_partition
+   ```
+
 9. [Find Nth distinct number](crates/problem-solving/src/dp/nth-dFFistinct-number.rs)
-   `cargo run --bin nth-distinct-number`
+
+   ```sh
+   cargo run --bin nth-distinct-number
+   ```
+
 10. [Find the length of the longest substring without duplicates](crates/problem-solving/src/dp/longest-substring.rs)
-    `cargo run --bin longest-substring`
+
+    ```sh
+    cargo run --bin longest-substring
+    ```
 
 ## [4. Advanced Concepts](crates/advanced/README.md)
 
 ### 4.1. Memory Management
 
 - [Ownership, borrowing, and Lifetimes](crates/advanced/memory-management/src/ownership.rs)
-  `cargo run --bin ownership`
+
+  ```sh
+  cargo run --bin ownership
+  ```
+
 - [Unsafe Rust](crates/advanced/memory-management/src/unsafe.rs)
-  `cargo run --bin unsafe`
+
+  ```sh
+  cargo run --bin unsafe
+  ```
 
 ### 4.2. Type System and Generics
 
 - [Generic Types](crates/advanced/types-and-generics/src/generics.rs)
-  `cargo run --bin generics`
+
+  ```sh
+  cargo run --bin generics
+  ```
+
 - [Trait Objects and Dynamic Dispatch](crates/advanced/types-and-generics/src/traits.rs)
-  `cargo run --bin traits`
+
+  ```sh
+  cargo run --bin traits
+  ```
+
 - Associated types and Generic Type parameters
 - Lifetime Sub-typing
 
 ### 4.3. Concurrency and Parallelism
 
 - [`Async/Await` and `Futures`](crates/advanced/concurrent-programming/src/threading.rs)
-  `cargo run --bin threading`
+
+  ```sh
+  cargo run --bin threading
+  ```
+
 - [Thread Spawning](crates/advanced/concurrent-programming/src/spawning.rs)
-  `cargo run --bin spawning`
+
+  ```sh
+  cargo run --bin spawning
+  ```
 
 ### 4.4. Macros and Meta programming
 
 - [`macro_rules!`](crates/advanced/meta-programming/src/macro-rules.rs)
-  `cargo run --bin macro`
+
+  ```sh
+  cargo run --bin macro
+  ```
+
 - [Derive Macros](crates/advanced/meta-programming/src/derive-macro.rs)
-  `cargo run --bin derive`
+
+  ```sh
+  cargo run --bin derive
+  ```
+
 - [Building Domain-Specific Languages (DSL)](crates/advanced/meta-programming/src/dsl.rs)
-  `cargo run --bin dsl`
+
+  ```sh
+  cargo run --bin dsl
+  ```
 
 ### 4.5. Low-level and systems programming
 
 - [Conditional Compilation](crates/advanced/systems-programming/src/conditional-compilation.rs)
-  `cargo run --bin cc`
+
+  ```sh
+  cargo run --bin cc
+  ```
+
 - [Inline Assembly](crates/advanced/systems-programming/src/inline-assembly.rs)
-  `cargo run --bin assembly`
+
+  ```sh
+  cargo run --bin assembly
+  ```
+
 - Foreign Function Interface (FFI)
 - Embedded rust and Bare-metal programming
 
 ### 4.6. Error handling and patterns
 
 - [Unrecoverable error and `panic!` macro](crates/advanced/error-handling/src/panic.rs)
-  `cargo run --bin panic`
+
+  ```sh
+  cargo run --bin panic
+  ```
+
 - [Recoverable error and `Result` enum](crates/advanced/error-handling/src/result.rs)
-  `cargo run --bin result`
+
+  ```sh
+  cargo run --bin result
+  ```
+
 - Advanced Error Handling
   - [Propagating Errors with `?` operator](crates/advanced/error-handling/src/propagation.rs)
-    `cargo run --bin propagation`
+
+    ```sh
+    cargo run --bin propagation
+    ```
+
   - [Custom Errors](crates/advanced/error-handling/src/custom-error.rs)
-    `cargo run --bin custom-error`
+
+    ```sh
+    cargo run --bin custom-error
+    ```
+
 - Dependency Injection patterns in rust
 
 ### [4.7. Operator Overloading](crates/advanced/operator-overloading/src/main.rs)
@@ -263,13 +489,28 @@ cargo run --bin operator-overloading
 ### 4.8. Smart Pointers
 
 - [Box Pointers](crates/advanced/smart-pointers/src/box.rs)
-  `cargo run --bin box`
+
+  ```sh
+  cargo run --bin box
+  ```
+
 - [Reference Counters (`Rc`)](crates/advanced/smart-pointers/src/rc.rs)
-  `cargo run --bin rc`
+
+  ```sh
+  cargo run --bin rc
+  ```
+
 - [`RefCell`](crates/advanced/smart-pointers/src/refcell.rs)
-  `cargo run --bin refcell`
+
+  ```sh
+  cargo run --bin refcell
+  ```
+
 - [`Arc Mutex`](crates/advanced/smart-pointers/src/arc-mutex.rs)
-  `cargo run --bin arc-mutex`
+
+  ```sh
+  cargo run --bin arc-mutex
+  ```
 
 ### 4.9. Specialized topics
 
