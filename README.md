@@ -25,7 +25,7 @@ learners and coding challenge seekers.
 >
 > Example commands for installing in ubuntu
 >
-> ```bash
+> ```sh
 > sudo apt install pkgconf
 > sudo apt install libssl-dev
 > ```
@@ -43,11 +43,11 @@ learners and coding challenge seekers.
 Each workspace contains multiple binaries so that it will be easier to run
 a specific problem by selecting binaries.
 
-You can run the `cargo run --bin <binary_name>` to run binaries. To run all test cases,
-you can run `cargo test` command, or to run specific test, you can run
+You can run the `cargo run --bin <binary_name>` to run binaries. To run all test
+cases, you can run `cargo test` command, or to run specific test, you can run
 `cargo test --bin <binary_name>`
 
-```bash
+```sh
 # Example: running binary for huffman encoding
 cargo run --bin huffman
 cargo test --bin huffman
@@ -64,32 +64,45 @@ cargo test --bin huffman
 ### [1.1. Data Structures](crates/dsa/src/structures/)
 
 1. **Arrays**
-   - [Find the missing number](crates/dsa/src/structures/missing-number.rs) `cargo run --bin missing-number`
-   - [Find the length of the longest subarray with sum K](crates/dsa/src/structures/longest-subarray.rs) `cargo run --bin longest-subarray`
+   - [Find the missing number](crates/dsa/src/structures/missing-number.rs)
+     `cargo run --bin missing-number`
+   - [Find the length of the longest subarray with sum K](crates/dsa/src/structures/longest-subarray.rs)
+     `cargo run --bin longest-subarray`
 2. **Singly Linked Lists**
-   - [Add two numbers represented by linked list](crates/dsa/src/structures/linked-list-add.rs) `cargo run --bin linked-list-add`
-3. [**Doubly Linked Lists**](crates/dsa/src/structures/doubly_linked_list.rs) `cargo run --bin doubly_linked_list`
+   - [Add two numbers represented by linked list](crates/dsa/src/structures/linked-list-add.rs)
+     `cargo run --bin linked-list-add`
+3. [**Doubly Linked Lists**](crates/dsa/src/structures/doubly_linked_list.rs)
+   `cargo run --bin doubly_linked_list`
+
 4. [**Stacks**](crates/dsa/src/structures/stack.rs) `cargo run --bin stack`
 5. [**Queues**](crates/dsa/src/structures/queue.rs) `cargo run --bin queue`
-6. [**Binary Trees**](crates/dsa/src/structures/binary_tree.rs) `cargo run --bin binary_tree`
+6. [**Binary Trees**](crates/dsa/src/structures/binary_tree.rs)
+   `cargo run --bin binary_tree`
 7. [**Trie**](crates/dsa/src/structures/trie.rs) `cargo run --bin trie`
 
 ### [1.2. Algorithms](crates/dsa/src/algorithms/README.md)
 
 #### [1.2.1. Searching](crates/dsa/src/algorithms/searching/)
 
-1. [Linear Searching](crates/dsa/src/algorithms/searching/linear_search.rs) `cargo run --bin linear_search`
-2. [Binary Searching](crates/dsa/src/algorithms/searching/binary_search.rs) `cargo run --bin binary_search`
+1. [Linear Searching](crates/dsa/src/algorithms/searching/linear_search.rs)
+   `cargo run --bin linear_search`
+2. [Binary Searching](crates/dsa/src/algorithms/searching/binary_search.rs)
+   `cargo run --bin binary_search`
 3. [Depth First Search (DFS)]
 4. [Breadth First Search (BFS)]
 
 #### [1.2.2. Sorting](crates/dsa/src/algorithms/sorting/)
 
-1. [bubble sort](crates/dsa/src/algorithms/sorting/bubble_sort.rs) `cargo run --bin bubble_sort`
-2. [selection sort](crates/dsa/src/algorithms/sorting/selection_sort.rs) `cargo run --bin selection_sort`
-3. [insertion sort](crates/dsa/src/algorithms/sorting/insertion_sort.rs) `cargo run --bin insertion_sort`
-4. [quick sort](crates/dsa/src/algorithms/sorting/quick_sort.rs) `cargo run --bin quick_sort`
-5. [Merge sort](crates/dsa/src/algorithms/sorting/merge_sort.rs) `cargo run --bin merge_sort`
+1. [bubble sort](crates/dsa/src/algorithms/sorting/bubble_sort.rs)
+   `cargo run --bin bubble_sort`
+2. [selection sort](crates/dsa/src/algorithms/sorting/selection_sort.rs)
+   `cargo run --bin selection_sort`
+3. [insertion sort](crates/dsa/src/algorithms/sorting/insertion_sort.rs)
+   `cargo run --bin insertion_sort`
+4. [quick sort](crates/dsa/src/algorithms/sorting/quick_sort.rs)
+   `cargo run --bin quick_sort`
+5. [Merge sort](crates/dsa/src/algorithms/sorting/merge_sort.rs)
+   `cargo run --bin merge_sort`
 6. [heap Sort]
 7. [Counting Sort]
 8. [Radix Sort]
@@ -97,8 +110,10 @@ cargo test --bin huffman
 #### [1.2.3 Greedy and Graph Algorithms](crates/dsa/src/algorithms/greedy/)
 
 1. [Activity Selection]
-2. [Huffman Coding](crates/dsa/src/algorithms/greedy/huffman_coding.rs) `cargo run --bin huffman`
-3. [Krushkal's algorithm](crates/dsa/src/algorithms/greedy/kruskal.rs) `cargo run --bin kruskal`
+2. [Huffman Coding](crates/dsa/src/algorithms/greedy/huffman_coding.rs)
+   `cargo run --bin huffman`
+3. [Krushkal's algorithm](crates/dsa/src/algorithms/greedy/kruskal.rs)
+   `cargo run --bin kruskal`
 4. [Prim's Algorithm]
 5. [Dijkstra's Algorithm]
 6. [Bellman-Ford Algorithm]
@@ -110,54 +125,82 @@ cargo test --bin huffman
 
 1. [Luhn's algorithm to validate credit card number.](crates/dsa/src/algorithms/misc/luhn.rs)
 
-   ```shell
+   ```sh
    cargo run --bin luhn
    cargo test --bin luhn
    ```
 
 ## [2. Design Patterns](crates/design-patterns/README.md)
 
-1. [Singleton Pattern](crates/design-patterns/src/singleton.rs) `cargo run --bin singleton`
-2. [Factory Pattern](crates/design-patterns/src/factory.rs) `cargo run --bin factory`
-3. [Builder Pattern](crates/design-patterns/src/builder.rs) `cargo run --bin builder`
-4. [Decorator Pattern](crates/design-patterns/src/decorator.rs) `cargo run --bin decorator`
-5. [Observer Pattern](crates/design-patterns/src/observer.rs) `cargo run --bin observer`
-6. [Strategy Pattern](crates/design-patterns/src/strategy.rs) `cargo run --bin strategy`
-7. [Command Pattern](crates/design-patterns/src/command.rs) `cargo run --bin command`
-8. [Adapter Pattern](crates/design-patterns/src/adapter.rs) `cargo run --bin adapter`
+1. [Singleton Pattern](crates/design-patterns/src/singleton.rs)
+   `cargo run --bin singleton`
+2. [Factory Pattern](crates/design-patterns/src/factory.rs)
+   `cargo run --bin factory`
+3. [Builder Pattern](crates/design-patterns/src/builder.rs)
+   `cargo run --bin builder`
+4. [Decorator Pattern](crates/design-patterns/src/decorator.rs)
+   `cargo run --bin decorator`
+5. [Observer Pattern](crates/design-patterns/src/observer.rs)
+   `cargo run --bin observer`
+6. [Strategy Pattern](crates/design-patterns/src/strategy.rs)
+   `cargo run --bin strategy`
+7. [Command Pattern](crates/design-patterns/src/command.rs)
+   `cargo run --bin command`
+8. [Adapter Pattern](crates/design-patterns/src/adapter.rs)
+   `cargo run --bin adapter`
 
 ## [3. Problem Solving](crates/problem-solving/README.md)
 
 ### [3.1. Basic Problems](crates/problem-solving/src/basic/)
 
-1. [Practical Number](crates/problem-solving/src/basic/practical_number.rs) `cargo run --bin practical_number`
-2. [Greatest Common Divisor](crates/problem-solving/src/basic/gcd.rs) `cargo run --bin gcd`
-3. [Median](crates/problem-solving/src/basic/median.rs) `cargo run --bin median`
-4. [Reverse digits of the integer](crates/problem-solving/src/basic/reverse_integer.rs) `cargo run --bin reverse_integer`
-5. [List Comprehension](crates/problem-solving/src/basic/comprehension.rs) `cargo run --bin comprehension`
-6. [Linear Regression Model](crates/problem-solving/src/basic/linear_regression.rs) `cargo run --bin linear_regression`
-7. [Matrix Multiplication Model](crates/problem-solving/src/basic/matrix_multiplication.rs) `cargo run --bin matrix_multiplication`
-8. [Color Converter](crates/problem-solving/src/basic/color-converter.rs) `cargo run --bin color-converter`
+1. [Practical Number](crates/problem-solving/src/basic/practical_number.rs)
+   `cargo run --bin practical_number`
+2. [Greatest Common Divisor](crates/problem-solving/src/basic/gcd.rs)
+   `cargo run --bin gcd`
+3. [Median](crates/problem-solving/src/basic/median.rs)
+   `cargo run --bin median`
+4. [Reverse digits of the integer](crates/problem-solving/src/basic/reverse_integer.rs)
+   `cargo run --bin reverse_integer`
+5. [List Comprehension](crates/problem-solving/src/basic/comprehension.rs)
+   `cargo run --bin comprehension`
+6. [Linear Regression Model](crates/problem-solving/src/basic/linear_regression.rs)
+   `cargo run --bin linear_regression`
+7. [Matrix Multiplication Model](crates/problem-solving/src/basic/matrix_multiplication.rs)
+   `cargo run --bin matrix_multiplication`
+8. [Color Converter](crates/problem-solving/src/basic/color-converter.rs)
+   `cargo run --bin color-converter`
 
 ### [3.2. Dynamic Programming](crates/problem-solving/src/dp/)
 
-1. [List group by consecutive numbers](crates/problem-solving/src/dp/consecutive_groups.rs) `cargo run --bin consecutive_groups`
-2. [Find the length of the longest substring with maximum 2 repetition](crates/problem-solving/src/dp/repeat.rs)`cargo run --bin repeat`
-3. [Find the index of two numbers in an array whose sum equals to the provided target](crates/problem-solving/src/dp/two_sum.rs) `cargo run --bin two_sum`
-4. [Minimize the Sum from an array](crates/problem-solving/src/dp/minimize_sum.rs) `cargo run --bin minimize_sum`
-5. [Fibonacci Series](crates/problem-solving/src/dp/fibonacci.rs) `cargo run --bin fibonacci`
-6. [Longest Common Subsequence](crates/problem-solving/src/dp/longest_common_subsequence.rs) `cargo run --bin lcs`
-7. [Coin Change Problem](crates/problem-solving/src/dp/coin_change.rs) `cargo run --bin coin_change`
-8. [Palindrome Partition](crates/problem-solving/src/dp/palindrome_partition.rs) `cargo run --bin palindrome_partition`
-9. [Find Nth distinct number](crates/problem-solving/src/dp/nth-distinct-number.rs) `cargo run --bin nth-distinct-number`
-10. [Find the length of the longest substring without duplicates](crates/problem-solving/src/dp/longest-substring.rs) `cargo run --bin longest-substring`
+1. [List group by consecutive numbers](crates/problem-solving/src/dp/consecutive_groups.rs)
+   `cargo run --bin consecutive_groups`
+2. [Find the length of the longest substring with maximum 2 repetition](crates/problem-solving/src/dp/repeat.rs)
+  `cargo run --bin repeat`
+3. [Find the index of two numbers in an array whose sum equals to the provided target](crates/problem-solving/src/dp/two_sum.rs)
+   `cargo run --bin two_sum`
+4. [Minimize the Sum from an array](crates/problem-solving/src/dp/minimize_sum.rs)
+   `cargo run --bin minimize_sum`
+5. [Fibonacci Series](crates/problem-solving/src/dp/fibonacci.rs)
+   `cargo run --bin fibonacci`
+6. [Longest Common Subsequence](crates/problem-solving/src/dp/longest_common_subsequence.rs)
+   `cargo run --bin lcs`
+7. [Coin Change Problem](crates/problem-solving/src/dp/coin_change.rs)
+   `cargo run --bin coin_change`
+8. [Palindrome Partition](crates/problem-solving/src/dp/palindrome_partition.rs)
+   `cargo run --bin palindrome_partition`
+9. [Find Nth distinct number](crates/problem-solving/src/dp/nth-dFFistinct-number.rs)
+   `cargo run --bin nth-distinct-number`
+10. [Find the length of the longest substring without duplicates](crates/problem-solving/src/dp/longest-substring.rs) 
+    `cargo run --bin longest-substring`
 
 ## [4. Advanced Concepts](crates/advanced/README.md)
 
 ### 4.1. Memory Management
 
-- [Ownership, borrowing, and Lifetimes](crates/advanced/memory-management/src/ownership.rs) `cargo run --bin ownership`
+- [Ownership, borrowing, and Lifetimes](crates/advanced/memory-management/src/ownership.rs)
+  `cargo run --bin ownership`
 - [Unsafe Rust](crates/advanced/memory-management/src/unsafe.rs)
+  `cargo run --bin unsafe`
 
 ### 4.2. Type System and Generics
 
@@ -267,7 +310,7 @@ Command: `cargo run --bin cget <DOWNLOAD_URL>`
 
 Example:
 
-```shell
+```sh
 cargo run --bin cget https://mirrors.saswata.cc/kde/stable/krita/5.2.14/krita-x64-5.2.14-setup.exe
 ```
 
@@ -285,7 +328,7 @@ To run any binary, you can run the command `cargo run --bin <bin_name>`
 
 Example:
 
-```shell
+```sh
 cargo run --bin practical_number
 ```
 
@@ -307,7 +350,7 @@ To test programs, you can run `cargo test` command.
 
 Example:
 
-```shell
+```sh
 cargo test
 
 # alternatively, to test individual binary, you can run
