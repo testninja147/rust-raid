@@ -84,6 +84,10 @@ path = "src/algorithms/greedy/huffman_coding.rs"
 name = "kruskal"
 path = "src/algorithms/greedy/kruskal.rs"
 
+[[bin]]
+name = "dfs"
+path = "src/algorithms/greedy/dfs.rs"
+
 # Miscellaneous
 
 [[bin]]

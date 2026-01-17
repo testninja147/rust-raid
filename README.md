@@ -129,8 +129,8 @@ cargo test --bin huffman
    cargo run --bin binary_search
    ```
 
-3. [Depth First Search (DFS)]
-4. [Breadth First Search (BFS)]
+3. [Jump Search]
+4. [Interpolation Search]
 
 #### [1.2.2. Sorting](crates/dsa/src/algorithms/sorting/)
 
@@ -188,7 +188,16 @@ cargo test --bin huffman
 6. [Bellman-Ford Algorithm]
 7. [Floyd-Warshall Algorithm]
 8. [Topological Sort]
-9. [A* Search Algorithm]
+9. [Depth First Search (DFS)](crates/dsa/src/algorithms/greedy/dfs.rs)
+
+   An example of a package manager to resolve and install dependencies using DFS approach.
+
+   ```sh
+   cargo run --bin dfs
+   ```
+
+10. [Breadth First Search (BFS)]
+11. [A* Search Algorithm]
 
 #### [1.2.4. Miscellaneous Algorithms](crates/dsa/src/algorithms/misc/)
 

@@ -15,10 +15,8 @@
 
 ## TARGET
 
-- [ ] Data Structure
-- [ ] Algorithm
+- [ ] DSA
 - [ ] Design Pattern
 - [ ] Problem Solving
-- [ ] Complexity Analysis
 - [ ] Advanced Concept
 - [ ] Project
