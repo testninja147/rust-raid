@@ -59,6 +59,7 @@ struct Package {
 
 #[derive(Debug)]
 struct Registry {
+    installed: HashSet<String>,
     packages: HashMap<String, Package>,
 }
 
@@ -71,6 +72,7 @@ impl Package {
 impl Registry {
     fn new() -> Self {
         Self {
+            installed: HashSet::new(),
             packages: HashMap::new(),
         }
     }
@@ -122,11 +124,23 @@ impl Registry {
         Ok(output)
     }
 
-    fn install(&self, id: String) -> Result<(), String> {
+    fn install(&mut self, id: String) -> Result<(), String> {
         println!("{}", "-".repeat(40));
+        if self.installed.contains(&id) {
+            println!("Package \"{}\" is already installed", id);
+            return Ok(());
+        } else {
+            println!("Installing package \"{}\"", id);
+        }
         let deps = self.resolve(id.clone())?;
-        println!("Installing package \"{}\"", id);
-        println!("Dependencies: {:?}", deps);
+        println!("DFS Graph: {:?}", deps);
+
+        // install sub dependencies first, and ignore self dependency from dfs
+        for dep in deps.iter().filter(|&dep| dep != &id) {
+            self.install(dep.to_owned())?
+        }
+        self.installed.insert(id.clone());
+        println!("Package \"{}\" installed successfully", id);
         Ok(())
     }
 }
@@ -144,17 +158,14 @@ fn main() {
     registry.insert(Package::new("logger".to_owned(), vec!["os".to_owned()]));
 
     // install higher level packages which will resolve the dependencies before installing
-    let web = Package::new(
+    registry.insert(Package::new(
         "web".to_owned(),
         vec!["http".to_owned(), "logger".to_owned()],
-    );
-
-    let auth = Package::new(
+    ));
+    registry.insert(Package::new(
         "auth".to_owned(),
         vec!["db".to_owned(), "crypto".to_owned()],
-    );
-    registry.insert(web);
-    registry.insert(auth);
+    ));
 
     // insert app package which depends on web and auth
     registry.insert(Package::new(
@@ -162,12 +173,6 @@ fn main() {
         vec!["web".to_owned(), "auth".to_owned()],
     ));
 
-    // resolve dependencies for "auth" package
-    for apps in ["web", "auth", "app"] {
-        if let Ok(()) = registry.install(apps.to_owned()) {
-            println!("Package '{}' installed successfully", apps);
-        } else {
-            println!("Failed to install package '{}'", apps);
-        }
-    }
+    // install package app
+    registry.install("app".to_owned()).unwrap();
 }
