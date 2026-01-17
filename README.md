@@ -190,6 +190,8 @@ cargo test --bin huffman
 8. [Topological Sort]
 9. [Depth First Search (DFS)](crates/dsa/src/algorithms/greedy/dfs.rs)
 
+   An example of a package manager to resolve and install dependencies using DFS approach.
+
    ```sh
    cargo run --bin dfs
    ```
