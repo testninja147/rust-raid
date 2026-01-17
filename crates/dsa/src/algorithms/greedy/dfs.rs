@@ -49,16 +49,125 @@
 //!
 //! ```
 
+use std::collections::{HashMap, HashSet};
+
+#[derive(Clone, Debug)]
 struct Package {
     id: String,
-    dependencies: Vec<Package>,
+    deps: Vec<String>, // dependencies
 }
 
-struct DependencyGraph {
-    packages: Package,
+#[derive(Debug)]
+struct Registry {
+    packages: HashMap<String, Package>,
+}
+
+impl Package {
+    fn new(id: String, deps: Vec<String>) -> Self {
+        Self { id, deps }
+    }
+}
+
+impl Registry {
+    fn new() -> Self {
+        Self {
+            packages: HashMap::new(),
+        }
+    }
+    fn insert(&mut self, pkg: Package) {
+        self.packages.insert(pkg.id.clone(), pkg);
+    }
+
+    fn depth_first_search(
+        &self,
+        id: String,
+        visiting: &mut HashSet<String>,
+        resolved: &mut HashSet<String>,
+        output: &mut Vec<String>,
+    ) -> Result<(), String> {
+        if resolved.contains(&id) {
+            return Ok(());
+        }
+
+        // if a depends on b, and b depends on a, then we have a circular dependency
+        if visiting.contains(&id) {
+            return Err(format!("circular dependency detected at package {}", id));
+        }
+
+        visiting.insert(id.clone());
+
+        let pkg = self
+            .packages
+            .get(&id)
+            .ok_or_else(|| format!("package {} not found in registry", id))?;
+
+        for dep in &pkg.deps {
+            self.depth_first_search(dep.clone(), visiting, resolved, output)?;
+        }
+
+        visiting.remove(&id);
+        resolved.insert(id.clone());
+        output.push(id);
+
+        Ok(())
+    }
+
+    fn resolve(&self, id: String) -> Result<Vec<String>, String> {
+        // resolve packages
+        let mut visiting = HashSet::new();
+        let mut resolved = HashSet::new();
+        let mut output = Vec::new();
+        self.depth_first_search(id, &mut visiting, &mut resolved, &mut output)?;
+
+        Ok(output)
+    }
+
+    fn install(&self, id: String) -> Result<(), String> {
+        println!("{}", "-".repeat(40));
+        let deps = self.resolve(id.clone())?;
+        println!("Installing package \"{}\"", id);
+        println!("Dependencies: {:?}", deps);
+        Ok(())
+    }
 }
 
 fn main() {
-    //
-    println!("Depth first search algorithm")
+    println!("Depth first search algorithm");
+
+    let mut registry = Registry::new();
+
+    // build a graph of packages and their dependencies (similar to a lockfile)
+    registry.insert(Package::new("os".to_owned(), vec![]));
+    registry.insert(Package::new("http".to_owned(), vec!["os".to_owned()]));
+    registry.insert(Package::new("crypto".to_owned(), vec!["os".to_owned()]));
+    registry.insert(Package::new("db".to_owned(), vec!["os".to_owned()]));
+    registry.insert(Package::new("logger".to_owned(), vec!["os".to_owned()]));
+
+    // install higher level packages which will resolve the dependencies before installing
+    let web = Package::new(
+        "web".to_owned(),
+        vec!["http".to_owned(), "logger".to_owned()],
+    );
+
+    let auth = Package::new(
+        "auth".to_owned(),
+        vec!["db".to_owned(), "crypto".to_owned()],
+    );
+    registry.insert(web);
+    registry.insert(auth);
+
+    // insert app package which depends on web and auth
+    registry.insert(Package::new(
+        "app".to_owned(),
+        vec!["web".to_owned(), "auth".to_owned()],
+    ));
+
+    // resolve dependencies for "auth" package
+    for apps in ["web", "auth", "app"] {
+        if let Ok(()) = registry.install(apps.to_owned()) {
+            println!("Package '{}' installed successfully", apps);
+        } else {
+            println!("Failed to install package '{}'", apps);
+        }
+    }
 }
